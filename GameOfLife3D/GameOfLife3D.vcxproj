@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{06DD139F-D5CB-4113-BD81-CF8DA17E5A71}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GameOfLife3D</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <ProjectName>GameOfLife3D</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="props\boost_x86.props" />
+    <Import Project="props\WindowsSDK_x86.props" />
+    <Import Project="props\DirectX_x86.props" />
+    <Import Project="props\GameOfLife3DLib.props" />
+    <Import Project="props\antlr_x86.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="props\boost_x64.props" />
+    <Import Project="props\WindowsSDK_x64.props" />
+    <Import Project="props\DirectX_x64.props" />
+    <Import Project="props\GameOfLife3DLib.props" />
+    <Import Project="props\antlr_x64.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="props\boost_x86.props" />
+    <Import Project="props\WindowsSDK_x86.props" />
+    <Import Project="props\DirectX_x86.props" />
+    <Import Project="props\GameOfLife3DLib.props" />
+    <Import Project="props\antlr_x86.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="props\boost_x64.props" />
+    <Import Project="props\WindowsSDK_x64.props" />
+    <Import Project="props\DirectX_x64.props" />
+    <Import Project="props\GameOfLife3DLib.props" />
+    <Import Project="props\antlr_x64.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>user32.dll;shell32.dll;Uxtheme.dll</DelayLoadDLLs>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <DelayLoadDLLs>user32.dll;shell32.dll;Uxtheme.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <DelayLoadDLLs>user32.dll;shell32.dll;Uxtheme.dll</DelayLoadDLLs>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <DelayLoadDLLs>user32.dll;shell32.dll;Uxtheme.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="cleanall.bat" />
+    <CustomBuild Include="shaders\default.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\default.fxo shaders\default.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\default.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Zi /T fx_4_0 /Fo default.fxo default.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">default.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fxc /T fx_4_0 /Fo shaders\default.fxo shaders\default.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">shaders\default.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fxc /T fx_4_0 /Fo default.fxo default.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">default.fxo</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="shaders\gauss.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\gauss.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Zi /T fx_4_0 /Fo gauss.fxo gauss.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">gauss.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fxc /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">shaders\gauss.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fxc /T fx_4_0 /Fo gauss.fxo gauss.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">gauss.fxo</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="shaders\blend.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\blend.fxo shaders\blend.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\blend.fxo</Outputs>
+    </CustomBuild>
+    <None Include="res\opencs32x32.bmp" />
+    <None Include="res\opencs64x64.bmp" />
+    <None Include="res\openfile32x32.bmp" />
+    <None Include="res\openfile64x64.bmp" />
+    <None Include="res\random32x32.bmp" />
+    <None Include="res\random64x64.bmp" />
+    <None Include="res\settings32x32.bmp" />
+    <None Include="res\settings64x64.bmp" />
+    <None Include="res\start32x32.bmp" />
+    <None Include="res\start64x64.bmp" />
+    <None Include="res\stop32x32.bmp" />
+    <None Include="res\stop64x64.bmp" />
+    <CustomBuild Include="shaders\default_d3d.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\default_d3d.fxo shaders\default_d3d.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\default_d3d.fxo</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fxc /T fx_4_0 /Fo shaders\default_d3d.fxo shaders\default_d3d.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">shaders\default_d3d.fxo</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="shaders\gameoflife.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T cs_5_0 /Fo shaders\gameoflife.fxo shaders\gameoflife.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\gameoflife.fxo</Outputs>
+    </CustomBuild>
+    <None Include="mui.bat" />
+    <None Include="mui_rcconfig.xml" />
+    <None Include="mui_x64.bat" />
+    <CustomBuild Include="shaders\simple_d3d.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\simple_d3d.fxo shaders\simple_d3d.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\simple_d3d.fxo</Outputs>
+    </CustomBuild>
+    <None Include="GameOfLife3D.ico" />
+    <None Include="props\antlr_x64.props" />
+    <None Include="props\antlr_x86.props">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="props\boost_x64.props" />
+    <None Include="props\boost_x86.props" />
+    <None Include="props\DirectX_x64.props" />
+    <None Include="props\DirectX_x86.props" />
+    <None Include="props\gtest_x64.props" />
+    <None Include="props\gtest_x86.props" />
+    <None Include="props\GameOfLife3DLib.props" />
+    <None Include="props\GameOfLife3D_colorsetdef.props" />
+    <None Include="props\WindowsSDK_x64.props" />
+    <None Include="props\WindowsSDK_x86.props" />
+    <None Include="ReadMe.txt" />
+    <None Include="res\Copy.bmp" />
+    <None Include="res\Cut.bmp" />
+    <None Include="res\ExitL.bmp" />
+    <None Include="res\NewL.bmp" />
+    <None Include="res\GameOfLife3DL.bmp" />
+    <None Include="res\OpenFileL.bmp" />
+    <None Include="res\Paste.bmp" />
+    <None Include="res\PrintL.bmp" />
+    <None Include="res\PrintPreviewL.bmp" />
+    <None Include="res\SaveAsL.bmp" />
+    <None Include="res\SaveL.bmp" />
+    <None Include="res\UndoS.bmp" />
+    <CustomBuild Include="shaders\simple_d3d_gs.fx">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\simple_d3d_gs.fxo shaders\simple_d3d_gs.fx</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\simple_d3d_gs.fxo</Outputs>
+    </CustomBuild>
+    <None Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libs.h" />
+    <ClInclude Include="GameOfLife3D.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameOfLife3D.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameOfLife3D.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

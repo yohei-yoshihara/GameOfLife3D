@@ -1,0 +1,6 @@
+#include "StdAfx.h"
+#include "graphics/GraphicsCommon.h"
+#include "graphics/brush/LinearGradientBrush.h"
+#include "graphics/color/ColorValue.h"
+#include "graphics/color/ColorPatternUtil.h"
+#include "graphics/color/ColorUtil.h"

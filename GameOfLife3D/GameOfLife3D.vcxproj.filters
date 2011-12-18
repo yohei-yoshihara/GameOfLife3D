@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="small.ico">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="props\boost_x64.props" />
+    <None Include="props\boost_x86.props" />
+    <None Include="props\gtest_x64.props" />
+    <None Include="props\gtest_x86.props" />
+    <None Include="props\WindowsSDK_x64.props" />
+    <None Include="props\WindowsSDK_x86.props" />
+    <None Include="cleanall.bat">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="mui.bat">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="mui_rcconfig.xml" />
+    <None Include="mui_x64.bat">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="res\Copy.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\Cut.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\ExitL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\NewL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\OpenFileL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\Paste.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\PrintL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\PrintPreviewL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\SaveAsL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\SaveL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\UndoS.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="props\DirectX_x64.props" />
+    <None Include="props\DirectX_x86.props" />
+    <None Include="props\antlr_x64.props" />
+    <None Include="props\antlr_x86.props" />
+    <None Include="GameOfLife3D.ico">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="props\GameOfLife3DLib.props" />
+    <None Include="props\GameOfLife3D_colorsetdef.props" />
+    <None Include="res\GameOfLife3DL.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\start64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\stop64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\stop32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\start32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\settings64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\settings32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\opencs32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\opencs64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\random32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\random64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\openfile32x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="res\openfile64x64.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="libs.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOfLife3D.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOfLife3D.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameOfLife3D.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="shaders\default.fx" />
+    <CustomBuild Include="shaders\gauss.fx" />
+    <CustomBuild Include="shaders\default_d3d.fx" />
+    <CustomBuild Include="shaders\blend.fx" />
+    <CustomBuild Include="shaders\gameoflife.fx" />
+    <CustomBuild Include="shaders\simple_d3d.fx" />
+    <CustomBuild Include="shaders\simple_d3d_gs.fx" />
+  </ItemGroup>
+</Project>

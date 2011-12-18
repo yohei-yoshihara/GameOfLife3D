@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E2E546AA-E659-4D2B-8FD2-AA7AC064DCC4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>GameOfLife3DLib</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <ProjectName>GameOfLife3DLib</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
+    <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
+    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
+    <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
+    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
+    <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
+    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
+    <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
+    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
+    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="gameoflife3d\dialogs\SettingData.h" />
+    <ClInclude Include="gameOfLife3D\draw3d\Draw3DFactory.h" />
+    <ClInclude Include="gameoflife3d\draw3d\Draw3DUtil.h" />
+    <ClInclude Include="gameOfLife3D\draw3d\Draw3DWithCPU.h" />
+    <ClInclude Include="gameOfLife3D\draw3d\Draw3DWithGS.h" />
+    <ClInclude Include="gameOfLife3D\draw3d\IDraw3D.h" />
+    <ClInclude Include="gameOfLife3D\io\LifeFile.h" />
+    <ClInclude Include="gameOfLife3D\lifeSimulator\AbstractLifeSimulator.h" />
+    <ClInclude Include="gameOfLife3D\lifeSimulator\LifeData.h" />
+    <ClInclude Include="gameOfLife3D\lifeSimulator\LifeSimulatorCS.h" />
+    <ClInclude Include="gameOfLife3D\lifeSimulator\LifeSimulatorFactory.h" />
+    <ClInclude Include="gameOfLife3D\lifeSimulator\LifeSimulatorCPU.h" />
+    <ClInclude Include="gameOfLife3D\draw3d\VertexGenerator.h" />
+    <ClInclude Include="gameOfLife3D\dialogs\SettingsDialog.h" />
+    <ClInclude Include="graphics\brush\BrushFactory.h" />
+    <ClInclude Include="graphics\brush\BrushSet.h" />
+    <ClInclude Include="graphics\brush\IBrush.h" />
+    <ClInclude Include="graphics\brush\RadialGradientBrush.h" />
+    <ClInclude Include="graphics\color\ColorPatternUtil.h" />
+    <ClInclude Include="graphics\color\ColorSet.h" />
+    <ClInclude Include="graphics\color\IColor.h" />
+    <ClInclude Include="graphics\color\LinearGradientColor.h" />
+    <ClInclude Include="graphics\color\RadialGradientColor.h" />
+    <ClInclude Include="graphics\color\SolidColor.h" />
+    <ClInclude Include="graphics\decorator\Frame.h" />
+    <ClInclude Include="graphics\color\ColorValue.h" />
+    <ClInclude Include="graphics\decorator\FrameDecorator.h" />
+    <ClInclude Include="graphics\decorator\IDecorator.h" />
+    <ClInclude Include="graphics\DirectWriteUtil.h" />
+    <ClInclude Include="graphics\figure\EllipseFigure.h" />
+    <ClInclude Include="graphics\color\ColorUtil.h" />
+    <ClInclude Include="graphics\Bitmap.h" />
+    <ClInclude Include="animation\IAnimationWindow.h" />
+    <ClInclude Include="graphics\figure\FilterResource.h" />
+    <ClInclude Include="graphics\figure\GeometryFilterWorkSet.h" />
+    <ClInclude Include="graphics\figure\IFigure.h" />
+    <ClInclude Include="graphics\filter\FilterCommon.h" />
+    <ClInclude Include="graphics\filter\GaussFilter.h" />
+    <ClInclude Include="graphics\filter\IGeometryFilter.h" />
+    <ClInclude Include="graphics\filter\InnerGaussFilter.h" />
+    <ClInclude Include="graphics\color\HSBAColorValue.h" />
+    <ClInclude Include="graphics\color\GradientStopCollection.h" />
+    <ClInclude Include="graphics\color\GradientStop.h" />
+    <ClInclude Include="graphics\filter\ITextureFilter.h" />
+    <ClInclude Include="graphics\FPSUtil.h" />
+    <ClInclude Include="graphics\ID3DInteropAdapter.h" />
+    <ClInclude Include="graphics\SharedSurface.h" />
+    <ClInclude Include="logging\logging.h" />
+    <ClInclude Include="graphics\brush\SolidColorBrush.h" />
+    <ClInclude Include="graphics\figure\RectangleFigure.h" />
+    <ClInclude Include="graphics\color\RGBAColorValue.h" />
+    <ClInclude Include="touch\AbstractManipulationHelper.h" />
+    <ClInclude Include="animation\AnimationManagerEventHandler.h" />
+    <ClInclude Include="GameOfLife3D\CanvasPanel.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="graphics\GraphicsCommon.h" />
+    <ClInclude Include="graphics\brush\LinearGradientBrush.h" />
+    <ClInclude Include="graphics\D3DInteropHelper.h" />
+    <ClInclude Include="graphics\figure\TriangleFigure.h" />
+    <ClInclude Include="tsf\MessageQueue.h" />
+    <ClInclude Include="ui\event\IUIInputEvent.h" />
+    <ClInclude Include="ui\event\UIActionEvent.h" />
+    <ClInclude Include="ui\IUIDialog.h" />
+    <ClInclude Include="ui\IUITextField.h" />
+    <ClInclude Include="ui\UIListBoxItem.h" />
+    <ClInclude Include="ui\UIScrollBar.h" />
+    <ClInclude Include="ui\UITextDisplayAttribute.h" />
+    <ClInclude Include="ui\UITextEditSink.h" />
+    <ClInclude Include="ui\UITextStoreACP.h" />
+    <ClInclude Include="graphics\FontAttribute.h" />
+    <ClInclude Include="GameOfLife3D\IMainWnd.h" />
+    <ClInclude Include="GameOfLife3D\MainWnd.h" />
+    <ClInclude Include="touch\ManipulationHelper.h" />
+    <ClInclude Include="mui\MUI.h" />
+    <ClInclude Include="util\OSVersionChecker.h" />
+    <ClInclude Include="GameOfLife3D\Ribbon.h" />
+    <ClInclude Include="GameOfLife3D\RibbonFactory.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="tsf\TSFManager.h" />
+    <ClInclude Include="ui\UIBase.h" />
+    <ClInclude Include="ui\UIButton.h" />
+    <ClInclude Include="ui\UICommon.h" />
+    <ClInclude Include="ui\UIContainer.h" />
+    <ClInclude Include="ui\UIInternalDialog.h" />
+    <ClInclude Include="ui\UILabel.h" />
+    <ClInclude Include="ui\UIListBox.h" />
+    <ClInclude Include="ui\UIPanel.h" />
+    <ClInclude Include="ui\UIProgressBar.h" />
+    <ClInclude Include="ui\UIRadioButton.h" />
+    <ClInclude Include="ui\UIRadioButtonGroup.h" />
+    <ClInclude Include="ui\UIRoot.h" />
+    <ClInclude Include="ui\UITextField.h" />
+    <ClInclude Include="util\StringUtil.h" />
+    <ClInclude Include="util\Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gameoflife3d\dialogs\SettingData.cpp" />
+    <ClCompile Include="gameOfLife3D\draw3d\Draw3DFactory.cpp" />
+    <ClCompile Include="gameoflife3d\draw3d\Draw3DUtil.cpp" />
+    <ClCompile Include="gameOfLife3D\draw3d\Draw3DWithCPU.cpp" />
+    <ClCompile Include="gameOfLife3D\draw3d\Draw3DWithGS.cpp" />
+    <ClCompile Include="gameOfLife3D\draw3d\IDraw3D.cpp" />
+    <ClCompile Include="gameOfLife3D\io\LifeFile.cpp" />
+    <ClCompile Include="gameOfLife3D\lifeSimulator\AbstractLifeSimulator.cpp" />
+    <ClCompile Include="gameOfLife3D\lifeSimulator\LifeSimulatorCS.cpp" />
+    <ClCompile Include="gameOfLife3D\lifeSimulator\LifeSimulatorFactory.cpp" />
+    <ClCompile Include="gameOfLife3D\lifeSimulator\LifeSimulatorCPU.cpp" />
+    <ClCompile Include="gameOfLife3D\draw3d\VertexGenerator.cpp" />
+    <ClCompile Include="gameOfLife3D\dialogs\SettingsDialog.cpp" />
+    <ClCompile Include="graphics\brush\BrushFactory.cpp" />
+    <ClCompile Include="graphics\brush\BrushSet.cpp" />
+    <ClCompile Include="graphics\brush\RadialGradientBrush.cpp" />
+    <ClCompile Include="graphics\color\ColorPatternUtil.cpp" />
+    <ClCompile Include="graphics\color\ColorSet.cpp" />
+    <ClCompile Include="graphics\color\LinearGradientColor.cpp" />
+    <ClCompile Include="graphics\color\RadialGradientColor.cpp" />
+    <ClCompile Include="graphics\color\SolidColor.cpp" />
+    <ClCompile Include="graphics\decorator\Frame.cpp" />
+    <ClCompile Include="graphics\color\ColorValue.cpp" />
+    <ClCompile Include="graphics\decorator\FrameDecorator.cpp" />
+    <ClCompile Include="graphics\DirectWriteUtil.cpp" />
+    <ClCompile Include="graphics\figure\EllipseFigure.cpp" />
+    <ClCompile Include="graphics\color\ColorUtil.cpp" />
+    <ClCompile Include="graphics\Bitmap.cpp" />
+    <ClCompile Include="graphics\figure\GeometryFilterWorkSet.cpp" />
+    <ClCompile Include="graphics\filter\FilterCommon.cpp" />
+    <ClCompile Include="graphics\filter\GaussFilter.cpp" />
+    <ClCompile Include="graphics\brush\SolidColorBrush.cpp" />
+    <ClCompile Include="graphics\figure\RectangleFigure.cpp" />
+    <ClCompile Include="graphics\filter\InnerGaussFilter.cpp" />
+    <ClCompile Include="graphics\color\HSBAColorValue.cpp" />
+    <ClCompile Include="graphics\color\RGBAColorValue.cpp" />
+    <ClCompile Include="graphics\color\GradientStopCollection.cpp" />
+    <ClCompile Include="graphics\color\GradientStop.cpp" />
+    <ClCompile Include="graphics\FPSUtil.cpp" />
+    <ClCompile Include="graphics\ID3DInteropAdapter.cpp" />
+    <ClCompile Include="graphics\SharedSurface.cpp" />
+    <ClCompile Include="logging\Logging.cpp" />
+    <ClCompile Include="touch\AbstractManipulationHelper.cpp" />
+    <ClCompile Include="animation\AnimationManagerEventHandler.cpp" />
+    <ClCompile Include="GameOfLife3D\CanvasPanel.cpp" />
+    <ClCompile Include="graphics\brush\LinearGradientBrush.cpp" />
+    <ClCompile Include="graphics\D3DInteropHelper.cpp" />
+    <ClCompile Include="graphics\figure\TriangleFigure.cpp" />
+    <ClCompile Include="tsf\MessageQueue.cpp" />
+    <ClInclude Include="ui\event\EventSupport.h" />
+    <ClCompile Include="ui\UIListBoxItem.cpp" />
+    <ClCompile Include="ui\UIScrollBar.cpp" />
+    <ClCompile Include="ui\UITextDisplayAttribute.cpp" />
+    <ClCompile Include="ui\UITextEditSink.cpp" />
+    <ClCompile Include="ui\UITextStoreACP.cpp" />
+    <ClCompile Include="graphics\FontAttribute.cpp" />
+    <ClCompile Include="GameOfLife3D\MainWnd.cpp" />
+    <ClCompile Include="touch\ManipulationHelper.cpp" />
+    <ClCompile Include="mui\MUI.cpp" />
+    <ClCompile Include="util\OSVersionChecker.cpp" />
+    <ClCompile Include="GameOfLife3D\Ribbon.cpp" />
+    <ClCompile Include="GameOfLife3D\RibbonFactory.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tsf\TSFManager.cpp" />
+    <ClCompile Include="ui\UIBase.cpp" />
+    <ClCompile Include="ui\UIButton.cpp" />
+    <ClCompile Include="ui\UICommon.cpp" />
+    <ClCompile Include="ui\UIContainer.cpp" />
+    <ClCompile Include="ui\UIInternalDialog.cpp" />
+    <ClCompile Include="ui\UILabel.cpp" />
+    <ClCompile Include="ui\UIListBox.cpp" />
+    <ClCompile Include="ui\UIPanel.cpp" />
+    <ClCompile Include="ui\UIProgressBar.cpp" />
+    <ClCompile Include="ui\UIRadioButton.cpp" />
+    <ClCompile Include="ui\UIRadioButtonGroup.cpp" />
+    <ClCompile Include="ui\UIRoot.cpp" />
+    <ClCompile Include="ui\UITextField.cpp" />
+    <ClCompile Include="util\StringUtil.cpp" />
+    <ClCompile Include="util\Utils.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
