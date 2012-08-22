@@ -179,7 +179,7 @@ public:
     void OnSettings();
     void InitializeLifeSimulator(graphics::D3DInteropHelper *pD3DInteropHelper);
     void UpdateEyeRadius(float delta);
-    void SetLifeFile(std::shared_ptr<gameOfLife3D::io::LifeFile> pLifeFile);
+    void SetLifeFile(const std::shared_ptr<gameOfLife3D::io::LifeFile> &pLifeFile);
     void GetLifeFile(std::shared_ptr<gameOfLife3D::io::LifeFile> &pLifeFile);
     void RandomizeInitialData();
     void OpenCSFile(const std::wstring &fileName);

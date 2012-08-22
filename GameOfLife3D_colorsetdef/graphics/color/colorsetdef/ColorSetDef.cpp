@@ -31,22 +31,22 @@ std::shared_ptr<graphics::color::colorsetdef::ColorSetDO> graphics::color::color
         size_t n = pColorSetDO->colors.size();
         std::wcout << n << std::endl;
         for (size_t i = 0; i < n; ++i) {
-            std::shared_ptr<graphics::color::colorsetdef::IColorDO> color = pColorSetDO->colors[i];
+            auto color = pColorSetDO->colors[i];
             switch (color->GetColorType()) {
             case COLOR_TYPE_SOLID: {
-                std::shared_ptr<graphics::color::colorsetdef::SolidColorDO> solid =
+                auto solid =
                     std::dynamic_pointer_cast<graphics::color::colorsetdef::SolidColorDO>(color);
                 std::wcout << *solid << std::endl;
             }
             break;
             case COLOR_TYPE_LINEAR: {
-                std::shared_ptr<graphics::color::colorsetdef::LinearColorDO> linear =
+                auto linear =
                     std::dynamic_pointer_cast<graphics::color::colorsetdef::LinearColorDO>(color);
                 std::wcout << *linear << std::endl;
             }
             break;
             case COLOR_TYPE_RADIAL: {
-                std::shared_ptr<graphics::color::colorsetdef::RadialColorDO> radial =
+                auto radial =
                     std::dynamic_pointer_cast<graphics::color::colorsetdef::RadialColorDO>(color);
                 std::wcout << *radial << std::endl;
             }
@@ -131,22 +131,22 @@ std::wostream& graphics::color::colorsetdef::operator<<(std::wostream& os, const
     os << typeid(colorSet).name()
        << L"[colors={";
     for (size_t i = 0; i < colorSet.colors.size(); ++i) {
-        std::shared_ptr<graphics::color::colorsetdef::IColorDO> color = colorSet.colors[i];
+        auto color = colorSet.colors[i];
         switch (color->GetColorType()) {
         case COLOR_TYPE_SOLID: {
-            std::shared_ptr<graphics::color::colorsetdef::SolidColorDO> solid =
+            auto solid =
                 std::dynamic_pointer_cast<graphics::color::colorsetdef::SolidColorDO>(color);
             os << *solid;
         }
         break;
         case COLOR_TYPE_LINEAR: {
-            std::shared_ptr<graphics::color::colorsetdef::LinearColorDO> linear =
+            auto linear =
                 std::dynamic_pointer_cast<graphics::color::colorsetdef::LinearColorDO>(color);
             os << *linear;
         }
         break;
         case COLOR_TYPE_RADIAL: {
-            std::shared_ptr<graphics::color::colorsetdef::RadialColorDO> radial =
+            auto radial =
                 std::dynamic_pointer_cast<graphics::color::colorsetdef::RadialColorDO>(color);
             os << *radial;
         }

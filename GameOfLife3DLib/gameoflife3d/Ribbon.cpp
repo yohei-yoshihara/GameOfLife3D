@@ -57,6 +57,7 @@ HRESULT gameOfLife3D::Ribbon::Initialize( RibbonFactory *pRibbonFactory )
         spPropertyStore->Commit();
     }
 
+    updateRibbonHeight();
 #ifdef RIBBON_DEBUG
     LOG_LEAVE(SEVERITY_LEVEL_DEBUG);
 #endif
@@ -85,10 +86,8 @@ HRESULT gameOfLife3D::Ribbon::OnViewChanged(
             }
             break;
         case UI_VIEWVERB_SIZE:
-            if (nullptr != m_pUiRibbon) {
-                UINT ribbonHeight = GetRibbonHeight();
-                PostMessage(m_pRibbonFactory->GetParentHWnd(),
-                            WM_RIBBON_RESIZED, static_cast<WPARAM>(ribbonHeight), 0);
+            if (nullptr != m_pUiRibbon && nullptr != m_pRibbonFactory) {
+                updateRibbonHeight();
             }
             break;
         case UI_VIEWVERB_DESTROY:
@@ -250,4 +249,11 @@ HRESULT gameOfLife3D::Ribbon::UpdateProperty(
     LOG_LEAVE(SEVERITY_LEVEL_DEBUG);
 #endif
     return E_NOTIMPL;
+}
+
+void gameOfLife3D::Ribbon::updateRibbonHeight()
+{
+    UINT ribbonHeight = GetRibbonHeight();
+    PostMessage(m_pRibbonFactory->GetParentHWnd(),
+        WM_RIBBON_RESIZED, static_cast<WPARAM>(ribbonHeight), 0);
 }

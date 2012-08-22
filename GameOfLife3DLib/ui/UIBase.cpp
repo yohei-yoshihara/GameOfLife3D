@@ -24,7 +24,7 @@ HRESULT _ClientToScreen(std::shared_ptr<ui::UIContainer> parent, ui::UIPoint &ou
         return E_FAIL;
     }
 
-    std::shared_ptr<ui::UIRoot> root = std::dynamic_pointer_cast<ui::UIRoot>(parent);
+    auto root = std::dynamic_pointer_cast<ui::UIRoot>(parent);
     if (root.get() != nullptr) {
         out.x += root->GetX();
         out.y += root->GetY();
@@ -44,7 +44,7 @@ HRESULT _ClientToScreen(std::shared_ptr<ui::UIContainer> parent, ui::UIPoint &ou
     } else {
         out.x += parent->GetX();
         out.y += parent->GetY();
-        std::weak_ptr<ui::UIContainer> _p = parent->GetParentContainer();
+        auto _p = parent->GetParentContainer();
         if (_p.expired()) {
             _ClientToScreen(_p.lock(), out);
         }
@@ -57,7 +57,7 @@ HRESULT ui::UIBase::ClientToScreen(ui::UIPoint clientPoint, ui::UIPoint &screenP
     ui::UIPoint out;
     out.x = GetX() + clientPoint.x;
     out.y = GetY() + clientPoint.y;
-    std::weak_ptr<ui::UIContainer> container = GetParentContainer();
+    auto container = GetParentContainer();
     if (!container.expired()) {
         _ClientToScreen(container.lock(), out);
         screenPoint = out;
@@ -88,14 +88,14 @@ HRESULT _ClientToWindow(std::shared_ptr<ui::UIContainer> parent, ui::UIPoint &ou
         return E_FAIL;
     }
 
-    std::shared_ptr<ui::UIRoot> root = std::dynamic_pointer_cast<ui::UIRoot>(parent);
+    auto root = std::dynamic_pointer_cast<ui::UIRoot>(parent);
     if (root.get() != nullptr) {
         out.x += root->GetX();
         out.y += root->GetY();
     } else {
         out.x += parent->GetX();
         out.y += parent->GetY();
-        std::weak_ptr<ui::UIContainer> _p = parent->GetParentContainer();
+        auto _p = parent->GetParentContainer();
         if (_p.expired()) {
             _ClientToWindow(_p.lock(), out);
         }
@@ -108,7 +108,7 @@ HRESULT ui::UIBase::ClientToWindow(ui::UIPoint clientPoint, ui::UIPoint &windowP
     ui::UIPoint out;
     out.x = GetX() + clientPoint.x;
     out.y = GetY() + clientPoint.y;
-    std::weak_ptr<ui::UIContainer> container = GetParentContainer();
+    auto container = GetParentContainer();
     if (!container.expired()) {
         _ClientToWindow(container.lock(), out);
         windowPoint = out;

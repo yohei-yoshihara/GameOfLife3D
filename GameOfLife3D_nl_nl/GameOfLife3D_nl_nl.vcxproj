@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{72F94F8D-0E30-484B-9121-27910B512DEB}</ProjectGuid>
+    <ProjectGuid>{76109AB4-C4A7-4468-AA55-2AA525D4DC3E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>GameOfLife3D_test</RootNamespace>
+    <RootNamespace>GameOfLife3D_nl_nl</RootNamespace>
+    <ProjectName>GameOfLife3D_MUI_nl_nl</ProjectName>
     <SccProjectName>
     </SccProjectName>
     <SccAuxPath>
@@ -30,27 +31,26 @@
     </SccLocalPath>
     <SccProvider>
     </SccProvider>
-    <ProjectName>GameOfLife3D_test</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -60,43 +60,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
-    <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
-    <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
-    <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
-    <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
-    <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -116,27 +92,38 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GameOfLife3D_nl_nl_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <CustomBuild>
+      <Command>
+      </Command>
+    </CustomBuild>
+    <PostBuildEvent>
+      <Command>..\GameOfLife3D\mui.bat ..\Debug 0x0413 nl-NL nl_nl 1</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GameOfLife3D_nl_nl_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <CustomBuild>
+      <Command>
+      </Command>
+    </CustomBuild>
+    <PostBuildEvent>
+      <Command>..\GameOfLife3D\mui_x64.bat ..\x64\Debug 0x0413 nl-NL nl_nl 1</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -145,17 +132,21 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GameOfLife3D_nl_nl_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
+    <CustomBuild>
+      <Command>
+      </Command>
+    </CustomBuild>
+    <PostBuildEvent>
+      <Command>..\GameOfLife3D\mui.bat ..\Release 0x0413 nl-NL nl_nl 1</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -164,27 +155,55 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/Zm256 %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;GameOfLife3D_nl_nl_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <CustomBuild>
+      <Command>
+      </Command>
+    </CustomBuild>
+    <PostBuildEvent>
+      <Command>..\GameOfLife3D\mui_x64.bat ..\x64\Release 0x0413 nl-NL nl_nl 1</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="gameOfLife3D\DummyAdapter.h" />
-    <ClInclude Include="resource.h" />
+    <CustomBuild Include="ribbonmarkup.xml">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">UICC ribbonmarkup.xml ribbonmarkup.bml /header:ribbonres.h /res:ribbonres.rc</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ribbonmarkup.bml;ribbonres.rc;ribbonres.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">UICC ribbonmarkup.xml ribbonmarkup.bml /header:ribbonres.h /res:ribbonres.rc</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ribbonmarkup.bml;ribbonres.rc;ribbonres.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">UICC ribbonmarkup.xml ribbonmarkup.bml /header:ribbonres.h /res:ribbonres.rc</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ribbonmarkup.bml;ribbonres.rc;ribbonres.h</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">UICC ribbonmarkup.xml ribbonmarkup.bml /header:ribbonres.h /res:ribbonres.rc</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ribbonmarkup.bml;ribbonres.rc;ribbonres.h</Outputs>
+      <SubType>Designer</SubType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="gameOfLife3D\Test_LifeSimulator.cpp" />
-    <ClCompile Include="gameOfLife3D\Test_Model3D.cpp" />
-    <ClCompile Include="GameOfLife3D_test.cpp" />
+    <ClCompile Include="dllmain.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </PrecompiledHeader>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -193,7 +212,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
+    <ResourceCompile Include="GameOfLife3D_MUI_nl_nl.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

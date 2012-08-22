@@ -280,8 +280,7 @@ void gameOfLife3D::MainWnd::OnOpenFile()
     }
     if (SUCCEEDED(hr)) {
         std::wstring fileName(pPath);
-        std::shared_ptr<gameOfLife3D::io::LifeFile> lifeFile =
-            std::make_shared<gameOfLife3D::io::LifeFile>();
+        auto lifeFile = std::make_shared<gameOfLife3D::io::LifeFile>();
         lifeFile->Load(fileName);
         m_canvasPanel->SetLifeFile(lifeFile);
     }
@@ -321,8 +320,7 @@ void gameOfLife3D::MainWnd::OnSaveFileAs()
         hr = pFileSaveDialog->GetFileTypeIndex(&fileTypeIndex);
     }
     if (SUCCEEDED(hr)) {
-        std::shared_ptr<gameOfLife3D::io::LifeFile> lifeFile =
-            std::make_shared<gameOfLife3D::io::LifeFile>();
+        auto lifeFile = std::make_shared<gameOfLife3D::io::LifeFile>();
         m_canvasPanel->GetLifeFile(lifeFile);
 
         std::wstring fileName(pPath);

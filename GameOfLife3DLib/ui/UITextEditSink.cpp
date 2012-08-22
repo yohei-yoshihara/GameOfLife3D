@@ -55,7 +55,7 @@ STDMETHODIMP_(DWORD) ui::UITextEditSink::Release()
 
 STDAPI ui::UITextEditSink::OnEndEdit(ITfContext *pic, TfEditCookie ecReadOnly, ITfEditRecord *pEditRecord)
 {
-    std::shared_ptr<IUITextField> pEditControl = m_editControl.lock();
+    auto editControl = m_editControl.lock();
     DisplayAttributeProperties dispAttrProps;
     HRESULT hr = m_displayAttribute.GetDisplayAttributeProperties(dispAttrProps);
     if (SUCCEEDED(hr)) {
@@ -69,7 +69,7 @@ STDAPI ui::UITextEditSink::OnEndEdit(ITfContext *pic, TfEditCookie ecReadOnly, I
             if (pEnum->Next(1, &pRange, nullptr) == S_OK) {
                 pRange->Release();
 
-                pEditControl->ClearCompositionRenderInfo();
+                editControl->ClearCompositionRenderInfo();
 
                 ITfRange *pRangeEntire = nullptr;
                 ITfRange *pRangeEnd = nullptr;
@@ -92,7 +92,7 @@ STDAPI ui::UITextEditSink::OnEndEdit(ITfContext *pic, TfEditCookie ecReadOnly, I
                                     LONG nStart;
                                     LONG nEnd;
                                     pRangeACP->GetExtent(&nStart, &nEnd);
-                                    pEditControl->AddCompositionRenderInfo(nStart, nStart + nEnd, &da);
+                                    editControl->AddCompositionRenderInfo(nStart, nStart + nEnd, &da);
                                     pRangeACP->Release();
                                 }
                             }
@@ -111,7 +111,7 @@ STDAPI ui::UITextEditSink::OnEndEdit(ITfContext *pic, TfEditCookie ecReadOnly, I
             pEnum->Release();
         }
     }
-    pEditControl->NotifyCompositionRenderInfoChange();
+    editControl->NotifyCompositionRenderInfoChange();
     return S_OK;
 }
 

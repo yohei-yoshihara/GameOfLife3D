@@ -23,7 +23,7 @@ public:
     }
     ~ColorSet() {}
     void AddColors(const wchar_t *colorDesc);
-    void AddColor(std::shared_ptr<graphics::color::IColor> color);
+    void AddColor(const std::shared_ptr<graphics::color::IColor> &color);
     void Clear();
     void SetColors(const wchar_t *colorDesc) {
         Clear();

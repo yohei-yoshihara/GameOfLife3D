@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="497E4835-ABFB-4FC7-A999-7AED5198CD25" Name="GameOfLife3D" Language="1033" Version="0.5.0.0" 
+	<Product Id="497E4835-ABFB-4FC7-A999-7AED5198CD25" Name="GameOfLife3D" Language="1033" Version="0.5.2.0" 
            Manufacturer="CX5SOFTWARE" UpgradeCode="16D388C0-0CE8-4055-A1E1-300496582D92">
 		<Package InstallerVersion="200" Compressed="yes" Description="Game of Life 3D" Manufacturer="CX5SOFTWARE"/>
 

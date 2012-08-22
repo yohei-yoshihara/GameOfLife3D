@@ -100,7 +100,7 @@ public:
         return (m_x <= x && x <= (m_x + m_width)) &&
                (m_y <= y && y <= (m_y + m_height));
     }
-    virtual void AddDecorator(std::shared_ptr<graphics::decorator::IDecorator> decorator) {
+    virtual void AddDecorator(const std::shared_ptr<graphics::decorator::IDecorator> &decorator) {
         m_decorators.push_back(decorator);
     }
     virtual void ClearDecorators() {
@@ -135,7 +135,7 @@ public:
         return m_shadow;
     }
     // âeå¯â ÇÃêFÇÃê›íË
-    void SetShadowColor(std::shared_ptr<graphics::color::IColor> shadowColor) {
+    void SetShadowColor(const std::shared_ptr<graphics::color::IColor> &shadowColor) {
         m_shadowColor = shadowColor;
         m_propertyChanged = true;
     }

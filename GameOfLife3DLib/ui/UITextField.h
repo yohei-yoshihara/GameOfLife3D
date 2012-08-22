@@ -85,7 +85,7 @@ private:
 public:
     UITextField(void);
     virtual ~UITextField(void);
-    virtual void SetTSFManager(std::shared_ptr<tsf::TSFManager> tsfManager) {
+    virtual void SetTSFManager(const std::shared_ptr<tsf::TSFManager> &tsfManager) {
         m_tsfManager = tsfManager;
     }
     virtual HRESULT Initialize(

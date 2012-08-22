@@ -22,10 +22,14 @@
     <ProjectGuid>{A15FBF87-BD34-4FB0-8045-53FAFAB0EB6D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameOfLife3D_colorsetdef</RootNamespace>
-    <SccProjectName>Svn</SccProjectName>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
     <ProjectName>GameOfLife3D_colorsetdef</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

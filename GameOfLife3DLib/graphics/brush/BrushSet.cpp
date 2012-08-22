@@ -15,12 +15,12 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
     Clear();
 
     for (size_t i = 0; i < colorSet.GetNumberOfColors(); ++i) {
-        std::shared_ptr<graphics::color::IColor> color = colorSet.GetColor(i);
+        auto color = colorSet.GetColor(i);
         switch (color->GetColorType()) {
         case graphics::color::IColor::COLOR_TYPE_SOLID_COLOR: {
-            std::shared_ptr<graphics::color::SolidColor> solidColor =
+            auto solidColor =
                 std::dynamic_pointer_cast<graphics::color::SolidColor>(color);
-            std::shared_ptr<graphics::brush::SolidColorBrush> solidBrush =
+            auto solidBrush =
                 std::make_shared<graphics::brush::SolidColorBrush>();
             solidBrush->SetColor(solidColor->GetCurrentColor());
             if (solidColor->GetLabel().length() > 0) {
@@ -34,9 +34,9 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
         }
         break;
         case graphics::color::IColor::COLOR_TYPE_LINEAR_GRADIENT_COLOR: {
-            std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor =
+            auto linearGradientColor =
                 std::dynamic_pointer_cast<graphics::color::LinearGradientColor>(color);
-            std::shared_ptr<graphics::brush::LinearGradientBrush> linearBrush =
+            auto linearBrush =
                 std::make_shared<graphics::brush::LinearGradientBrush>();
             linearBrush->SetGradientDirection(linearGradientColor->GetGradientDirection());
             linearBrush->SetGradientStops(linearGradientColor->GetCurrentColor());
@@ -51,9 +51,9 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
         }
         break;
         case graphics::color::IColor::COLOR_TYPE_RADIAL_GRADIENT_COLOR: {
-            std::shared_ptr<graphics::color::RadialGradientColor> radialGradientColor =
+            auto radialGradientColor =
                 std::dynamic_pointer_cast<graphics::color::RadialGradientColor>(color);
-            std::shared_ptr<graphics::brush::RadialGradientBrush> radialBrush =
+            auto radialBrush =
                 std::make_shared<graphics::brush::RadialGradientBrush>();
             radialBrush->SetGradientOriginOffsetRate(
                 radialGradientColor->GetGradientOffsetX(),

@@ -22,7 +22,7 @@ public:
     virtual HRESULT Render(
         graphics::D3DInteropHelper *pD3DInteropHelper,
         ID2D1RenderTarget *pRenderTarget);
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase);
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
     virtual void NotifySelectionChange(size_t index) {
         for (size_t i = 0; i < GetNumberOfElements(); ++i) {
             if (i != index) {

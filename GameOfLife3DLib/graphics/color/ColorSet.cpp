@@ -20,19 +20,19 @@ ColorValue ConvertColorValue(const ColorValueDO &src)
 
 std::shared_ptr<SolidColor> ConvertSolidColor(std::shared_ptr<SolidColorDO> src)
 {
-    std::shared_ptr<SolidColor> dest = std::make_shared<SolidColor>();
+    auto dest = std::make_shared<SolidColor>();
     dest->SetColor(ConvertColorValue(src->colorValue));
     return dest;
 }
 
 std::shared_ptr<LinearGradientColor> ConvertLinearGradientColor(std::shared_ptr<LinearColorDO> src)
 {
-    std::shared_ptr<LinearGradientColor> dest = std::make_shared<LinearGradientColor>();
+    auto dest = std::make_shared<LinearGradientColor>();
     dest->SetGradientDirection(
         src->direction == LinearColorDO::DIRECTION_TOP_BOTTOM ?
-        graphics::GRADIENT_DIRECTION_TOP_BOTTOM :
-        graphics::GRADIENT_DIRECTION_TOPLEFT_TO_BOTTOMRIGHT
-    );
+            graphics::GRADIENT_DIRECTION_TOP_BOTTOM :
+            graphics::GRADIENT_DIRECTION_TOPLEFT_TO_BOTTOMRIGHT
+        );
     GradientStopCollection gradientStopCollection;
     for (auto it = src->colorValues.begin(); it != src->colorValues.end(); ++it) {
         ColorValueDO &colorValue = *it;
@@ -44,7 +44,7 @@ std::shared_ptr<LinearGradientColor> ConvertLinearGradientColor(std::shared_ptr<
 
 std::shared_ptr<RadialGradientColor> ConvertRadialGradientColor(std::shared_ptr<RadialColorDO> src)
 {
-    std::shared_ptr<RadialGradientColor> dest = std::make_shared<RadialGradientColor>();
+    auto dest = std::make_shared<RadialGradientColor>();
     dest->SetGradientOffset(src->offsetX, src->offsetY);
     GradientStopCollection gradientStopCollection;
     for (auto it = src->colorValues.begin(); it != src->colorValues.end(); ++it) {
@@ -57,54 +57,54 @@ std::shared_ptr<RadialGradientColor> ConvertRadialGradientColor(std::shared_ptr<
 
 void graphics::color::ColorSet::AddColors(const wchar_t *colorDesc)
 {
-    std::shared_ptr<ColorSetDO> colorSet =
+    auto colorSet =
         graphics::color::colorsetdef::Decode(colorDesc);
 
     for (auto it = colorSet->colors.begin(); it != colorSet->colors.end(); ++it) {
         std::shared_ptr<IColorDO> color = *it;
         switch (color->GetColorType()) {
         case graphics::color::colorsetdef::COLOR_TYPE_SOLID: {
-            std::shared_ptr<SolidColorDO> solidColorDO =
+            auto solidColorDO =
                 std::dynamic_pointer_cast<SolidColorDO>(color);
-            std::shared_ptr<SolidColor> solidColor = ConvertSolidColor(solidColorDO);
+            auto solidColor = ConvertSolidColor(solidColorDO);
             m_colors.push_back(solidColor);
             if (solidColorDO->label.length() > 0) {
                 solidColor->SetLabel(solidColorDO->label);
                 m_labelToColorMap.insert(
                     std::make_pair<std::wstring, std::shared_ptr<IColor>>(solidColorDO->label, solidColor));
             }
-        }
-        break;
+                                                             }
+                                                             break;
         case graphics::color::colorsetdef::COLOR_TYPE_LINEAR: {
-            std::shared_ptr<LinearColorDO> linearColorDO =
+            auto linearColorDO =
                 std::dynamic_pointer_cast<LinearColorDO>(color);
-            std::shared_ptr<LinearGradientColor> linearColor = ConvertLinearGradientColor(linearColorDO);
+            auto linearColor = ConvertLinearGradientColor(linearColorDO);
             m_colors.push_back(linearColor);
             if (linearColorDO->label.length() > 0) {
                 linearColor->SetLabel(linearColorDO->label);
                 m_labelToColorMap.insert(
                     std::make_pair<std::wstring, std::shared_ptr<IColor>>(linearColorDO->label, linearColor));
             }
-        }
-        break;
+                                                              }
+                                                              break;
         case graphics::color::colorsetdef::COLOR_TYPE_RADIAL: {
-            std::shared_ptr<RadialColorDO> radialColorDO =
+            auto radialColorDO =
                 std::dynamic_pointer_cast<RadialColorDO>(color);
-            std::shared_ptr<RadialGradientColor> radialColor = ConvertRadialGradientColor(radialColorDO);
+            auto radialColor = ConvertRadialGradientColor(radialColorDO);
             m_colors.push_back(radialColor);
             if (radialColorDO->label.length() > 0) {
                 radialColor->SetLabel(radialColorDO->label);
                 m_labelToColorMap.insert(
                     std::make_pair<std::wstring, std::shared_ptr<IColor>>(radialColorDO->label, radialColor));
             }
-        }
-        break;
+                                                              }
+                                                              break;
         }
     }
 }
 
 
-void graphics::color::ColorSet::AddColor( std::shared_ptr<graphics::color::IColor> color )
+void graphics::color::ColorSet::AddColor(const std::shared_ptr<graphics::color::IColor> &color )
 {
     m_colors.push_back(color);
     if (color->GetLabel().length() > 0) {

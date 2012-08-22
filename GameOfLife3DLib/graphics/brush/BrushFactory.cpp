@@ -16,9 +16,9 @@ std::shared_ptr<graphics::brush::IBrush> graphics::brush::BrushFactory::Create(
 {
     switch (color->GetColorType()) {
     case graphics::color::IColor::COLOR_TYPE_SOLID_COLOR: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor =
+        auto solidColor =
             std::dynamic_pointer_cast<graphics::color::SolidColor>(color);
-        std::shared_ptr<graphics::brush::SolidColorBrush> solidColorBrush =
+        auto solidColorBrush =
             std::make_shared<graphics::brush::SolidColorBrush>(solidColor->GetCurrentColor());
         CHK_FATAL_HRESULT(solidColorBrush->CreateDeviceDependentResource(pRenderTarget, rect, opacity));
         if (solidColor->GetLabel().length() > 0) {
@@ -28,9 +28,9 @@ std::shared_ptr<graphics::brush::IBrush> graphics::brush::BrushFactory::Create(
     }
     break;
     case graphics::color::IColor::COLOR_TYPE_LINEAR_GRADIENT_COLOR: {
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor =
+        auto linearGradientColor =
             std::dynamic_pointer_cast<graphics::color::LinearGradientColor>(color);
-        std::shared_ptr<graphics::brush::LinearGradientBrush> linearGradientBrush =
+        auto linearGradientBrush =
             std::make_shared<graphics::brush::LinearGradientBrush>();
         linearGradientBrush->SetGradientDirection(linearGradientColor->GetGradientDirection());
         linearGradientBrush->SetGradientStops(linearGradientColor->GetCurrentColor());
@@ -41,9 +41,9 @@ std::shared_ptr<graphics::brush::IBrush> graphics::brush::BrushFactory::Create(
     }
     break;
     case graphics::color::IColor::COLOR_TYPE_RADIAL_GRADIENT_COLOR: {
-        std::shared_ptr<graphics::color::RadialGradientColor> radialGradientColor =
+        auto radialGradientColor =
             std::dynamic_pointer_cast<graphics::color::RadialGradientColor>(color);
-        std::shared_ptr<graphics::brush::RadialGradientBrush> radialGradientBrush =
+        auto radialGradientBrush =
             std::make_shared<graphics::brush::RadialGradientBrush>();
         radialGradientBrush->SetGradientOriginOffsetRate(
             radialGradientColor->GetGradientOffsetX(),

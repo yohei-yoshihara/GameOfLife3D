@@ -36,7 +36,7 @@ public:
         graphics::D3DInteropHelper *pD3DInteropHelper,
         ID2D1RenderTarget *pRenderTarget);
     virtual void DiscardDeviceDependentResources();
-    void AddElement(std::shared_ptr<UIBase> element) {
+    void AddElement(const std::shared_ptr<UIBase> &element) {
         for (auto it = m_beforeAddElementCallback.begin(); it != m_beforeAddElementCallback.end(); ++it) {
             if (!(*it)(element)) {
                 return;
@@ -50,12 +50,12 @@ public:
     size_t GetNumberOfElements() const {
         return m_elements.size();
     }
-    bool IsChild(std::shared_ptr<UIBase> element) const {
+    bool IsChild(const std::shared_ptr<UIBase> &element) const {
         return std::find_if(m_elements.begin(), m_elements.end(), [&](const std::shared_ptr<UIBase> e)->bool {
             return e.get() == element.get();
         }) != m_elements.end();
     }
-    void RemoveElement(std::shared_ptr<UIBase> element) {
+    void RemoveElement(const std::shared_ptr<UIBase> &element) {
         if (IsChild(element)) {
             for (auto it = m_beforeRemoveElementCallback.begin();
                     it != m_beforeRemoveElementCallback.end(); ++it) {
@@ -103,7 +103,7 @@ public:
             throw std::runtime_error("no root container");
         }
     }
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase) = 0;
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase) = 0;
 
     // events
     virtual void OnSetFocus(

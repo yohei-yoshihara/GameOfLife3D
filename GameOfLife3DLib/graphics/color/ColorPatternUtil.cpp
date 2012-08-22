@@ -238,7 +238,7 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     break;
 
     case COLOR_PATTERN_GRADIENT: {
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor =
+        auto linearGradientColor =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;
@@ -250,7 +250,7 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     break;
 
     case COLOR_PATTERN_CONVEX: {
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection1;
@@ -259,7 +259,7 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
         linearGradientColor1->SetColor(collection1);
         colorSet->AddColor(linearGradientColor1);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor2 =
+        auto linearGradientColor2 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor2->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection2;
@@ -271,7 +271,7 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     break;
 
     case COLOR_PATTERN_CONCAVE: {
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection1;
@@ -280,7 +280,7 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
         linearGradientColor1->SetColor(collection1);
         colorSet->AddColor(linearGradientColor1);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor2 =
+        auto linearGradientColor2 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor2->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection2;
@@ -292,15 +292,15 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     break;
 
     case COLOR_PATTERN_CONVEX_FRAME: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor1 =
+        auto solidColor1 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor1);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor2 =
+        auto solidColor2 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor2);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;
@@ -311,15 +311,15 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     }
     break;
     case COLOR_PATTERN_CONCAVE_FRAME: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor1 =
+        auto solidColor1 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor1);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor2 =
+        auto solidColor2 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor2);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;
@@ -330,27 +330,27 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     }
     break;
     case COLOR_PATTERN_FRAME: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor1 =
+        auto solidColor1 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor1);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor2 =
+        auto solidColor2 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor2);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor3 =
+        auto solidColor3 =
             std::make_shared<graphics::color::SolidColor>(color);
         colorSet->AddColor(solidColor3);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor4 =
+        auto solidColor4 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor4);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor5 =
+        auto solidColor5 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor5);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;
@@ -361,15 +361,15 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     }
     break;
     case COLOR_PATTERN_CONVEX_METAL: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor1 =
+        auto solidColor1 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor1);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor2 =
+        auto solidColor2 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor2);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;
@@ -382,15 +382,15 @@ void graphics::color::ColorPatternUtil::GeneratePattern(
     }
     break;
     case COLOR_PATTERN_CONCAVE_METAL: {
-        std::shared_ptr<graphics::color::SolidColor> solidColor1 =
+        auto solidColor1 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndBrighter(0.3f));
         colorSet->AddColor(solidColor1);
 
-        std::shared_ptr<graphics::color::SolidColor> solidColor2 =
+        auto solidColor2 =
             std::make_shared<graphics::color::SolidColor>(color.CloneAndDarker(0.3f));
         colorSet->AddColor(solidColor2);
 
-        std::shared_ptr<graphics::color::LinearGradientColor> linearGradientColor1 =
+        auto linearGradientColor1 =
             std::make_shared<graphics::color::LinearGradientColor>();
         linearGradientColor1->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
         graphics::color::GradientStopCollection collection;

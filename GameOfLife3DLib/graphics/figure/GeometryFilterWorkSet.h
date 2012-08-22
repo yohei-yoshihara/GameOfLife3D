@@ -48,19 +48,19 @@ public:
     graphics::figure::FILTER_DISPLAY_ORDER GetFilterDisplayOrder() const {
         return m_filterDisplayOrder;
     }
-    void SetColor(std::shared_ptr<graphics::color::IColor> color) {
+    void SetColor(const std::shared_ptr<graphics::color::IColor> &color) {
         m_color = color;
     }
     const std::shared_ptr<graphics::color::IColor> GetColor() const {
         return m_color;
     }
-    void SetGeometryFilter(std::shared_ptr<graphics::filter::IGeometryFilter> geometryFilter) {
+    void SetGeometryFilter(const std::shared_ptr<graphics::filter::IGeometryFilter> &geometryFilter) {
         m_geometryFilter = geometryFilter;
     }
     std::shared_ptr<graphics::filter::IGeometryFilter> GetGeometryFilter() const {
         return m_geometryFilter;
     }
-    void SetBrush(std::shared_ptr<graphics::brush::IBrush> brush) {
+    void SetBrush(const std::shared_ptr<graphics::brush::IBrush> &brush) {
         m_brush = brush;
     }
     std::shared_ptr<graphics::brush::IBrush> GetBrush() const {

@@ -82,12 +82,12 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     float y = MARGIN;
 
     // 1st column: Width
-    std::shared_ptr<ui::UILabel> widthLabel = std::make_shared<ui::UILabel>();
+    auto widthLabel = std::make_shared<ui::UILabel>();
     widthLabel->SetBounds(MARGIN, y, ROW0_WIDTH, 25);
     widthLabel->SetText(mui::MUI::GetString(IDS_WIDTH));
     m_dialog->AddElement(widthLabel);
 
-    std::shared_ptr<ui::UITextField> widthTextField = std::make_shared<ui::UITextField>();
+    auto widthTextField = std::make_shared<ui::UITextField>();
     widthTextField->SetTSFManager(pTsfManager);
     widthTextField->SetBounds(ROW0_WIDTH + MARGIN * 2, y, ROW1_WIDTH, 25);
     widthTextField->SetText(L"24");
@@ -97,12 +97,12 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     y += widthLabel->GetHeight() + MARGIN;
 
     // 2nd column: Height
-    std::shared_ptr<ui::UILabel> heightLabel = std::make_shared<ui::UILabel>();
+    auto heightLabel = std::make_shared<ui::UILabel>();
     heightLabel->SetBounds(MARGIN, y, ROW0_WIDTH, 25);
     heightLabel->SetText(mui::MUI::GetString(IDS_HEIGHT));
     m_dialog->AddElement(heightLabel);
 
-    std::shared_ptr<ui::UITextField> heightTextField = std::make_shared<ui::UITextField>();
+    auto heightTextField = std::make_shared<ui::UITextField>();
     heightTextField->SetTSFManager(pTsfManager);
     heightTextField->SetBounds(ROW0_WIDTH + MARGIN * 2, y, ROW1_WIDTH, 25);
     heightTextField->SetText(L"24");
@@ -112,12 +112,12 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     y += heightLabel->GetHeight() + MARGIN;
 
     // 3rd column: Generations
-    std::shared_ptr<ui::UILabel> generationsLabel = std::make_shared<ui::UILabel>();
+    auto generationsLabel = std::make_shared<ui::UILabel>();
     generationsLabel->SetBounds(MARGIN, y, ROW0_WIDTH, 25);
     generationsLabel->SetText(mui::MUI::GetString(IDS_GENERATIONS));
     m_dialog->AddElement(generationsLabel);
 
-    std::shared_ptr<ui::UITextField> generationsTextField = std::make_shared<ui::UITextField>();
+    auto generationsTextField = std::make_shared<ui::UITextField>();
     generationsTextField->SetTSFManager(pTsfManager);
     generationsTextField->SetBounds(ROW0_WIDTH + MARGIN * 2, y, ROW1_WIDTH, 25);
     generationsTextField->SetText(L"24");
@@ -127,21 +127,21 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     y += generationsLabel->GetHeight() + MARGIN;
 
     // 4th column: Speed
-    std::shared_ptr<ui::UILabel> speedLabel = std::make_shared<ui::UILabel>();
+    auto speedLabel = std::make_shared<ui::UILabel>();
     speedLabel->SetBounds(MARGIN, y, ROW0_WIDTH, 25);
     speedLabel->SetText(mui::MUI::GetString(IDS_SPEED));
     m_dialog->AddElement(speedLabel);
 
-    std::shared_ptr<ui::UIRadioButtonGroup> speedRadioButtonGroup = std::make_shared<ui::UIRadioButtonGroup>();
+    auto speedRadioButtonGroup = std::make_shared<ui::UIRadioButtonGroup>();
     speedRadioButtonGroup->SetBounds(ROW0_WIDTH + MARGIN * 2, y, ROW1_WIDTH, 25);
-    std::shared_ptr<ui::UIRadioButton> slowRadioButton = std::make_shared<ui::UIRadioButton>();
+    auto slowRadioButton = std::make_shared<ui::UIRadioButton>();
     slowRadioButton->SetText(mui::MUI::GetString(IDS_SPEED_SLOW));
     slowRadioButton->SetSelected(true);
     speedRadioButtonGroup->AddElement(slowRadioButton);
-    std::shared_ptr<ui::UIRadioButton> normalRadioButton = std::make_shared<ui::UIRadioButton>();
+    auto normalRadioButton = std::make_shared<ui::UIRadioButton>();
     normalRadioButton->SetText(mui::MUI::GetString(IDS_SPEED_NORMAL));
     speedRadioButtonGroup->AddElement(normalRadioButton);
-    std::shared_ptr<ui::UIRadioButton> fastRadioButton = std::make_shared<ui::UIRadioButton>();
+    auto fastRadioButton = std::make_shared<ui::UIRadioButton>();
     fastRadioButton->SetText(mui::MUI::GetString(IDS_SPEED_FAST));
     speedRadioButtonGroup->AddElement(fastRadioButton);
     m_dialog->AddElement(speedRadioButtonGroup);
@@ -152,19 +152,19 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     y += 25 * 3 + MARGIN;
 
     // 5th column: Vertex Generation
-    std::shared_ptr<ui::UILabel> vertexGenerationLabel = std::make_shared<ui::UILabel>();
+    auto vertexGenerationLabel = std::make_shared<ui::UILabel>();
     vertexGenerationLabel->SetBounds(MARGIN, y, ROW0_WIDTH, 25);
     vertexGenerationLabel->SetText(mui::MUI::GetString(IDS_VERTEXGENERATION));
     m_dialog->AddElement(vertexGenerationLabel);
 
-    std::shared_ptr<ui::UIRadioButtonGroup> vertexGenerationRadioButtonGroup =
+    auto vertexGenerationRadioButtonGroup =
         std::make_shared<ui::UIRadioButtonGroup>();
     vertexGenerationRadioButtonGroup->SetBounds(ROW0_WIDTH + MARGIN * 2, y, ROW1_WIDTH, 25);
-    std::shared_ptr<ui::UIRadioButton> cpuVertexGenerationRadioButton = std::make_shared<ui::UIRadioButton>();
+    auto cpuVertexGenerationRadioButton = std::make_shared<ui::UIRadioButton>();
     cpuVertexGenerationRadioButton->SetText(mui::MUI::GetString(IDS_VERTEXGENERATION_CPU));
     cpuVertexGenerationRadioButton->SetSelected(true);
     vertexGenerationRadioButtonGroup->AddElement(cpuVertexGenerationRadioButton);
-    std::shared_ptr<ui::UIRadioButton> gpuVertexGenerationRadioButton = std::make_shared<ui::UIRadioButton>();
+    auto gpuVertexGenerationRadioButton = std::make_shared<ui::UIRadioButton>();
     gpuVertexGenerationRadioButton->SetText(mui::MUI::GetString(IDS_VERTEXGENERATION_GPU));
     vertexGenerationRadioButtonGroup->AddElement(gpuVertexGenerationRadioButton);
     m_dialog->AddElement(vertexGenerationRadioButtonGroup);
@@ -174,7 +174,7 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     y += 25 * 2 + MARGIN;
 
     // 6th column: Error
-    std::shared_ptr<ui::UILabel> errorLabel = std::make_shared<ui::UILabel>();
+    auto errorLabel = std::make_shared<ui::UILabel>();
     errorLabel->SetBounds(10, y, 300, 25);
     errorLabel->SetText(L"");
     std::vector<D2D1_GRADIENT_STOP> m_fgColor(2);
@@ -184,7 +184,7 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     m_dialog->AddElement(errorLabel);
     m_errorLabel = errorLabel;
 
-    std::shared_ptr<ui::UIButton> okButton = std::make_shared<ui::UIButton>();
+    auto okButton = std::make_shared<ui::UIButton>();
     okButton->SetBounds(10, 10, 100, 25);
     okButton->SetAnchor(ui::UIAnchor(ui::ANCHOR_RIGHT | ui::ANCHOR_BOTTOM, 0.0f, 0.0f, 120.0f, 10.0f));
     okButton->SetText(mui::MUI::GetString(IDS_OK));
@@ -302,7 +302,7 @@ HRESULT gameOfLife3D::dialogs::SettingsDialog::Initialize(
     });
     m_dialog->AddElement(okButton);
 
-    std::shared_ptr<ui::UIButton> cancelButton = std::make_shared<ui::UIButton>();
+    auto cancelButton = std::make_shared<ui::UIButton>();
     cancelButton->SetBounds(10, 10, 100, 25);
     cancelButton->SetAnchor(ui::UIAnchor(ui::ANCHOR_RIGHT | ui::ANCHOR_BOTTOM, 0.0f, 0.0f, 10.0f, 10.0f));
     cancelButton->SetText(mui::MUI::GetString(IDS_CANCEL));

@@ -20,7 +20,7 @@ public:
     static std::shared_ptr<UIPanel> Create() {
         return std::make_shared<UIPanel>();
     }
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase);
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
     virtual HRESULT Render(
         graphics::D3DInteropHelper *pD3DInteropHelper,
         ID2D1RenderTarget *pRenderTarget);

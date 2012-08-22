@@ -3,10 +3,10 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>C:\opt\Boost\include\boost-1_45;$(IncludePath)</IncludePath>
+    <IncludePath>C:\opt\boost_1_48_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup>
-    <LibraryPath>C:\opt\Boost\lib\static_x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\opt\boost_1_48_0\lib\static_x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup />

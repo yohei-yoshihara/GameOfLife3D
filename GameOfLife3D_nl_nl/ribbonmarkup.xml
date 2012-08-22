@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://schemas.microsoft.com/windows/2009/Ribbon">
+  <Application.Commands>
+    <Command Name="cmdTabHome" Symbol="cmdTabHome" LabelTitle="Home"/>
+    <Command Name="cmdTabAdvance" Symbol="cmdTabAdvance" LabelTitle="Advance"/>
+    <Command Name="MRUList" Symbol="cmdMRUList"/>
+    <Command Name="cmdQAT" Symbol="cmdQAT"/>
+
+    <!-- ***** AppMenu commands ***** -->
+    <Command Name="cmdFileMenu" Symbol="cmdFileMenu"/>
+
+    <Command Name="cmdSaveAs" Symbol="cmdSaveAs" Id="0xE104">
+      <Command.LabelTitle>
+        <String>Save As</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/SaveAsL.bmp"/>
+      </Command.LargeImages>
+      <Command.TooltipDescription>Sla het huidige document op onder een nieuwe naam.</Command.TooltipDescription>
+    </Command>
+
+    <Command Name="cmdVersionInfo" Symbol="cmdVersionInfo">
+      <Command.LabelTitle>
+        <String>Versie Info</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/GameOfLife3DL.bmp"/>
+      </Command.LargeImages>
+    </Command>
+
+    <!-- Exit -->
+    <Command Name="cmdExit" Symbol="cmdExit" Keytip="X" Id="0xE102">
+      <Command.LabelTitle>
+        <String>Game of Life 3D afsluiten</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/ExitL.bmp"/>
+      </Command.LargeImages>
+      <Command.TooltipDescription>De applicatie afsluiten.</Command.TooltipDescription>
+    </Command>
+
+    <Command Name="cmdControlGroup" Symbol="cmdControlGroup">
+      <Command.LabelTitle>
+        <String>Controle</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdStart" Symbol="cmdStart">
+      <Command.LabelTitle>
+        <String>Start</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/start64x64.bmp"/>
+      </Command.LargeImages>
+    </Command>
+    <Command Name="cmdStop" Symbol="cmdStop">
+      <Command.LabelTitle>
+        <String>Stop</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/stop64x64.bmp"/>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdDataGroup" Symbol="cmdDataGroup">
+      <Command.LabelTitle>
+        <String>Data</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdOpenFile" Symbol="cmdOpenFile" Id="0xE101" Keytip="O">
+      <Command.LabelTitle>
+        <String>Open Bestand</String>
+      </Command.LabelTitle>
+      <Command.LabelDescription>
+        <String>Open bestand vanaf de lokale systeem of gedeeld netwerk.</String>
+      </Command.LabelDescription>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/openfile64x64.bmp"/>
+      </Command.LargeImages>
+      <Command.TooltipTitle>Open (Ctrl+O)</Command.TooltipTitle>
+      <Command.TooltipDescription>Open een data bestand.</Command.TooltipDescription>
+    </Command>
+    <Command Name="cmdRandom" Symbol="cmdRandom">
+      <Command.LabelTitle>
+        <String>Willekeurig</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/random64x64.bmp"/>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdConfigurationGroup" Symbol="cmdConfigurationGroup">
+      <Command.LabelTitle>
+        <String>Configuratie</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdSettings" Symbol="cmdSettings">
+      <Command.LabelTitle>
+        <String>Instellingen</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/settings64x64.bmp"/>
+      </Command.LargeImages>
+    </Command>
+
+    <Command Name="cmdAdvanceFileGroup" Symbol="cmdAdvanceFileGroup">
+      <Command.LabelTitle>
+        <String>Bestand</String>
+      </Command.LabelTitle>
+    </Command>
+    <Command Name="cmdOpenCSFile" Symbol="cmdOpenCSFile">
+      <Command.LabelTitle>
+        <String>Open CS Bestand</String>
+      </Command.LabelTitle>
+      <Command.LargeImages>
+        <Image Source="../GameOfLife3D/res/opencs64x64.bmp"/>
+      </Command.LargeImages>
+    </Command>
+  
+  </Application.Commands>
+
+  <!-- ******************** View ******************** -->
+  <Application.Views>
+    <Ribbon>
+
+      <!-- Application Menu -->
+      <Ribbon.ApplicationMenu>
+        <ApplicationMenu CommandName="cmdFileMenu">
+          <ApplicationMenu.RecentItems>
+            <RecentItems CommandName="MRUList" MaxCount="16" EnablePinning="false"/>
+          </ApplicationMenu.RecentItems>
+          <MenuGroup Class="MajorItems">
+            <Button CommandName="cmdVersionInfo"/>
+          </MenuGroup>
+          <MenuGroup Class="MajorItems">
+            <Button CommandName="cmdExit"/>
+          </MenuGroup>
+        </ApplicationMenu>
+      </Ribbon.ApplicationMenu>
+
+      <!-- QAT -->
+      <Ribbon.QuickAccessToolbar>
+        <QuickAccessToolbar CommandName="cmdQAT">
+        </QuickAccessToolbar>
+      </Ribbon.QuickAccessToolbar>
+
+      <!-- Tabs -->
+      <Ribbon.Tabs>
+        <Tab CommandName="cmdTabHome">
+          <Group CommandName="cmdControlGroup" SizeDefinition="TwoButtons">
+            <Button CommandName="cmdStart"/>
+            <Button CommandName="cmdStop"/>
+          </Group>
+          <Group CommandName="cmdDataGroup" SizeDefinition="TwoButtons">
+            <Button CommandName="cmdOpenFile"/>
+            <Button CommandName="cmdRandom"/>
+          </Group>
+          <Group CommandName="cmdConfigurationGroup" SizeDefinition="OneButton">
+            <Button CommandName="cmdSettings"/>
+          </Group>
+        </Tab>
+        <Tab CommandName="cmdTabAdvance">
+          <Group CommandName="cmdAdvanceFileGroup" SizeDefinition="OneButton">
+            <Button CommandName="cmdOpenCSFile"/>
+          </Group>
+        </Tab>
+      </Ribbon.Tabs>
+    </Ribbon>
+  </Application.Views>
+</Application>

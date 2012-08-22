@@ -65,7 +65,7 @@ public:
     virtual DIALOG_RESULT GetDialogResult() const {
         return m_dialogResult;
     }
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase);
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
 
     virtual void AddBeforeDialogDisplayedCallback(BeforeDialogDisplayedCallback callback) {
         m_beforeDisplayCallbacks.push_back(callback);

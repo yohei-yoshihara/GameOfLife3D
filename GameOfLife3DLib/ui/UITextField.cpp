@@ -334,7 +334,7 @@ HRESULT ui::UITextField::_RenderText(
                           &pTextLayout
                       ));
 
-    for (std::vector<CompositionAttribute>::iterator it = m_compositionAttributes.begin();
+    for (auto it = m_compositionAttributes.begin();
             it != m_compositionAttributes.end(); ++it) {
         CompositionAttribute &compositionAttribute = *it;
         if (compositionAttribute.startPos >= 0 &&
@@ -583,7 +583,7 @@ HRESULT ui::UITextField::Render(
 
 HWND ui::UITextField::GetHWnd() const
 {
-    std::weak_ptr<UIContainer> container = GetParentContainer();
+    auto container = GetParentContainer();
     if (!container.expired()) {
         return container.lock()->GetHWnd();
     } else {

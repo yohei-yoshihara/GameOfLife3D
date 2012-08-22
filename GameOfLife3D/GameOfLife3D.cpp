@@ -58,9 +58,10 @@ int APIENTRY wWinMain(
         return 0;
     }
 
-//    ULONG numLangs;
+    //ULONG numLangs;
 //    SetProcessPreferredUILanguages(MUI_LANGUAGE_NAME, L"en-US", &numLangs);
 //    SetProcessPreferredUILanguages(MUI_LANGUAGE_NAME, L"de-DE", &numLangs);
+//    SetProcessPreferredUILanguages(MUI_LANGUAGE_NAME, L"nl-NL", &numLangs);
     if (MUI::Initialize(L"GameOfLife3D_MUI.dll") != S_OK) {
         return 3;
     }
@@ -78,7 +79,7 @@ int APIENTRY wWinMain(
 
     if (SUCCEEDED(CoInitialize(nullptr))) {
         {
-            std::shared_ptr<MainWnd> app = std::make_shared<MainWnd>();
+            auto app = std::make_shared<MainWnd>();
 
             if (SUCCEEDED(app->Initialize())) {
                 app->RunMessageLoop();

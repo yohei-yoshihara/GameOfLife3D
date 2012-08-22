@@ -133,8 +133,7 @@ HRESULT ui::UIListBoxItem::Initialize(graphics::D3DInteropHelper *pD3DInteropHel
     m_bodyRect->SetY(0.0f);
     m_bodyRect->SetWidth(GetWidth());
     m_bodyRect->SetHeight(GetHeight());
-    std::shared_ptr<graphics::decorator::FrameDecorator> frameDecorator =
-        std::make_shared<graphics::decorator::FrameDecorator>();
+    auto frameDecorator = std::make_shared<graphics::decorator::FrameDecorator>();
     m_bodyRect->Initialize(pD3DInteropHelper);
 
 #ifdef DEBUG_UILISTBOXITEM

@@ -23,10 +23,10 @@ ui::UIRoot::~UIRoot(void)
 {
 }
 
-void ui::UIRoot::NotifyFocusObtained( std::shared_ptr<UIBase> uiBase )
+void ui::UIRoot::NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase)
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (uiBase != child) {
             child->LostFocus();
         }
@@ -40,7 +40,7 @@ HRESULT ui::UIRoot::Initialize(graphics::D3DInteropHelper *pD3DInteropHelper)
 {
     CHK_WARN_HRESULT(UIContainer::Initialize(pD3DInteropHelper));
     for (auto it = m_dialogs.begin(); it != m_dialogs.end(); ++it) {
-        std::shared_ptr<ui::IUIDialog> dialog = it->second;
+        auto dialog = it->second;
         CHK_WARN_HRESULT(dialog->Initialize(pD3DInteropHelper));
     }
     return S_OK;
@@ -52,7 +52,7 @@ HRESULT ui::UIRoot::CreateDeviceDependentResources(
 {
     CHK_WARN_HRESULT(UIContainer::CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget));
     for (auto it = m_dialogs.begin(); it != m_dialogs.end(); ++it) {
-        std::shared_ptr<ui::IUIDialog> dialog = it->second;
+        auto dialog = it->second;
         CHK_WARN_HRESULT(dialog->CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget));
     }
 
@@ -67,7 +67,7 @@ HRESULT ui::UIRoot::LayoutComponents()
 {
     CHK_WARN_HRESULT(UIContainer::LayoutComponents());
     for (auto it = m_dialogs.begin(); it != m_dialogs.end(); ++it) {
-        std::shared_ptr<ui::IUIDialog> dialog = it->second;
+        auto dialog = it->second;
         CHK_WARN_HRESULT(dialog->LayoutComponents());
     }
     return S_OK;
@@ -85,7 +85,7 @@ HRESULT ui::UIRoot::Render( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1
                                       << m_displayingDialogName << L"'";
             return E_FAIL;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
 
         // draw background
         CComPtr<ID2D1Layer> layer = nullptr;
@@ -117,7 +117,7 @@ HRESULT ui::UIRoot::Render( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1
     return hr;
 }
 
-void ui::UIRoot::AddDialog(const std::wstring &name, std::shared_ptr<ui::IUIDialog> dialog)
+void ui::UIRoot::AddDialog(const std::wstring &name, const std::shared_ptr<ui::IUIDialog> &dialog)
 {
     dialog->SetParentContainer(shared_from_this());
     m_dialogs.insert(std::pair<std::wstring, std::shared_ptr<ui::IUIDialog>>(name, dialog));
@@ -127,7 +127,7 @@ void ui::UIRoot::ShowDialog(const std::wstring &name)
 {
     if (m_dialogs.count(name) != 0) {
         m_displayingDialogName = name;
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(name);
+        auto dialog = m_dialogs.at(name);
         dialog->ShowDialog();
         Invalidate();
     }
@@ -142,7 +142,7 @@ void ui::UIRoot::DiscardDeviceDependentResources()
 {
     UIContainer::DiscardDeviceDependentResources();
     for (auto it = m_dialogs.begin(); it != m_dialogs.end(); ++it) {
-        std::shared_ptr<ui::IUIDialog> dialog = it->second;
+        auto dialog = it->second;
         dialog->DiscardDeviceDependentResources();
     }
 }
@@ -157,7 +157,7 @@ void ui::UIRoot::OnSetFocus( HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG 
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnSetFocus(hWnd, wParam, lParam, timestampInMilliSeconds, eaten);
     }
 }
@@ -172,7 +172,7 @@ void ui::UIRoot::OnKillFocus( HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnKillFocus(hWnd, wParam, lParam, timestampInMilliSeconds, eaten);
     }
 }
@@ -197,7 +197,7 @@ void ui::UIRoot::OnChar(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnChar(hWnd, wParam, lParam, charType, c, timestampInMilliSeconds, eaten);
     }
 #ifdef DEBUG_EVENT
@@ -221,7 +221,7 @@ void ui::UIRoot::OnLeftMouseDown(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnLeftMouseDown(
             hWnd,
             wParam,
@@ -248,7 +248,7 @@ void ui::UIRoot::OnLeftMouseUp(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnLeftMouseUp(
             hWnd,
             wParam,
@@ -275,7 +275,7 @@ void ui::UIRoot::OnSingleClick(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnSingleClick(
             hWnd,
             wParam,
@@ -302,7 +302,7 @@ void ui::UIRoot::OnDoubleClick(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnDoubleClick(
             hWnd,
             wParam,
@@ -330,7 +330,7 @@ void ui::UIRoot::OnDraggingStart(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnDraggingStart(
             hWnd,
             wParam,
@@ -359,7 +359,7 @@ void ui::UIRoot::OnDragging(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnDragging(
             hWnd,
             wParam,
@@ -388,7 +388,7 @@ void ui::UIRoot::OnDraggingEnd(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnDraggingEnd(
             hWnd,
             wParam,
@@ -417,7 +417,7 @@ void ui::UIRoot::OnMouseOver(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnMouseOver(
             hWnd,
             wParam,
@@ -446,7 +446,7 @@ void ui::UIRoot::OnMouseOut(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnMouseOut(
             hWnd,
             wParam,
@@ -474,7 +474,7 @@ void ui::UIRoot::OnRightSingleClick(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnRightSingleClick(
             hWnd,
             wParam,
@@ -502,7 +502,7 @@ void ui::UIRoot::OnGestureBegin(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnGestureBegin(
             hWnd,
             wParam,
@@ -531,7 +531,7 @@ void ui::UIRoot::OnGestureEnd(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnGestureEnd(
             hWnd,
             wParam,
@@ -571,7 +571,7 @@ void ui::UIRoot::OnZoom(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnZoom(
             hWnd,
             wParam,
@@ -603,7 +603,7 @@ void ui::UIRoot::OnPan(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnPan(
             hWnd,
             wParam,
@@ -644,7 +644,7 @@ void ui::UIRoot::OnRotate(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnRotate(
             hWnd,
             wParam,
@@ -682,7 +682,7 @@ void ui::UIRoot::OnTwoFingerTap(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnTwoFingerTap(
             hWnd,
             wParam,
@@ -718,7 +718,7 @@ void ui::UIRoot::OnPressAndTap(
                     << L"could not found the internal dialog which name is '" << m_displayingDialogName << L"'";
             return;
         }
-        std::shared_ptr<ui::IUIDialog> dialog = m_dialogs.at(m_displayingDialogName);
+        auto dialog = m_dialogs.at(m_displayingDialogName);
         dialog->OnPressAndTap(
             hWnd,
             wParam,

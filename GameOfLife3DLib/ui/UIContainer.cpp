@@ -35,7 +35,7 @@ HRESULT ui::UIContainer::Initialize( graphics::D3DInteropHelper *pD3DInteropHelp
     }
 
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
+        auto element = GetElement(i);
         HRESULT hr = element->Initialize(pD3DInteropHelper);
         if (FAILED(hr)) {
             LOG(SEVERITY_LEVEL_ERROR) << L"failed to initialize a child element, hr = " << hr;
@@ -51,7 +51,7 @@ HRESULT ui::UIContainer::CreateDeviceDependentResources(
     ID2D1RenderTarget *pRenderTarget )
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
+        auto element = GetElement(i);
         HRESULT hr = element->CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget);
         if (FAILED(hr)) {
             LOG(SEVERITY_LEVEL_ERROR) << L"failed to create device dependent resources for a child element, hr = " << hr;
@@ -67,7 +67,7 @@ HRESULT ui::UIContainer::LayoutComponents()
     UISize containerSize(GetWidth() - GetInsets().left - GetInsets().right,
                          GetHeight() - GetInsets().top - GetInsets().bottom);
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
+        auto element = GetElement(i);
         UIAnchor anchor = element->GetAnchor();
         UIRectangle bounds = element->GetBounds();
 
@@ -94,8 +94,8 @@ HRESULT ui::UIContainer::LayoutComponents()
         element->SetBounds(bounds);
     }
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
-        std::shared_ptr<UIContainer> container = std::dynamic_pointer_cast<UIContainer>(element);
+        auto element = GetElement(i);
+        auto container = std::dynamic_pointer_cast<UIContainer>(element);
         if (container.get() != nullptr) {
             CHK_WARN_HRESULT(container->LayoutComponents());
         }
@@ -108,7 +108,7 @@ HRESULT ui::UIContainer::Render(
     ID2D1RenderTarget *pRenderTarget )
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
+        auto element = GetElement(i);
         FLOAT x = element->GetX() + 0.5f;
         FLOAT y = element->GetY() + 0.5f;
         pD3DInteropHelper->PushMatrix(pRenderTarget, D2D1::Matrix3x2F::Translation(x, y));
@@ -124,7 +124,7 @@ HRESULT ui::UIContainer::Render(
 void ui::UIContainer::DiscardDeviceDependentResources()
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
+        auto element = GetElement(i);
         element->DiscardDeviceDependentResources();
     }
 }
@@ -158,7 +158,7 @@ void ui::UIContainer::OnLeftMouseDown(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
 #ifdef DEBUG_UICONTAINER
         LOG(SEVERITY_LEVEL_DEBUG) << *child;
 #endif
@@ -196,7 +196,7 @@ void ui::UIContainer::OnLeftMouseUp(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     if (!m_leftDownChild.expired()) {
-        std::shared_ptr<UIBase> leftDownChild = m_leftDownChild.lock();
+        auto leftDownChild = m_leftDownChild.lock();
         leftDownChild->OnLeftMouseUp(
             hWnd,
             wParam,
@@ -223,7 +223,7 @@ void ui::UIContainer::OnSingleClick(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             child->OnSingleClick(
                 hWnd,
@@ -254,7 +254,7 @@ void ui::UIContainer::OnDoubleClick(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             child->OnDoubleClick(
                 hWnd,
@@ -286,7 +286,7 @@ void ui::UIContainer::OnDraggingStart(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientDragRect = " << clientDragRect << L", delta = " << delta;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientDragRect.start, GetInsets().left, GetInsets().top)) {
             m_draggingChild = child;
             child->OnDraggingStart(
@@ -320,7 +320,7 @@ void ui::UIContainer::OnDragging(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientDragRect << L", delta = " << delta;
 #endif
     if (!m_draggingChild.expired()) {
-        std::shared_ptr<UIBase> draggingChild = m_draggingChild.lock();
+        auto draggingChild = m_draggingChild.lock();
         draggingChild->OnDragging(
             hWnd,
             wParam,
@@ -348,7 +348,7 @@ void ui::UIContainer::OnDraggingEnd(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientDragRect = " << clientDragRect << L", delta = " << delta;
 #endif
     if (!m_draggingChild.expired()) {
-        std::shared_ptr<UIBase> draggingChild = m_draggingChild.lock();
+        auto draggingChild = m_draggingChild.lock();
         draggingChild->OnDraggingEnd(
             hWnd,
             wParam,
@@ -377,10 +377,10 @@ void ui::UIContainer::OnMouseOver(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint << L", delta = " << delta;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             if (!m_mouseOverChild.expired()) {
-                std::shared_ptr<UIBase> mouseOverChild = m_mouseOverChild.lock();
+                auto mouseOverChild = m_mouseOverChild.lock();
                 if (mouseOverChild == child) {
                     mouseOverChild->OnMouseOver(
                         hWnd,
@@ -427,7 +427,7 @@ void ui::UIContainer::OnMouseOver(
     }
     if (!*eaten) {
         if (!m_mouseOverChild.expired()) {
-            std::shared_ptr<UIBase> mouseOverChild = m_mouseOverChild.lock();
+            auto mouseOverChild = m_mouseOverChild.lock();
 #ifdef DEBUG_UICONTAINER
             LOG(SEVERITY_LEVEL_DEBUG) << L"leave from [" << *mouseOverChild << L"]";
 #endif
@@ -460,7 +460,7 @@ void ui::UIContainer::OnMouseOut(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint << L", delta = " << delta;
 #endif
     if (!m_mouseOverChild.expired()) {
-        std::shared_ptr<UIBase> mouseOverChild = m_mouseOverChild.lock();
+        auto mouseOverChild = m_mouseOverChild.lock();
         mouseOverChild->OnMouseOut(
             hWnd,
             wParam,
@@ -488,7 +488,7 @@ void ui::UIContainer::OnRightSingleClick(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             child->OnRightSingleClick(
                 hWnd,
@@ -520,7 +520,7 @@ void ui::UIContainer::OnGestureBegin(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             m_gestureChild = child;
             child->OnGestureBegin(
@@ -554,7 +554,7 @@ void ui::UIContainer::OnGestureEnd(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     if (!m_gestureChild.expired()) {
-        std::shared_ptr<UIBase> gestureChild = m_gestureChild.lock();
+        auto gestureChild = m_gestureChild.lock();
         gestureChild->OnGestureEnd(
             hWnd,
             wParam,
@@ -588,7 +588,7 @@ void ui::UIContainer::OnZoom(
             << L", zoomFactor = " << zoomFactor;
 #endif
     if (!m_gestureChild.expired()) {
-        std::shared_ptr<UIBase> gestureChild = m_gestureChild.lock();
+        auto gestureChild = m_gestureChild.lock();
         gestureChild->OnZoom(
             hWnd,
             wParam,
@@ -620,7 +620,7 @@ void ui::UIContainer::OnPan(
             << L"clientPoint = " << clientPoint << L", delta = " << delta;
 #endif
     if (!m_gestureChild.expired()) {
-        std::shared_ptr<UIBase> gestureChild = m_gestureChild.lock();
+        auto gestureChild = m_gestureChild.lock();
         gestureChild->OnPan(
             hWnd,
             wParam,
@@ -654,7 +654,7 @@ void ui::UIContainer::OnRotate(
             << L", rotateAngle = " << rotateAngle;
 #endif
     if (!m_gestureChild.expired()) {
-        std::shared_ptr<UIBase> gestureChild = m_gestureChild.lock();
+        auto gestureChild = m_gestureChild.lock();
         gestureChild->OnRotate(
             hWnd,
             wParam,
@@ -684,7 +684,7 @@ void ui::UIContainer::OnTwoFingerTap(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             child->OnTwoFingerTap(
                 hWnd,
@@ -717,7 +717,7 @@ void ui::UIContainer::OnPressAndTap(
     LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"clientPoint = " << clientPoint;
 #endif
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
             child->OnPressAndTap(
                 hWnd,

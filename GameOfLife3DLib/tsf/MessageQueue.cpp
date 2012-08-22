@@ -17,7 +17,7 @@ void tsf::MessageQueue::Push(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 
 void tsf::MessageQueue::Pop(Message* pMessage)
 {
-    std::shared_ptr<tsf::Message> msg = m_messageQueue.back();
+    auto msg = m_messageQueue.back();
     m_messageQueue.pop_back();
     pMessage->message = msg->message;
     pMessage->wParam = msg->wParam;

@@ -159,10 +159,10 @@ HRESULT ui::UIInternalDialog::Render(
     return S_OK;
 }
 
-void ui::UIInternalDialog::NotifyFocusObtained( std::shared_ptr<UIBase> uiBase )
+void ui::UIInternalDialog::NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase)
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (uiBase != child) {
             child->LostFocus();
         }
@@ -183,9 +183,9 @@ void ui::UIInternalDialog::DiscardDeviceDependentResources()
 
 void ui::UIInternalDialog::CloseDialog()
 {
-    std::weak_ptr<UIContainer> container = GetParentContainer();
+    auto container = GetParentContainer();
     if (!container.expired()) {
-        std::shared_ptr<UIRoot> root = std::dynamic_pointer_cast<UIRoot>(container.lock());
+        auto root = std::dynamic_pointer_cast<UIRoot>(container.lock());
         if (root.get() != nullptr) {
             root->NotifyDialogClosed();
         }
@@ -195,11 +195,11 @@ void ui::UIInternalDialog::CloseDialog()
 
 /* static */ void ui::UIInternalDialog::CloseDialog( ui::event::UIActionEvent event )
 {
-    std::weak_ptr<UIBase> uiBaseWeak = event.GetSource();
+    auto uiBaseWeak = event.GetSource();
     if (!uiBaseWeak.expired()) {
-        std::weak_ptr<UIContainer> uiContainerWeak = uiBaseWeak.lock()->GetParentContainer();
+        auto uiContainerWeak = uiBaseWeak.lock()->GetParentContainer();
         if (!uiContainerWeak.expired()) {
-            std::shared_ptr<UIInternalDialog> dialog = std::dynamic_pointer_cast<UIInternalDialog>(uiContainerWeak.lock());
+            auto dialog = std::dynamic_pointer_cast<UIInternalDialog>(uiContainerWeak.lock());
             if (dialog.get() != nullptr) {
                 dialog->CloseDialog();
             }

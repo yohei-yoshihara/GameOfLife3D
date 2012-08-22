@@ -9,7 +9,7 @@ const FLOAT MARGIN_BUTTONS = 4.0f;
 ui::UIRadioButtonGroup::UIRadioButtonGroup(void)
 {
     AddBeforeAddElementCallback([&](std::shared_ptr<UIBase> element)->bool {
-        std::shared_ptr<UIRadioButton> radioButton = std::dynamic_pointer_cast<UIRadioButton>(element);
+        auto radioButton = std::dynamic_pointer_cast<UIRadioButton>(element);
         if (radioButton != nullptr) {
             radioButton->SetIndex(GetNumberOfElements());
             radioButton->SetRadioButtonGroup(shared_from_this());
@@ -32,7 +32,7 @@ HRESULT ui::UIRadioButtonGroup::CreateDeviceDependentResources(
     CHK_WARN_HRESULT(UIContainer::CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget));
     FLOAT y = 0.0f;
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIRadioButton> radioButton = std::dynamic_pointer_cast<UIRadioButton>(GetElement(i));
+        auto radioButton = std::dynamic_pointer_cast<UIRadioButton>(GetElement(i));
         UISize size = radioButton->GetPreferredSize();
 #ifdef DEBUG_UIRADIOBUTTONGROUP
         LOG(SEVERITY_LEVEL_DEBUG) << L"preferred size = " << size;
@@ -51,7 +51,7 @@ HRESULT ui::UIRadioButtonGroup::CreateDeviceDependentResources(
 HRESULT ui::UIRadioButtonGroup::Render( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget )
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIRadioButton> element = std::dynamic_pointer_cast<UIRadioButton>(GetElement(i));
+        auto element = std::dynamic_pointer_cast<UIRadioButton>(GetElement(i));
         D2D1_MATRIX_3X2_F origMatrix;
         pRenderTarget->GetTransform(&origMatrix);
         D2D1_MATRIX_3X2_F matrix = origMatrix * D2D1::Matrix3x2F::Translation(element->GetX(), element->GetY());
@@ -65,10 +65,10 @@ HRESULT ui::UIRadioButtonGroup::Render( graphics::D3DInteropHelper *pD3DInteropH
     return S_OK;
 }
 
-void ui::UIRadioButtonGroup::NotifyFocusObtained( std::shared_ptr<UIBase> uiBase )
+void ui::UIRadioButtonGroup::NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase)
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (uiBase != child) {
             child->LostFocus();
         }

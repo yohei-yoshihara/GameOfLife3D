@@ -57,7 +57,7 @@ public:
     // ヒットテスト
     virtual bool HitTest(FLOAT x, FLOAT y) = 0;
     // デコレータの追加
-    virtual void AddDecorator(std::shared_ptr<graphics::decorator::IDecorator> decorator) = 0;
+    virtual void AddDecorator(const std::shared_ptr<graphics::decorator::IDecorator> &decorator) = 0;
     // デコレータのクリア
     virtual void ClearDecorators() = 0;
     // フィルターの追加

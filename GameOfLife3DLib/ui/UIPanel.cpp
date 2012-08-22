@@ -25,10 +25,10 @@ HRESULT ui::UIPanel::Render(
     return S_OK;
 }
 
-void ui::UIPanel::NotifyFocusObtained( std::shared_ptr<UIBase> uiBase )
+void ui::UIPanel::NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase)
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (uiBase != child) {
             child->LostFocus();
         }

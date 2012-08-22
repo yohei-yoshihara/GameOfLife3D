@@ -123,19 +123,17 @@ HRESULT gameOfLife3D::CanvasPanel::Initialize(std::weak_ptr<MainWnd> mainWnd)
     m_pD3DInteropHelper->SetAnimationWindow(shared_from_this());
     CHK_FATAL_HRESULT(m_pD3DInteropHelper->CreateDeviceIndependentResources());
 
-    std::shared_ptr<graphics::filter::GaussFilter> gaussFilter =
-        std::make_shared<graphics::filter::GaussFilter>();
+    auto gaussFilter = std::make_shared<graphics::filter::GaussFilter>();
     m_pD3DInteropHelper->RegisterGeometryFilter(L"GaussFilter", gaussFilter);
     CHK_FATAL_HRESULT(gaussFilter->Initialize());
 
-    std::shared_ptr<graphics::filter::InnerGaussFilter> innerGaussFilter =
-        std::make_shared<graphics::filter::InnerGaussFilter>();
+    auto innerGaussFilter = std::make_shared<graphics::filter::InnerGaussFilter>();
     m_pD3DInteropHelper->RegisterGeometryFilter(L"InnerGaussFilter", innerGaussFilter);
     CHK_FATAL_HRESULT(innerGaussFilter->Initialize());
 
 
     m_mainWnd = mainWnd;
-    std::shared_ptr<MainWnd> _mainWnd = m_mainWnd.lock();
+    auto _mainWnd = m_mainWnd.lock();
 
     m_ribbonHeight = _mainWnd->GetRibbonHeight();
 #ifdef DEBUG_CANVASPANEL
@@ -194,7 +192,7 @@ HRESULT gameOfLife3D::CanvasPanel::Initialize(std::weak_ptr<MainWnd> mainWnd)
 HRESULT gameOfLife3D::CanvasPanel::InitializeComponents()
 {
     // scroll bar
-    std::shared_ptr<ui::UIScrollBar> horizontalScrollBar = std::make_shared<ui::UIScrollBar>();
+    auto horizontalScrollBar = std::make_shared<ui::UIScrollBar>();
     horizontalScrollBar->SetMinValue(0.0f);
     horizontalScrollBar->SetMaxValue(360.0f);
     horizontalScrollBar->SetCurrentValue(45.0f);
@@ -208,7 +206,7 @@ HRESULT gameOfLife3D::CanvasPanel::InitializeComponents()
     });
     m_uiRoot->AddElement(horizontalScrollBar);
 
-    std::shared_ptr<ui::UIScrollBar> verticalScrollBar = std::make_shared<ui::UIScrollBar>();
+    auto verticalScrollBar = std::make_shared<ui::UIScrollBar>();
     verticalScrollBar->SetMinValue(0.0f);
     verticalScrollBar->SetMaxValue(360.0f);
     verticalScrollBar->SetCurrentValue(45.0f);
@@ -776,7 +774,7 @@ void gameOfLife3D::CanvasPanel::UpdateEyeRadius( float delta )
     UpdateEyePos();
 }
 
-void gameOfLife3D::CanvasPanel::SetLifeFile( std::shared_ptr<gameOfLife3D::io::LifeFile> pLifeFile )
+void gameOfLife3D::CanvasPanel::SetLifeFile(const std::shared_ptr<gameOfLife3D::io::LifeFile> &pLifeFile)
 {
     m_lifeAreaWidth = std::max(m_lifeAreaWidth, pLifeFile->GetWidth());
     m_lifeAreaHeight = std::max(m_lifeAreaHeight, pLifeFile->GetHeight());
@@ -792,21 +790,10 @@ void gameOfLife3D::CanvasPanel::SetLifeFile( std::shared_ptr<gameOfLife3D::io::L
     UINT offsetY = (m_lifeAreaHeight - pLifeFile->GetHeight()) / 2;
     for (UINT y = 0; y < pLifeFile->GetHeight(); ++y) {
         for (UINT x = 0; x < pLifeFile->GetWidth(); ++x) {
-            ATLTRACE("%d", pLifeFile->GetLifeData(x, y).alive);
             UINT index = (x + offsetX) + (y + offsetY) * m_lifeAreaWidth;
             m_initialLifeData[index] = pLifeFile->GetLifeData(x, y);
         }
-        ATLTRACE("\n");
     }
-
-    for (UINT y = 0; y < m_lifeAreaHeight; ++y) {
-        for (UINT x = 0; x < m_lifeAreaWidth; ++x) {
-            UINT index = x + y * m_lifeAreaWidth;
-            ATLTRACE("%d", m_initialLifeData[index].alive);
-        }
-        ATLTRACE("\n");
-    }
-
 
     m_parametersModified = true;
 }

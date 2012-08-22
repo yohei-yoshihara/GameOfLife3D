@@ -106,7 +106,7 @@ public:
         return (m_x <= x && x <= (m_x + m_width)) &&
                (m_y <= y && y <= (m_y + m_height));
     }
-    virtual void AddDecorator(std::shared_ptr<graphics::decorator::IDecorator> decorator) {
+    virtual void AddDecorator(const std::shared_ptr<graphics::decorator::IDecorator> &decorator) {
         m_decorators.push_back(decorator);
     }
     virtual void ClearDecorators() {
@@ -155,7 +155,7 @@ public:
         return m_shadow;
     }
     // 影効果の色の設定
-    void SetShadowColor(std::shared_ptr<graphics::color::IColor> shadowColor) {
+    void SetShadowColor(const std::shared_ptr<graphics::color::IColor> &shadowColor) {
         m_shadowColor = shadowColor;
         m_propertyChanged = true;
     }
@@ -175,7 +175,7 @@ public:
         return m_glow;
     }
     // グロー効果の色の設定
-    void SetGlowColor(std::shared_ptr<graphics::color::IColor> glowColor) {
+    void SetGlowColor(const std::shared_ptr<graphics::color::IColor> &glowColor) {
         m_glowColor = glowColor;
         m_propertyChanged = true;
     }

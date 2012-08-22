@@ -88,7 +88,7 @@ public:
         m_scrollDirection = scrollDirection;
     }
     // フォーカス取得の通知
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase);
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
 
     // scroll position changed
     void NotifyScrollPositionChanged(FLOAT position);

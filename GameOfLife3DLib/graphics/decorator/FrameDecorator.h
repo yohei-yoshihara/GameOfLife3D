@@ -42,7 +42,7 @@ public:
     const graphics::decorator::Frame& GetFrame(size_t index) const {
         return m_frames.at(index);
     }
-    void SetColorSet(std::shared_ptr<graphics::color::ColorSet> colorSet) {
+    void SetColorSet(const std::shared_ptr<graphics::color::ColorSet> &colorSet) {
         m_colorSet = colorSet;
     }
     // interface graphics::decorator::IDecorator

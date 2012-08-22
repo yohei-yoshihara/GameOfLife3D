@@ -35,7 +35,7 @@ public:
         SetColorSet(colorSet);
     }
     // コンストラクタ（指定されたカラーセットからブラシを作成）
-    BrushSet(std::shared_ptr<graphics::color::ColorSet> colorSet) :
+    BrushSet(const std::shared_ptr<graphics::color::ColorSet> &colorSet) :
         m_brushes(colorSet->GetNumberOfColors()),
         m_labelToBrashMap(),
         m_deviceDependentResourceCreated(false) {
@@ -53,11 +53,11 @@ public:
         const D2D1_RECT_F &rect,
         FLOAT opacity);
     // ブラシの追加
-    void AddBrush(std::shared_ptr<graphics::brush::IBrush> brush) {
+    void AddBrush(const std::shared_ptr<graphics::brush::IBrush> &brush) {
         m_brushes.push_back(brush);
     }
     // ブラシの追加
-    void AddBrush(std::shared_ptr<graphics::brush::IBrush> brush, const std::wstring &label) {
+    void AddBrush(const std::shared_ptr<graphics::brush::IBrush> &brush, const std::wstring &label) {
         m_brushes.push_back(brush);
         m_labelToBrashMap.insert(
             std::make_pair<std::wstring, std::shared_ptr<graphics::brush::IBrush>>(label, brush));
@@ -86,7 +86,7 @@ public:
     // 現在保持しているすべてのブラシが破棄され、カラーセットの内容に合わせてブラシが生成される
     void SetColorSet(const graphics::color::ColorSet &colorSet);
     // 現在保持しているすべてのブラシが破棄され、カラーセットの内容に合わせてブラシが生成される
-    void SetColorSet(std::shared_ptr<graphics::color::ColorSet> colorSet) {
+    void SetColorSet(const std::shared_ptr<graphics::color::ColorSet> &colorSet) {
         SetColorSet(*colorSet);
     }
     // すべてのデバイス依存リソースを破棄する

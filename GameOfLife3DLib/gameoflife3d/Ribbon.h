@@ -38,6 +38,9 @@ public:
         UI_VIEWVERB verb,
         INT32 uReasonCode);
 
+    void updateRibbonHeight();
+
+
     STDMETHOD(OnCreateUICommand)(
         UINT32 nCmdID,
         __in UI_COMMANDTYPE typeID,

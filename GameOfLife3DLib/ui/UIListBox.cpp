@@ -97,8 +97,8 @@ HRESULT ui::UIListBox::Initialize(
         break;
     }
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> element = GetElement(i);
-        std::shared_ptr<UIListBoxItem> listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
+        auto element = GetElement(i);
+        auto listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
         if (listBoxItem.get() != nullptr) {
             listBoxItem->SetLayoutDirection(layoutDirection);
             listBoxItem->SetPreferredBitmapSize(m_preferredBitmapSize);
@@ -108,7 +108,7 @@ HRESULT ui::UIListBox::Initialize(
     }
     CHK_WARN_HRESULT(UIContainer::Initialize(pD3DInteropHelper));
 
-    std::shared_ptr<graphics::decorator::FrameDecorator> frameDecorator =
+    auto frameDecorator =
         std::make_shared<graphics::decorator::FrameDecorator>();
     frameDecorator->SetColorSet(m_colorSet);
     for (size_t i = 0; i < m_colorSet->GetNumberOfColors(); ++i) {
@@ -205,8 +205,8 @@ HRESULT ui::UIListBox::Render(
         FLOAT y = m_marginBetweenItems;
 
         for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-            std::shared_ptr<UIBase> element = GetElement(i);
-            std::shared_ptr<UIListBoxItem> listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
+            auto element = GetElement(i);
+            auto listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
             if (listBoxItem.get() != nullptr) {
                 x += m_marginBetweenItems;
                 pD3DInteropHelper->PushMatrix(pRenderTarget, D2D1::Matrix3x2F::Translation(x, y));
@@ -223,8 +223,8 @@ HRESULT ui::UIListBox::Render(
         FLOAT y = 0.0f;
 
         for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-            std::shared_ptr<UIBase> element = GetElement(i);
-            std::shared_ptr<UIListBoxItem> listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
+            auto element = GetElement(i);
+            auto listBoxItem = std::dynamic_pointer_cast<UIListBoxItem>(element);
             if (listBoxItem.get() != nullptr) {
                 y += m_marginBetweenItems;
                 pD3DInteropHelper->PushMatrix(pRenderTarget, D2D1::Matrix3x2F::Translation(x, y));
@@ -254,10 +254,10 @@ void ui::UIListBox::DiscardDeviceDependentResources()
     m_rectFigure->DiscardDeviceDependentResources();
 }
 
-void ui::UIListBox::NotifyFocusObtained( std::shared_ptr<UIBase> uiBase )
+void ui::UIListBox::NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase)
 {
     for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-        std::shared_ptr<UIBase> child = GetElement(i);
+        auto child = GetElement(i);
         if (uiBase != child) {
             child->LostFocus();
         }

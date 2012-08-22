@@ -916,7 +916,7 @@ HRESULT graphics::D3DInteropHelper::CreateSharedSurface(
     OUT std::shared_ptr<graphics::SharedSurface> &sharedSurface)
 {
     HRESULT hr = S_OK;
-    std::shared_ptr<graphics::SharedSurface> _sharedSurface = std::make_shared<graphics::SharedSurface>();
+    auto _sharedSurface = std::make_shared<graphics::SharedSurface>();
     hr = _sharedSurface->Initialize(width, height, m_pD3D11Device, m_pD3D10Device, m_pD2DFactory);
     if (SUCCEEDED(hr)) {
         sharedSurface = _sharedSurface;

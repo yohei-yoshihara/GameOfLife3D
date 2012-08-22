@@ -1,0 +1,44 @@
+# compiled source #
+###################
+
+#*.dll
+#*.lib
+*.orig
+*.com
+*.dll.config
+*.exe
+*.exp
+*.ilk
+*.ncb
+*.log
+*.pdb
+*.sdf
+*.suo
+*.vcxproj.user
+*.vcxproj.filters
+*.cache
+*.bml
+ribbonres.h
+ribbonres.rc
+[Dd]ebug/
+[Rr]elease/
+.ht/
+
+# VS Upgrade stuff #
+####################
+
+UpgradeLog.XML
+_UpgradeReport_Files/
+
+# Directories #
+###############
+
+bin/
+obj/
+ipch/
+
+# OS generated files #
+######################
+
+Thumbs.db
+.hg

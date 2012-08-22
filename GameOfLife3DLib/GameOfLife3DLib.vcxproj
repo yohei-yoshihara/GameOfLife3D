@@ -22,10 +22,14 @@
     <ProjectGuid>{E2E546AA-E659-4D2B-8FD2-AA7AC064DCC4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>GameOfLife3DLib</RootNamespace>
-    <SccProjectName>Svn</SccProjectName>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccProvider>SubversionScc</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
     <ProjectName>GameOfLife3DLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

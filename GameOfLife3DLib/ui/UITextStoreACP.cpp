@@ -160,7 +160,7 @@ STDMETHODIMP ui::UITextStoreACP::RequestLock(
         _UnlockDocument();
     }
 
-    std::shared_ptr<IUITextField> pEditControl = m_editControl.lock();
+    auto pEditControl = m_editControl.lock();
     while (!m_messageQueue.IsEmpty()) {
         tsf::Message msg;
         m_messageQueue.Pop(&msg);
@@ -843,7 +843,7 @@ HRESULT ui::UITextStoreACP::TerminateAllCompositions(void)
 {
     HRESULT hr = S_OK;
     if (!m_editControl.expired()) {
-        std::shared_ptr<IUITextField> editControl = m_editControl.lock();
+        auto editControl = m_editControl.lock();
         ITfContextOwnerCompositionServices *pCompServices = nullptr;
         hr = editControl->GetContext()->QueryInterface(IID_ITfContextOwnerCompositionServices, (LPVOID*) &pCompServices);
         if (SUCCEEDED(hr)) {
@@ -925,7 +925,7 @@ void ui::UITextStoreACP::_Internal_InsertText(LONG startPos, std::wstring& s)
 {
     LONG oldLength = static_cast<LONG>(m_text.length());
     m_text.insert(startPos, s);
-    std::shared_ptr<IUITextField> pEditControl = m_editControl.lock();
+    auto pEditControl = m_editControl.lock();
     pEditControl->NotifyTextInsert(oldLength, startPos, static_cast<LONG>(s.length()));
 }
 
@@ -933,7 +933,7 @@ void ui::UITextStoreACP::_Internal_RemoveText(LONG startPos, LONG length)
 {
     LONG oldLength = static_cast<LONG>(m_text.length());
     m_text.erase(startPos, length);
-    std::shared_ptr<IUITextField> pEditControl = m_editControl.lock();
+    auto pEditControl = m_editControl.lock();
     pEditControl->NotifyTextRemove(oldLength, startPos, length);
 }
 
@@ -941,7 +941,7 @@ void ui::UITextStoreACP::_Internal_ReplaceText(LONG startPos, LONG length, std::
 {
     LONG oldLength = static_cast<LONG>(m_text.length());
     m_text.replace(startPos, length, s);
-    std::shared_ptr<IUITextField> pEditControl = m_editControl.lock();
+    auto pEditControl = m_editControl.lock();
     pEditControl->NotifyTextReplace(oldLength, startPos, length, static_cast<LONG>(s.length()));
 }
 

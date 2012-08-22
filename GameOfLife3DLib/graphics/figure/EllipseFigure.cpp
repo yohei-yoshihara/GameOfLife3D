@@ -93,7 +93,7 @@ HRESULT graphics::figure::EllipseFigure::Initialize(
     // ジオメトリフィルターの初期化
     for (auto it = m_geometryFilter.begin(); it != m_geometryFilter.end(); ++it) {
         graphics::figure::GeometryFilterWorkSet &geometryFilterWorkSet = *it;
-        std::shared_ptr<graphics::filter::IGeometryFilter> filter =
+        auto filter =
             pD3DInteropHelper->GetGeometryFilter(geometryFilterWorkSet.GetFilterName());
 #ifdef DEBUG_ELLIPSE_FIGURE
         LOG(SEVERITY_LEVEL_DEBUG) << L"filterName = " << geometryFilterWorkSet.GetFilterName()
@@ -125,7 +125,7 @@ HRESULT graphics::figure::EllipseFigure::CreateDeviceDependentResources(
     for (auto it = m_geometryFilter.begin(); it != m_geometryFilter.end(); ++it) {
         graphics::figure::GeometryFilterWorkSet &geometryFilterWorkSet = *it;
         // ジオメトリフィルター用のブラシの初期化
-        std::shared_ptr<graphics::brush::IBrush> brush =
+        auto brush =
             graphics::brush::BrushFactory::Create(
                 pRenderTarget,
                 geometryFilterWorkSet.GetColor(),
@@ -138,7 +138,7 @@ HRESULT graphics::figure::EllipseFigure::CreateDeviceDependentResources(
 #endif
         CComPtr<ID2D1Bitmap> bitmap = nullptr;
         D2D1_RECT_F bounds = {0};
-        std::shared_ptr<graphics::filter::IGeometryFilter> geometryFilter =
+        auto geometryFilter =
             geometryFilterWorkSet.GetGeometryFilter();
         // ジオメトリフィルターの適用
         CHK_FATAL_HRESULT(geometryFilter->ApplyFilter(
@@ -243,8 +243,7 @@ void graphics::figure::EllipseFigure::SetColor(
 #ifdef DEBUG_ELLIPSE_FIGURE
     LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
-    std::shared_ptr<graphics::color::ColorSet> colorSet =
-        std::make_shared<graphics::color::ColorSet>();
+    auto colorSet = std::make_shared<graphics::color::ColorSet>();
     graphics::color::ColorPatternUtil::GeneratePattern(colorPattern, colorValue, colorSet);
     m_brushes->SetColorSet(colorSet);
     m_frames.clear();

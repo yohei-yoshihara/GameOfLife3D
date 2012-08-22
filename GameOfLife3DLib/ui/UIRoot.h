@@ -38,12 +38,12 @@ public:
     virtual HWND GetHWnd() const {
         return m_hWnd;
     }
-    virtual void NotifyFocusObtained(std::shared_ptr<UIBase> uiBase);
+    virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
     virtual void OnResize(UISize size);
     virtual HRESULT Invalidate();
 
     // internal dialog
-    virtual void AddDialog(const std::wstring &name, std::shared_ptr<ui::IUIDialog> dialog);
+    virtual void AddDialog(const std::wstring &name, const std::shared_ptr<ui::IUIDialog> &dialog);
     virtual void ShowDialog(const std::wstring &name);
     virtual void NotifyDialogClosed();
 
