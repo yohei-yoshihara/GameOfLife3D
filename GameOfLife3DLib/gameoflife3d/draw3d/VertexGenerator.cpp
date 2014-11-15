@@ -4,6 +4,8 @@
 #include "gameOfLife3D/draw3d/Draw3DUtil.h"
 #include "gameOfLife3D/draw3d/VertexGenerator.h"
 
+using namespace DirectX;
+
 #if defined( DEBUG ) || defined( _DEBUG )
 #define DEBUG_MODEL3D
 #endif

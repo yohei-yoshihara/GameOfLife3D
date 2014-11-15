@@ -6,8 +6,8 @@ namespace graphics
 namespace filter
 {
 struct Vertex {
-    XMFLOAT3 Pos;
-    XMFLOAT2 Tex;
+    DirectX::XMFLOAT3 Pos;
+	DirectX::XMFLOAT2 Tex;
 };
 
 class FilterCommon

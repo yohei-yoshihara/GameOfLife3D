@@ -5,6 +5,8 @@
 #include "gameOfLife3D/draw3d/Draw3DWithGS.h"
 #include "graphics/D3DInteropHelper.h"
 
+using namespace DirectX;
+
 gameOfLife3D::draw3d::Draw3DWithGS::Draw3DWithGS() :
     m_pLifeSimulator(),
     m_maxNumberOfGenerations(24),

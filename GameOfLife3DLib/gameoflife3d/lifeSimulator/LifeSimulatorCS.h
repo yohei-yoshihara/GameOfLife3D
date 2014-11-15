@@ -23,7 +23,7 @@ struct CBParams {
 class LifeSimulatorCS : public gameOfLife3D::lifeSimulator::AbstractLifeSimulator
 {
 private:
-    static const XMFLOAT3 gameOfLife3D::lifeSimulator::LifeSimulatorCS::s_bornColors[NUMBER_OF_BORNCOLORS];
+    static const DirectX::XMFLOAT3 gameOfLife3D::lifeSimulator::LifeSimulatorCS::s_bornColors[NUMBER_OF_BORNCOLORS];
 
     UINT m_currentIndex;
     UINT m_nextIndex;

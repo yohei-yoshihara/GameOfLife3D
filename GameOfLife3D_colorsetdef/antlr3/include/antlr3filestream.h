@@ -1,5 +1,5 @@
-#ifndef _ANTLR3_FILESTREAM_H
-#define _ANTLR3_FILESTREAM_H
+#ifndef	_ANTLR3_FILESTREAM_H
+#define	_ANTLR3_FILESTREAM_H
 
 // [The "BSD licence"]
 // Copyright (c) 2005-2009 Jim Idle, Temporal Wave LLC
@@ -36,12 +36,12 @@
 extern "C" {
 #endif
 
-    ANTLR3_API ANTLR3_FDSC  antlr3Fopen (pANTLR3_UINT8 filename, const char * mode);
-    ANTLR3_API void     antlr3Fclose    (ANTLR3_FDSC fd);
+ANTLR3_API ANTLR3_FDSC	antlr3Fopen	(pANTLR3_UINT8 filename, const char * mode);
+ANTLR3_API void		antlr3Fclose	(ANTLR3_FDSC fd);
 
-    ANTLR3_API ANTLR3_UINT32    antlr3Fsize (pANTLR3_UINT8 filename);
-    ANTLR3_API ANTLR3_UINT32    antlr3read8Bit  (pANTLR3_INPUT_STREAM input, pANTLR3_UINT8 fileName);
-    ANTLR3_API ANTLR3_UINT32    antlr3Fread (ANTLR3_FDSC fdsc, ANTLR3_UINT32 count,  void * data);
+ANTLR3_API ANTLR3_UINT32	antlr3Fsize	(pANTLR3_UINT8 filename);
+ANTLR3_API ANTLR3_UINT32	antlr3read8Bit	(pANTLR3_INPUT_STREAM input, pANTLR3_UINT8 fileName);
+ANTLR3_API ANTLR3_UINT32	antlr3Fread	(ANTLR3_FDSC fdsc, ANTLR3_UINT32 count,  void * data);
 
 #ifdef __cplusplus
 }

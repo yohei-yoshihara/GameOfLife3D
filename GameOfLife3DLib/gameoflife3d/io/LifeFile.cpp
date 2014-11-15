@@ -2,6 +2,8 @@
 #include "Common.h"
 #include "gameOfLife3D//io/LifeFile.h"
 
+using namespace DirectX;
+
 const wchar_t gameOfLife3D::io::LifeFile::ALIVE_CHARS[] = {
     L'*',
     L'O',

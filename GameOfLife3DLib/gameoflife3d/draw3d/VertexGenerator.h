@@ -16,9 +16,9 @@ namespace draw3d
 #define NUMBER_OF_INDEXES_PER_LIFE  36
 
 struct VertexInfo {
-    XMFLOAT3 pos;
-    XMFLOAT3 normal;
-    XMFLOAT4 color;
+    DirectX::XMFLOAT3 pos;
+	DirectX::XMFLOAT3 normal;
+	DirectX::XMFLOAT4 color;
 };
 typedef UINT32 VERTEX_INDEX;
 
@@ -55,9 +55,9 @@ private:
     float m_marginRate;
 
     // start point of 3D space
-    XMFLOAT3 m_p0;
+	DirectX::XMFLOAT3 m_p0;
     // end point of 3D space
-    XMFLOAT3 m_p1;
+	DirectX::XMFLOAT3 m_p1;
 
     ID3D11Buffer *m_pVertexBuffer;
     UINT m_numberOfVertexes;
@@ -66,8 +66,8 @@ private:
     UINT m_numberOfIndexes;
     UINT m_maxNumberOfIndexes;
 
-    XMFLOAT3 m_cubeLength;
-    XMFLOAT3 m_cubeMargin;
+	DirectX::XMFLOAT3 m_cubeLength;
+	DirectX::XMFLOAT3 m_cubeMargin;
 
 protected:
 
@@ -101,16 +101,16 @@ public:
     float GetMarginRate() const {
         return m_marginRate;
     }
-    void SetP0(XMFLOAT3 p0) {
+	void SetP0(DirectX::XMFLOAT3 p0) {
         m_p0 = p0;
     }
-    XMFLOAT3 GetP0() const {
+	DirectX::XMFLOAT3 GetP0() const {
         return m_p0;
     }
-    void SetP1(XMFLOAT3 p1) {
+	void SetP1(DirectX::XMFLOAT3 p1) {
         m_p1 = p1;
     }
-    XMFLOAT3 GetP1() const {
+	DirectX::XMFLOAT3 GetP1() const {
         return m_p1;
     }
     HRESULT Initialize(graphics::D3DInteropHelper *pD3DInteropHelper);
@@ -135,21 +135,21 @@ public:
     }
 
     void UpdateLengthAndMargin();
-    XMFLOAT3 GetCubeLength() {
+	DirectX::XMFLOAT3 GetCubeLength() {
         if (m_attributeModified) {
             UpdateLengthAndMargin();
         }
         return m_cubeLength;
     }
-    XMFLOAT3 GetCubeMargin() {
+	DirectX::XMFLOAT3 GetCubeMargin() {
         if (m_attributeModified) {
             UpdateLengthAndMargin();
         }
         return m_cubeMargin;
     }
-    XMFLOAT3 CalculateCubeCenterPosition(
-        const XMFLOAT3 &cubeLength,
-        const XMFLOAT3 &cubeMargin,
+	DirectX::XMFLOAT3 CalculateCubeCenterPosition(
+		const DirectX::XMFLOAT3 &cubeLength,
+		const DirectX::XMFLOAT3 &cubeMargin,
         UINT x, UINT y, UINT generation);
     UINT GetMaxVertexes() const {
         return m_width * m_width * m_maxNumberOfGenerations * NUMBER_OF_VERTICES_PER_LIFE;
@@ -161,7 +161,7 @@ public:
     void _MinMax(const float value, float &minValue, float &maxValue);
     void _AnalyzeVertices(
         const std::vector<gameOfLife3D::draw3d::VertexInfo> &vertices,
-        OUT std::vector<XMFLOAT3> &cubes);
+		OUT std::vector<DirectX::XMFLOAT3> &cubes);
 
     void CheckVertexAndIndex(
         IN const VertexInfo *vertexes,

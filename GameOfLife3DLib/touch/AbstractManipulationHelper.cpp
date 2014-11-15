@@ -132,7 +132,7 @@ ManipulationResult AbstractManipulationHelper::_OnLeftMouseDoubleClick(HWND hWnd
     // Left mouse button double click
     if (! ::KillTimer(hWnd, m_timerIdForDoubleClick)) {
         DWORD lastError = GetLastError();
-        LOG(SEVERITY_LEVEL_ERROR) << util::LastError(util::LastErrorArgs(L"KillTimer", lastError));
+        LOG(SEVERITY_LEVEL_ERROR) << L"KillTimer failed with error " << lastError;
         ManipulationResult result(false, false);
         return result;
     }
@@ -170,7 +170,7 @@ ManipulationResult AbstractManipulationHelper::_OnLeftMouseUp(HWND hWnd, UINT me
         // NOTE: the first SetTimer request is always slow (over 500ms)
         if ((ret = ::SetTimer(hWnd, m_timerIdForDoubleClick, GetDoubleClickTime(), nullptr)) == 0) {
             DWORD lastError = GetLastError();
-            LOG(SEVERITY_LEVEL_ERROR) << util::LastError(util::LastErrorArgs(L"SetTimer", lastError));
+			LOG(SEVERITY_LEVEL_ERROR) << L"SetTimer failed with error " << lastError;
             ManipulationResult result(false, false);
             return result;
         }
@@ -403,7 +403,6 @@ touch::ManipulationResult touch::AbstractManipulationHelper::_OnChar( HWND hWnd,
     } else {
         return OnChar(hWnd, wParam, lParam, CHAR_TYPE_NORMAL, static_cast<wchar_t>(wParam), currentTimestampInMilliSeconds);
     }
-    return ManipulationResult(false, false);
 }
 
 touch::ManipulationResult touch::AbstractManipulationHelper::_OnKeyDown( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam )

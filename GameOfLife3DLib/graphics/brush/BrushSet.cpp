@@ -25,10 +25,7 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
             solidBrush->SetColor(solidColor->GetCurrentColor());
             if (solidColor->GetLabel().length() > 0) {
                 solidBrush->SetLabel(solidColor->GetLabel());
-                m_labelToBrashMap.insert(
-                    std::make_pair<std::wstring, std::shared_ptr<graphics::brush::IBrush>>(
-                        solidColor->GetLabel(),
-                        solidBrush));
+				m_labelToBrashMap.insert({ solidColor->GetLabel(), solidBrush });
             }
             m_brushes.push_back(solidBrush);
         }
@@ -42,10 +39,7 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
             linearBrush->SetGradientStops(linearGradientColor->GetCurrentColor());
             if (linearGradientColor->GetLabel().length() > 0) {
                 linearBrush->SetLabel(linearGradientColor->GetLabel());
-                m_labelToBrashMap.insert(
-                    std::make_pair<std::wstring, std::shared_ptr<graphics::brush::IBrush>>(
-                        linearGradientColor->GetLabel(),
-                        linearBrush));
+				m_labelToBrashMap.insert({ linearGradientColor->GetLabel(), linearBrush });
             }
             m_brushes.push_back(linearBrush);
         }
@@ -61,10 +55,7 @@ void graphics::brush::BrushSet::SetColorSet(const graphics::color::ColorSet &col
             radialBrush->SetGradientStops(radialGradientColor->GetCurrentColor());
             if (radialGradientColor->GetLabel().length() > 0) {
                 radialBrush->SetLabel(radialGradientColor->GetLabel());
-                m_labelToBrashMap.insert(
-                    std::make_pair<std::wstring, std::shared_ptr<graphics::brush::IBrush>>(
-                        radialGradientColor->GetLabel(),
-                        radialBrush));
+				m_labelToBrashMap.insert({ radialGradientColor->GetLabel(), radialBrush });
             }
             m_brushes.push_back(radialBrush);
         }

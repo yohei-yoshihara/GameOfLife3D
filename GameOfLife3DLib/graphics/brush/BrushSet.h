@@ -59,8 +59,7 @@ public:
     // ブラシの追加
     void AddBrush(const std::shared_ptr<graphics::brush::IBrush> &brush, const std::wstring &label) {
         m_brushes.push_back(brush);
-        m_labelToBrashMap.insert(
-            std::make_pair<std::wstring, std::shared_ptr<graphics::brush::IBrush>>(label, brush));
+        m_labelToBrashMap.insert({ label, brush });
     }
     // ブラシのクリア（すべてのブラシが破棄される）
     void Clear() {

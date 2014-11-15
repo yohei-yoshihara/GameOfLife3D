@@ -45,6 +45,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameOfLife3D_MUI_nl_nl", "G
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Win32 = Debug|Win32
@@ -119,6 +123,7 @@ Global
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|Win32.ActiveCfg = Debug|x86
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|x64.ActiveCfg = Debug|x64
+		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|x64.Build.0 = Debug|x64
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|x86.ActiveCfg = Debug|x86
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Debug|x86.Build.0 = Debug|x86
 		{40CB748B-84C8-4EEF-8316-2D3A985DDBE9}.Release|Mixed Platforms.ActiveCfg = Release|x86
@@ -177,9 +182,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal

@@ -241,7 +241,7 @@ struct WM wms[] = {
     {0x8000, L"WM_APP"},
     {0, nullptr}
 };
-
+/*
 void util::_WMessage(std::ios_base& os, WMessageArgs message)
 {
     std::wostream *pos = dynamic_cast<std::wostream*>(&os);
@@ -295,3 +295,4 @@ void util::_LastError( std::ios_base& os, LastErrorArgs args )
         LocalFree(lpDisplayBuf);
     }
 }
+*/

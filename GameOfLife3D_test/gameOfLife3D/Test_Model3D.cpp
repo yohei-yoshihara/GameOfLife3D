@@ -2,6 +2,8 @@
 #include "Common.h"
 #include "gameOfLife3D/draw3d/VertexGenerator.h"
 
+using namespace DirectX;
+
 void MinMax(const float value, float &minValue, float &maxValue)
 {
     if (value < minValue) {

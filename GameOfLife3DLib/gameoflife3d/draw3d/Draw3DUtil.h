@@ -11,10 +11,10 @@ class Draw3DUtil
 public:
     static void CalculateP0P1(
         UINT width, UINT height, UINT generations,
-        OUT XMFLOAT3 &p0, OUT XMFLOAT3 &p1);
+		OUT DirectX::XMFLOAT3 &p0, OUT DirectX::XMFLOAT3 &p1);
     static void CalculateLengthAndMargin(
-        UINT width, UINT height, UINT generations, XMFLOAT3 p0, XMFLOAT3 p1, FLOAT marginRate,
-        OUT XMFLOAT3 &cubeLength, OUT XMFLOAT3 &cubeMargin);
+		UINT width, UINT height, UINT generations, DirectX::XMFLOAT3 p0, DirectX::XMFLOAT3 p1, FLOAT marginRate,
+		OUT DirectX::XMFLOAT3 &cubeLength, OUT DirectX::XMFLOAT3 &cubeMargin);
 };
 
 }

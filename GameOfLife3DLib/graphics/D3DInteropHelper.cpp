@@ -7,6 +7,8 @@
 #include "graphics/ID3DInteropAdapter.h"
 #include "graphics/D3DInteropHelper.h"
 
+using namespace DirectX;
+
 //#define DEBUG_GRAPHICS_D3DINTEROPHELPER_
 
 /*static*/
@@ -17,10 +19,10 @@ const D3D11_INPUT_ELEMENT_DESC graphics::D3DInteropHelper::s_D2DInputLayoutForBl
 
 /*static*/
 const graphics::D2DVertex graphics::D3DInteropHelper::s_D2DVertexArrayForBlend[] = {
-    { D3DXVECTOR3(-1.0f, -1.0f, 0.0f), D3DXVECTOR2(0.0f, 1.0f) },
-    { D3DXVECTOR3(1.0f, -1.0f, 0.0f), D3DXVECTOR2(1.0f, 1.0f) },
-    { D3DXVECTOR3(1.0f,  1.0f, 0.0f), D3DXVECTOR2(1.0f, 0.0f) },
-    { D3DXVECTOR3(-1.0f,  1.0f, 0.0f), D3DXVECTOR2(0.0f, 0.0f) }
+	{ XMFLOAT3(-1.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
+	{ XMFLOAT3(1.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
+	{ XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
+	{ XMFLOAT3(-1.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) }
 };
 
 /*static*/
@@ -1278,20 +1280,42 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(
 #endif
 
     ID3DBlob* pErrorBlob = nullptr;
-    hr = D3DX11CompileFromResource(
-             HINST_THISCOMPONENT,
-             pszResource,
-             L"LoadResourceShader",
-             nullptr,
-             nullptr,
-             szEntryPoint,
-             szShaderModel,
-             dwShaderFlags,
-             0,
-             nullptr,
-             ppBlob,
-             &pErrorBlob,
-             nullptr);
+
+	HMODULE hModule = GetModuleHandle(NULL);
+	HRSRC hRes = FindResource(hModule, pszResource, RT_RCDATA);
+	HGLOBAL hMem = LoadResource(hModule, hRes);
+	LPVOID lpResource = LockResource(hMem);
+	DWORD size = SizeofResource(hModule, hRes);
+	std::vector<uint8_t> data(size);
+	memcpy(&data.front(), lpResource, size);
+	FreeResource(hMem);
+	/*
+	hr = D3DX11CompileFromResource(
+		HINST_THISCOMPONENT,
+		pszResource,
+		L"LoadResourceShader",
+		nullptr,
+		nullptr,
+		szEntryPoint,
+		szShaderModel,
+		dwShaderFlags,
+		0,
+		nullptr,
+		ppBlob,
+		&pErrorBlob,
+		nullptr);*/
+	hr = D3DCompile(&data.front(),
+		size,
+		"LoadResourceShader",
+		nullptr,
+		nullptr,
+		szEntryPoint,
+		szShaderModel,
+		dwShaderFlags,
+		0,
+		ppBlob,
+		&pErrorBlob);
+
     if (FAILED(hr)) {
         LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromResource failed, hr = " << hr;
         if (pErrorBlob != nullptr) {
@@ -1329,7 +1353,7 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromFile(
 #endif
 
     ID3DBlob* pErrorBlob;
-    hr = D3DX11CompileFromFile(
+    /*hr = D3DX11CompileFromFile(
              szFileName,
              nullptr,
              nullptr,
@@ -1340,7 +1364,18 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromFile(
              nullptr,
              ppBlobOut,
              &pErrorBlob,
-             nullptr);
+             nullptr);*/
+
+	hr = D3DCompileFromFile(szFileName,
+		nullptr,
+		nullptr,
+		szEntryPoint,
+		szShaderModel,
+		dwShaderFlags,
+		0,
+		ppBlobOut,
+		&pErrorBlob);
+
     if (FAILED(hr)) {
         LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromFile failed, hr = " << hr;
         if (pErrorBlob != nullptr) {

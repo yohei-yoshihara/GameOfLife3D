@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "gameOfLife3D/draw3d/Draw3DUtil.h"
 
+using namespace DirectX;
+
 void gameOfLife3D::draw3d::Draw3DUtil::CalculateP0P1(
     UINT width, UINT height, UINT generations,
     OUT XMFLOAT3 &p0, OUT XMFLOAT3 &p1 )

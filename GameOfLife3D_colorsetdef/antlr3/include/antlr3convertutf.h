@@ -1,8 +1,8 @@
 /*
  * Copyright 2001-2004 Unicode, Inc.
- *
+ * 
  * Disclaimer
- *
+ * 
  * This source code is provided as is by Unicode, Inc. No claims are
  * made as to fitness for any particular purpose. No warranties of any
  * kind are expressed or implied. The recipient agrees to determine
@@ -10,9 +10,9 @@
  * purchased on magnetic or optical media from Unicode, Inc., the
  * sole remedy for any claim will be exchange of defective media
  * within 90 days of receipt.
- *
+ * 
  * Limitations on Rights to Redistribute This Code
- *
+ * 
  * Unicode, Inc. hereby grants the right to freely use the information
  * supplied in this file in the creation of products supporting the
  * Unicode Standard, and to make copies of this file in any form
@@ -33,7 +33,7 @@
 
     Each routine converts the text between *sourceStart and sourceEnd,
     putting the result into the buffer between *targetStart and
-    targetEnd. Note: the end pointers are *after* the last item: e.g.
+    targetEnd. Note: the end pointers are *after* the last item: e.g. 
     *(sourceEnd - 1) is the last item.
 
     The return result indicates whether the conversion was successful,
@@ -45,12 +45,12 @@
     the respective buffers.
 
     Input parameters:
-    sourceStart - pointer to a pointer to the source buffer.
-        The contents of this are modified on return so that
-        it points at the next thing to be converted.
-    targetStart - similarly, pointer to pointer to the target buffer.
-    sourceEnd, targetEnd - respectively pointers to the ends of the
-        two buffers, for overflow checking only.
+	sourceStart - pointer to a pointer to the source buffer.
+		The contents of this are modified on return so that
+		it points at the next thing to be converted.
+	targetStart - similarly, pointer to pointer to the target buffer.
+	sourceEnd, targetEnd - respectively pointers to the ends of the
+		two buffers, for overflow checking only.
 
     These conversion functions take a ConversionFlags argument. When this
     flag is set to strict, both irregular sequences and isolated surrogates
@@ -67,15 +67,15 @@
     they constitute an error.
 
     Output parameters:
-    The value "sourceIllegal" is returned from some routines if the input
-    sequence is malformed.  When "sourceIllegal" is returned, the source
-    value will point to the illegal value that caused the problem. E.g.,
-    in UTF-8 when a sequence is malformed, it points to the start of the
-    malformed sequence.
+	The value "sourceIllegal" is returned from some routines if the input
+	sequence is malformed.  When "sourceIllegal" is returned, the source
+	value will point to the illegal value that caused the problem. E.g.,
+	in UTF-8 when a sequence is malformed, it points to the start of the
+	malformed sequence.  
 
     Author: Mark E. Davis, 1994.
     Rev History: Rick McGowan, fixes & updates May 2001.
-         Fixes & updates, Sept 2001.
+		 Fixes & updates, Sept 2001.
 
 ------------------------------------------------------------------------ */
 
@@ -93,19 +93,19 @@
 // aliases for the types that are system determined by
 // ANTLR at compile time.
 //
-// typedef unsigned long    UTF32;  /* at least 32 bits */
-// typedef unsigned short   UTF16;  /* at least 16 bits */
-// typedef unsigned char    UTF8;   /* typically 8 bits */
-// typedef unsigned char    Boolean; /* 0 or 1 */
+// typedef unsigned long	UTF32;	/* at least 32 bits */
+// typedef unsigned short	UTF16;	/* at least 16 bits */
+// typedef unsigned char	UTF8;	/* typically 8 bits */
+// typedef unsigned char	Boolean; /* 0 or 1 */
 
-#ifndef _ANTLR3_CONVERTUTF_H
-#define _ANTLR3_CONVERTUTF_H
+#ifndef	_ANTLR3_CONVERTUTF_H
+#define	_ANTLR3_CONVERTUTF_H
 
-#include    <antlr3defs.h>
+#include	<antlr3defs.h>
 
-typedef ANTLR3_UINT32   UTF32;  /* at least 32 bits */
-typedef ANTLR3_UINT16   UTF16;  /* at least 16 bits */
-typedef ANTLR3_UINT8    UTF8;   /* typically 8 bits */
+typedef ANTLR3_UINT32	UTF32;	/* at least 32 bits */
+typedef ANTLR3_UINT16	UTF16;	/* at least 16 bits */
+typedef ANTLR3_UINT8	UTF8;	/* typically 8 bits */
 
 /* Some fundamental constants */
 #define UNI_REPLACEMENT_CHAR (UTF32)0x0000FFFD
@@ -118,22 +118,22 @@ typedef ANTLR3_UINT8    UTF8;   /* typically 8 bits */
 #define UNI_SUR_HIGH_END    (UTF32)0xDBFF
 #define UNI_SUR_LOW_START   (UTF32)0xDC00
 #define UNI_SUR_LOW_END     (UTF32)0xDFFF
-#define false               ANTLR3_FALSE
-#define true                ANTLR3_TRUE
+//#define false	            ANTLR3_FALSE
+//#define true	            ANTLR3_TRUE
 #define halfShift           ((UTF32)10)
 #define halfBase            ((UTF32)0x0010000UL)
 #define halfMask            ((UTF32)0x3FFUL)
 
 typedef enum {
-    conversionOK,       /* conversion successful */
-    sourceExhausted,    /* partial character in source, but hit end */
-    targetExhausted,    /* insuff. room in target for conversion */
-    sourceIllegal       /* source sequence is illegal/malformed */
+	conversionOK, 		/* conversion successful */
+	sourceExhausted,	/* partial character in source, but hit end */
+	targetExhausted,	/* insuff. room in target for conversion */
+	sourceIllegal		/* source sequence is illegal/malformed */
 } ConversionResult;
 
 typedef enum {
-    strictConversion = 0,
-    lenientConversion
+	strictConversion = 0,
+	lenientConversion
 } ConversionFlags;
 
 /* This is for C++ and does no harm in C */
@@ -141,31 +141,31 @@ typedef enum {
 extern "C" {
 #endif
 
-    ConversionResult ConvertUTF8toUTF16 (
-        const UTF8** sourceStart, const UTF8* sourceEnd,
-        UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags);
+ConversionResult ConvertUTF8toUTF16 (
+		const UTF8** sourceStart, const UTF8* sourceEnd, 
+		UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags);
 
-    ConversionResult ConvertUTF16toUTF8 (
-        const UTF16** sourceStart, const UTF16* sourceEnd,
-        UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags);
+ConversionResult ConvertUTF16toUTF8 (
+		const UTF16** sourceStart, const UTF16* sourceEnd, 
+		UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags);
+		
+ConversionResult ConvertUTF8toUTF32 (
+		const UTF8** sourceStart, const UTF8* sourceEnd, 
+		UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags);
 
-    ConversionResult ConvertUTF8toUTF32 (
-        const UTF8** sourceStart, const UTF8* sourceEnd,
-        UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags);
+ConversionResult ConvertUTF32toUTF8 (
+		const UTF32** sourceStart, const UTF32* sourceEnd, 
+		UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags);
+		
+ConversionResult ConvertUTF16toUTF32 (
+		const UTF16** sourceStart, const UTF16* sourceEnd, 
+		UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags);
 
-    ConversionResult ConvertUTF32toUTF8 (
-        const UTF32** sourceStart, const UTF32* sourceEnd,
-        UTF8** targetStart, UTF8* targetEnd, ConversionFlags flags);
+ConversionResult ConvertUTF32toUTF16 (
+		const UTF32** sourceStart, const UTF32* sourceEnd, 
+		UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags);
 
-    ConversionResult ConvertUTF16toUTF32 (
-        const UTF16** sourceStart, const UTF16* sourceEnd,
-        UTF32** targetStart, UTF32* targetEnd, ConversionFlags flags);
-
-    ConversionResult ConvertUTF32toUTF16 (
-        const UTF32** sourceStart, const UTF32* sourceEnd,
-        UTF16** targetStart, UTF16* targetEnd, ConversionFlags flags);
-
-    ANTLR3_BOOLEAN isLegalUTF8Sequence(const UTF8 *source, const UTF8 *sourceEnd);
+ANTLR3_BOOLEAN isLegalUTF8Sequence(const UTF8 *source, const UTF8 *sourceEnd);
 
 #ifdef __cplusplus
 }

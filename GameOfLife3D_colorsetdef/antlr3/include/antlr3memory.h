@@ -1,5 +1,5 @@
-#ifndef _ANTLR3MEMORY_H
-#define _ANTLR3MEMORY_H
+#ifndef	_ANTLR3MEMORY_H
+#define	_ANTLR3MEMORY_H
 
 // [The "BSD licence"]
 // Copyright (c) 2005-2009 Jim Idle, Temporal Wave LLC
@@ -33,4 +33,4 @@
 #include    <antlr3defs.h>
 
 
-#endif  /* _ANTLR3MEMORY_H */
+#endif	/* _ANTLR3MEMORY_H */

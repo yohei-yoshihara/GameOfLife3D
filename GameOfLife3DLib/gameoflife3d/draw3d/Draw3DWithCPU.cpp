@@ -6,6 +6,8 @@
 #include "gameOfLife3D/draw3d/Draw3DUtil.h"
 #include "gameOfLife3D/draw3d/Draw3DWithCPU.h"
 
+using namespace DirectX;
+
 gameOfLife3D::draw3d::Draw3DWithCPU::Draw3DWithCPU() :
     m_pLifeSimulator(),
     m_maxNumberOfGenerations(24),

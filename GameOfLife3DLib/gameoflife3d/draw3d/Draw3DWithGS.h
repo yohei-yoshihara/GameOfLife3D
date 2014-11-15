@@ -13,18 +13,18 @@ struct CBParams {
     INT32 height;
     INT32 width_x_height;
     INT32 generations;
-    XMFLOAT3 p0;
+	DirectX::XMFLOAT3 p0;
     FLOAT packing0;
-    XMFLOAT3 cubeLength;
+	DirectX::XMFLOAT3 cubeLength;
     FLOAT packing1;
-    XMFLOAT3 halfCubeLength;
+	DirectX::XMFLOAT3 halfCubeLength;
     FLOAT packing2;
-    XMFLOAT3 cubeMargin;
+	DirectX::XMFLOAT3 cubeMargin;
     FLOAT packing3;
 };
 
 struct VertexInfoForGS {
-    XMFLOAT4 color;
+	DirectX::XMFLOAT4 color;
 };
 
 class Draw3DWithGS :

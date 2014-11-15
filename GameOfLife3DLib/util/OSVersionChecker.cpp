@@ -2,33 +2,19 @@
 #include "logging/Logging.h"
 #include "OSVersionChecker.h"
 #include <strsafe.h>
+#include <VersionHelpers.h>
 
 util::OSVersion util::OSVersionChecker::GetOSVersion()
 {
-    OSVERSIONINFOEX osvi;
-    ZeroMemory(&osvi, sizeof(OSVERSIONINFOEX));
-    osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-
-    if (!GetVersionEx((OSVERSIONINFO *) &osvi)) {
-        return OSVersion_OlderThanXP;
-    }
-
-    if (VER_PLATFORM_WIN32_NT == osvi.dwPlatformId && osvi.dwMajorVersion > 4) {
-        if (osvi.dwMajorVersion == 6) {
-            if (osvi.dwMinorVersion == 0) {
-                return OSVersion_WindowsVista;
-            } else if (osvi.dwMinorVersion == 1) {
-                return OSVersion_Windows7;
-            }
-        } else if (osvi.dwMajorVersion == 5) {
-            if (osvi.dwMinorVersion == 2) {
-                return OSVersion_Windows2003;
-            } else if (osvi.dwMinorVersion == 1) {
-                return OSVersion_WindowsXP;
-            }
-        }
-    }
-    return OSVersion_OlderThanXP;
+	if (IsWindows7OrGreater()) {
+		return OSVersion_Windows7;
+	}
+	else if (IsWindowsVistaOrGreater()) {
+		return OSVersion_WindowsVista;
+	}
+	else {
+		return OSVersion_WindowsXP;
+	}
 }
 
 bool util::OSVersionChecker::IsVista()

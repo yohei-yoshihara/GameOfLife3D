@@ -42,6 +42,8 @@
 #include "gameOfLife3D/draw3d/Draw3DFactory.h"
 #include "gameOfLife3D/CanvasPanel.h"
 
+using namespace DirectX;
+
 #if defined(DEBUG) || defined(_DEBUG)
 //#define DEBUG_CANVASPANEL
 //#define DEBUG_CANVASPANEL_WINMSG
@@ -268,7 +270,7 @@ void gameOfLife3D::CanvasPanel::SetGestureConfigs(HWND hWnd)
     BOOL bResult = SetGestureConfig(hWnd, 0, uiGcs, gc, sizeof(GESTURECONFIG));
     if (!bResult) {
         DWORD lastError = GetLastError();
-        LOG(SEVERITY_LEVEL_ERROR) << util::LastError(util::LastErrorArgs(L"SetGestureConfig", lastError));
+        LOG(SEVERITY_LEVEL_ERROR) << L"SetGestureConfig failed with error: " << lastError;
     }
 }
 
@@ -276,7 +278,7 @@ LRESULT CALLBACK gameOfLife3D::CanvasPanel::WndProc( HWND hWnd, UINT message, WP
 {
 #ifdef DEBUG_CANVASPANEL_WINMSG
     LOG_ENTER(SEVERITY_LEVEL_DEBUG);
-    LOG(SEVERITY_LEVEL_DEBUG) << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
+    //LOG(SEVERITY_LEVEL_DEBUG) << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
 #endif
 
     LRESULT result = 0;

@@ -3,7 +3,7 @@
 
 namespace util
 {
-
+	/*
 class WMessageArgs
 {
 public:
@@ -42,7 +42,7 @@ inline std::_Smanip<LastErrorArgs> __cdecl LastError(LastErrorArgs args)
 {
     return (std::_Smanip<LastErrorArgs>(&_LastError, args));
 }
-
+*/
 inline size_t ToBlockSize(size_t original, size_t blockSize)
 {
     size_t result = blockSize;

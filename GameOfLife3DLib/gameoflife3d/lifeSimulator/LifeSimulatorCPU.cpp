@@ -2,6 +2,8 @@
 #include "Common.h"
 #include "gameOfLife3D/lifeSimulator/LifeSimulatorCPU.h"
 
+using namespace DirectX;
+
 static const int g_sumIndex[8][2] = {
     { -1, -1},
     { 0, -1},

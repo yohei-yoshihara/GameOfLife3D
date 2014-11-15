@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="497E4835-ABFB-4FC7-A999-7AED5198CD25" Name="GameOfLife3D" Language="1033" Version="0.5.2.0" 
+	<Product Id="497E4835-ABFB-4FC7-A999-7AED5198CD25" Name="GameOfLife3D" Language="1033" Version="0.5.1.0" 
            Manufacturer="CX5SOFTWARE" UpgradeCode="16D388C0-0CE8-4055-A1E1-300496582D92">
 		<Package InstallerVersion="200" Compressed="yes" Description="Game of Life 3D" Manufacturer="CX5SOFTWARE"/>
 
@@ -61,7 +61,7 @@
                       Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
-
+<!--
     <DirectoryRef Id="INSTALLLOCATION">
       <Directory Id="DirectXRedistDirectory" Name="DirectX_Jun2010">
         <Component Id="DirectXRedist" Guid="20507869-C2B8-4068-923B-1C2C9DDEF186">
@@ -115,7 +115,7 @@
         </Component>
       </Directory>
     </DirectoryRef>
-
+-->
     <Feature Id="ProductFeature" Title="GameOfLife3D_WiX" Level="1">
       <ComponentRef Id="GameOfLife3DExe"/>
       <ComponentRef Id="license.rtf"/>
@@ -124,7 +124,7 @@
       <ComponentRef Id="jaJP_gameoflife3d_mui.dll.mui"/>
       <ComponentRef Id="ApplicationShortcut"/>
     </Feature>
-
+<!--
     <Feature Id="DirectXRedist"
               Title="DirectX Runtime June 2010"
               AllowAdvertise="no"
@@ -138,10 +138,13 @@
                        Execute="deferred"
                        Impersonate="no"
                        Return="check"/>
+                       -->
     <InstallExecuteSequence>
+      <!--
       <Custom Action="InstallDirectX" Before="InstallFinalize">
         <![CDATA[NOT REMOVE]]>
       </Custom>
+      -->
     </InstallExecuteSequence>
 
     <UI>

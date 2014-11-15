@@ -1,5 +1,5 @@
-#ifndef _ANTLR3_ENCODINGS_H
-#define _ANTLR3_ENCODINGS_H
+#ifndef	_ANTLR3_ENCODINGS_H
+#define	_ANTLR3_ENCODINGS_H
 
 // [The "BSD licence"]
 // Copyright (c) 2005-2009 Jim Idle, Temporal Wave LLC

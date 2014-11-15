@@ -4,6 +4,8 @@
 #include "graphics/D3DInteropHelper.h"
 #include "gameOfLife3D/lifeSimulator/LifeSimulatorCS.h"
 
+using namespace DirectX;
+
 #define DEBUG_LIFESIMULATOR
 
 const XMFLOAT3 gameOfLife3D::lifeSimulator::LifeSimulatorCS::s_bornColors[NUMBER_OF_BORNCOLORS] = {

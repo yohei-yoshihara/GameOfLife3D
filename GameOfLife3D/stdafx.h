@@ -80,12 +80,12 @@
 
 #include <ppl.h>
 #include <d3d11.h>
-#include <d3dx11.h>
+#include <d3d11.h>
 #include <d3d10_1.h>
-#include <dxerr.h>
-#include <d3dx10math.h>
+//#include <dxerr.h>
+#include <DirectXMath.h>
 #include <d3dcompiler.h>
-#include <xnamath.h>
+//#include <xnamath.h>
 #include <d2d1.h>
 #include <d2d1helper.h>
 #include <dwrite.h>
@@ -159,3 +159,4 @@ inline void SafeRelease(
 }
 
 #pragma warning(disable: 4714)
+#pragma warning(disable: 4503)
