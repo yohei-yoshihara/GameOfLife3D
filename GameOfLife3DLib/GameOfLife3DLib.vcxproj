@@ -63,7 +63,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
@@ -71,7 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
@@ -79,7 +77,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
@@ -87,7 +84,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>

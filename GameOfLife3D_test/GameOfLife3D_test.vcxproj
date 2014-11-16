@@ -63,7 +63,6 @@
     <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
@@ -73,7 +72,6 @@
     <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
@@ -83,7 +81,6 @@
     <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
@@ -93,7 +90,6 @@
     <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
-    <Import Project="..\GameOfLife3D\props\DirectX_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
     <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />

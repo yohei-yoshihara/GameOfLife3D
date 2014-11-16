@@ -66,7 +66,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="props\boost_x86.props" />
     <Import Project="props\WindowsSDK_x86.props" />
-    <Import Project="props\DirectX_x86.props" />
     <Import Project="props\GameOfLife3DLib.props" />
     <Import Project="props\antlr_x86.props" />
   </ImportGroup>
@@ -74,7 +73,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="props\boost_x64.props" />
     <Import Project="props\WindowsSDK_x64.props" />
-    <Import Project="props\DirectX_x64.props" />
     <Import Project="props\GameOfLife3DLib.props" />
     <Import Project="props\antlr_x64.props" />
   </ImportGroup>
@@ -82,7 +80,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="props\boost_x86.props" />
     <Import Project="props\WindowsSDK_x86.props" />
-    <Import Project="props\DirectX_x86.props" />
     <Import Project="props\GameOfLife3DLib.props" />
     <Import Project="props\antlr_x86.props" />
   </ImportGroup>
@@ -90,7 +87,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="props\boost_x64.props" />
     <Import Project="props\WindowsSDK_x64.props" />
-    <Import Project="props\DirectX_x64.props" />
     <Import Project="props\GameOfLife3DLib.props" />
     <Import Project="props\antlr_x64.props" />
   </ImportGroup>
