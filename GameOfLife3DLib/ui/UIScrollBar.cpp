@@ -21,11 +21,11 @@ ui::UIScrollBar::UIScrollBar() :
     m_barPositionChanged(false),
     m_propertyChanged(false),
     m_dragging(false),
-    m_body(new graphics::figure::RectangleFigure()),
-    m_arrow1(new graphics::figure::TriangleFigure()),
-    m_arrow2(new graphics::figure::TriangleFigure()),
-    m_slideArea(new graphics::figure::RectangleFigure()),
-    m_bar(new graphics::figure::RectangleFigure()),
+    m_body(std::make_unique<graphics::figure::RectangleFigure>()),
+    m_arrow1(std::make_unique<graphics::figure::TriangleFigure>()),
+    m_arrow2(std::make_unique<graphics::figure::TriangleFigure>()),
+    m_slideArea(std::make_unique<graphics::figure::RectangleFigure>()),
+    m_bar(std::make_unique<graphics::figure::RectangleFigure>()),
     m_positionChangedCallbacks()
 {
 #ifdef DEBUG_UISCROLLBAR

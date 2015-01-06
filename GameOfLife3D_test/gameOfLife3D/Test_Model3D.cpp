@@ -121,7 +121,7 @@ TEST( gameOfLife3D_Model3D, test_001 )
     std::array<gameOfLife3D::LifeData, width * width> array;
     array[0].alive = 1;
     array[0].color = XMFLOAT3(1.0f, 0.0f, 0.0f);
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     std::vector<gameOfLife3D::VertexInfo> vertexes;
     std::vector<VERTEX_INDEX> indexes;
     model3d.CopyVertexes(vertexes);
@@ -160,7 +160,7 @@ TEST( gameOfLife3D_Model3D, test_002 )
         lifeData.alive = 1;
         lifeData.color = XMFLOAT3(1.0f, 0.0f, 0.0f);
     });
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     std::vector<gameOfLife3D::VertexInfo> vertexes;
     std::vector<VERTEX_INDEX> indexes;
     model3d.CopyVertexes(vertexes);
@@ -214,7 +214,7 @@ TEST( gameOfLife3D_Model3D, test_003 )
         lifeData.alive = 1;
         lifeData.color = XMFLOAT3(1.0f, 0.0f, 0.0f);
     });
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     std::vector<gameOfLife3D::VertexInfo> vertexes;
     std::vector<VERTEX_INDEX> indexes;
     model3d.CopyVertexes(vertexes);
@@ -269,9 +269,9 @@ TEST( gameOfLife3D_Model3D, test_004 )
         lifeData.color = XMFLOAT3(1.0f, 0.0f, 0.0f);
     });
     ASSERT_EQ(0, model3d.GetNumberOfGenerations());
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     ASSERT_EQ(1, model3d.GetNumberOfGenerations());
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     ASSERT_EQ(2, model3d.GetNumberOfGenerations());
     std::vector<gameOfLife3D::draw3d::VertexInfo> vertexes;
     std::vector<gameOfLife3D::draw3d::VERTEX_INDEX> indexes;
@@ -302,7 +302,7 @@ TEST( gameOfLife3D_Model3D, test_004 )
     ASSERT_FLOAT_EQ(5.0f, cubes[1].y);
     ASSERT_FLOAT_EQ(8.0f, cubes[1].z);
 
-    model3d.Add(&array.front());
+    model3d.Add(array.data());
     ASSERT_EQ(2, model3d.GetNumberOfGenerations());
     model3d.CopyVertexes(vertexes);
     model3d.CopyIndexes(indexes);

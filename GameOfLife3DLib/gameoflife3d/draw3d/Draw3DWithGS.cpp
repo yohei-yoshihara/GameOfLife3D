@@ -147,7 +147,7 @@ HRESULT gameOfLife3D::draw3d::Draw3DWithGS::MoveNextGeneration(
     UNREFERENCED_PARAMETER(pD3DInteropHelper);
     CHK_FATAL_HRESULT(m_pLifeSimulator->Compute());
     std::vector<gameOfLife3D::lifeSimulator::LifeData> lifeData(m_pLifeSimulator->GetMaxNumberOfLifeData());
-    m_pLifeSimulator->CopyNext(&lifeData.front());
+    m_pLifeSimulator->CopyNext(lifeData.data());
     auto vertex = std::make_shared<std::vector<VertexInfoForGS>>(m_pLifeSimulator->GetMaxNumberOfLifeData());
     for (UINT i = 0; i < lifeData.size(); ++i) {
         (*vertex)[i].color.w = static_cast<FLOAT>(lifeData[i].alive);

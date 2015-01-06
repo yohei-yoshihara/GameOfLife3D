@@ -6,15 +6,15 @@
 
 util::OSVersion util::OSVersionChecker::GetOSVersion()
 {
-	if (IsWindows7OrGreater()) {
-		return OSVersion_Windows7;
-	}
-	else if (IsWindowsVistaOrGreater()) {
-		return OSVersion_WindowsVista;
-	}
-	else {
-		return OSVersion_WindowsXP;
-	}
+    if (IsWindows7OrGreater()) {
+        return OSVersion_Windows7;
+    }
+    else if (IsWindowsVistaOrGreater()) {
+        return OSVersion_WindowsVista;
+    }
+    else {
+        return OSVersion_WindowsXP;
+    }
 }
 
 bool util::OSVersionChecker::IsVista()

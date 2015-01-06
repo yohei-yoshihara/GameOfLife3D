@@ -14,7 +14,7 @@ graphics::decorator::FrameDecorator::FrameDecorator(void) :
     m_frames(),
     m_geometries(),
     m_colorSet(),
-    m_brushSet(new graphics::brush::BrushSet()),
+    m_brushSet(std::make_unique<graphics::brush::BrushSet>()),
     m_deviceDependentResourceCreated(false)
 {
 }

@@ -9,7 +9,7 @@ namespace graphics
 {
 struct D2DVertex {
     DirectX::XMFLOAT3 Pos;
-	DirectX::XMFLOAT2 Tex;
+    DirectX::XMFLOAT2 Tex;
 };
 
 class ID3DInteropAdapter;

@@ -40,17 +40,17 @@ class MainWnd;
 #define NUMBER_OF_LIGHTS 2
 
 struct ConstantBuffer {
-	DirectX::XMMATRIX mWorld;
-	DirectX::XMMATRIX mView;
-	DirectX::XMMATRIX mProjection;
-	DirectX::XMFLOAT4 vLightDir[NUMBER_OF_LIGHTS];
-	DirectX::XMFLOAT4 vLightColor[NUMBER_OF_LIGHTS];
+    DirectX::XMMATRIX mWorld;
+    DirectX::XMMATRIX mView;
+    DirectX::XMMATRIX mProjection;
+    DirectX::XMFLOAT4 vLightDir[NUMBER_OF_LIGHTS];
+    DirectX::XMFLOAT4 vLightColor[NUMBER_OF_LIGHTS];
 };
 
 struct EyeInfo {
-	DirectX::XMFLOAT4 eye;
-	DirectX::XMFLOAT4 at;
-	DirectX::XMFLOAT4 up;
+    DirectX::XMFLOAT4 eye;
+    DirectX::XMFLOAT4 at;
+    DirectX::XMFLOAT4 up;
 };
 
 struct EyePosInfo {
@@ -60,8 +60,8 @@ struct EyePosInfo {
 };
 
 struct LightInfo {
-	DirectX::XMFLOAT4 vLightDir;
-	DirectX::XMFLOAT4 vLightColor;
+    DirectX::XMFLOAT4 vLightDir;
+    DirectX::XMFLOAT4 vLightColor;
 };
 
 class CanvasPanel :
@@ -81,9 +81,9 @@ private:
 
     // Direct 3D
     ID3D11Buffer       *m_pConstantBuffer;
-	DirectX::XMFLOAT4X4          m_world;
-	DirectX::XMFLOAT4X4          m_view;
-	DirectX::XMFLOAT4X4          m_projection;
+    DirectX::XMFLOAT4X4          m_world;
+    DirectX::XMFLOAT4X4          m_view;
+    DirectX::XMFLOAT4X4          m_projection;
     EyeInfo             m_eyeInfo;
     EyePosInfo          m_eyePosInfo;
     std::array<LightInfo, NUMBER_OF_LIGHTS> m_lightInfo;

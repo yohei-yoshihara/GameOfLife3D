@@ -73,7 +73,7 @@ void graphics::DirectWriteUtil::GetLineMetrics(
     DWRITE_TEXT_METRICS textMetrics;
     CHK_FATAL_HRESULT(pTextLayout->GetMetrics(&textMetrics));
     lineMetrics.resize(textMetrics.lineCount);
-    CHK_FATAL_HRESULT(pTextLayout->GetLineMetrics(&lineMetrics.front(), textMetrics.lineCount, &textMetrics.lineCount));
+    CHK_FATAL_HRESULT(pTextLayout->GetLineMetrics(lineMetrics.data(), textMetrics.lineCount, &textMetrics.lineCount));
 
 #ifdef DEBUG_DIRECTWRITEUTIL_
     LOG_LEAVE(SEVERITY_LEVEL_DEBUG);
@@ -94,7 +94,7 @@ void graphics::DirectWriteUtil::GetClusterMetrics(
         CHK_FATAL_HRESULT(hr);
     }
     clusterMetrics.resize(actualClusterCount);
-    CHK_FATAL_HRESULT(pTextLayout->GetClusterMetrics(&clusterMetrics.front(), actualClusterCount, &actualClusterCount));
+    CHK_FATAL_HRESULT(pTextLayout->GetClusterMetrics(clusterMetrics.data(), actualClusterCount, &actualClusterCount));
 
 #ifdef DEBUG_DIRECTWRITEUTIL_
     LOG_LEAVE(SEVERITY_LEVEL_DEBUG);

@@ -26,7 +26,7 @@ graphics::figure::EllipseFigure::EllipseFigure(void) :
     m_pGeometry(nullptr),
     m_shadow(false),
     m_frames(),
-    m_brushes(new graphics::brush::BrushSet()),
+    m_brushes(std::make_unique<graphics::brush::BrushSet>()),
     m_shadowColor(std::make_shared<graphics::color::SolidColor>(
                       graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 1.0f, 1.0f, 1.0f, 1.0f))),
     m_decorators(),

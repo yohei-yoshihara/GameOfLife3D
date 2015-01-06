@@ -44,7 +44,7 @@ TEST( gameOfLife3D_LifeSimulator, test_001 )
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
 
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result[i], answer[i].alive);
     }
@@ -84,7 +84,7 @@ TEST( gameOfLife3D_LifeSimulator, test_002 )
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
 
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result[i], answer[i].alive);
     }
@@ -124,7 +124,7 @@ TEST( gameOfLife3D_LifeSimulator, test_003 )
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
 
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result[i], answer[i].alive);
     }
@@ -164,7 +164,7 @@ TEST( gameOfLife3D_LifeSimulator, test_004 )
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
 
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result[i], answer[i].alive);
     }
@@ -204,7 +204,7 @@ TEST( gameOfLife3D_LifeSimulator, test_005 )
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
 
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result[i], answer[i].alive);
     }
@@ -250,14 +250,14 @@ TEST( gameOfLife3D_LifeSimulator, test_006 )
     // generation 1
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result1[i], answer[i].alive);
     }
 
     // generation 2
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result2[i], answer[i].alive);
     }
@@ -338,35 +338,35 @@ TEST( gameOfLife3D_LifeSimulator, test_007 )
     // generation 1
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
     std::array<gameOfLife3D::LifeData, width * width> answer;
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result1[i], answer[i].alive);
     }
 
     // generation 2
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result2[i], answer[i].alive);
     }
 
     // generation 3
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result3[i], answer[i].alive);
     }
 
     // generation 4
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(result4[i], answer[i].alive);
     }
 
     // generation 5
     EXPECT_HRESULT_SUCCEEDED(sim.Compute());
-    sim.CopyCurrent(&answer.front());
+    sim.CopyCurrent(answer.data());
     for (size_t i = 0; i < answer.size(); ++i) {
         ASSERT_EQ(data[i], answer[i].alive);
     }

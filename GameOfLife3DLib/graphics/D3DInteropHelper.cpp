@@ -19,10 +19,10 @@ const D3D11_INPUT_ELEMENT_DESC graphics::D3DInteropHelper::s_D2DInputLayoutForBl
 
 /*static*/
 const graphics::D2DVertex graphics::D3DInteropHelper::s_D2DVertexArrayForBlend[] = {
-	{ XMFLOAT3(-1.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) }
+    { XMFLOAT3(-1.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
+    { XMFLOAT3(1.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
+    { XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
+    { XMFLOAT3(-1.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) }
 };
 
 /*static*/
@@ -1281,40 +1281,40 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(
 
     ID3DBlob* pErrorBlob = nullptr;
 
-	HMODULE hModule = GetModuleHandle(NULL);
-	HRSRC hRes = FindResource(hModule, pszResource, RT_RCDATA);
-	HGLOBAL hMem = LoadResource(hModule, hRes);
-	LPVOID lpResource = LockResource(hMem);
-	DWORD size = SizeofResource(hModule, hRes);
-	std::vector<uint8_t> data(size);
-	memcpy(&data.front(), lpResource, size);
-	FreeResource(hMem);
-	/*
-	hr = D3DX11CompileFromResource(
-		HINST_THISCOMPONENT,
-		pszResource,
-		L"LoadResourceShader",
-		nullptr,
-		nullptr,
-		szEntryPoint,
-		szShaderModel,
-		dwShaderFlags,
-		0,
-		nullptr,
-		ppBlob,
-		&pErrorBlob,
-		nullptr);*/
-	hr = D3DCompile(&data.front(),
-		size,
-		"LoadResourceShader",
-		nullptr,
-		nullptr,
-		szEntryPoint,
-		szShaderModel,
-		dwShaderFlags,
-		0,
-		ppBlob,
-		&pErrorBlob);
+    HMODULE hModule = GetModuleHandle(NULL);
+    HRSRC hRes = FindResource(hModule, pszResource, RT_RCDATA);
+    HGLOBAL hMem = LoadResource(hModule, hRes);
+    LPVOID lpResource = LockResource(hMem);
+    DWORD size = SizeofResource(hModule, hRes);
+    std::vector<uint8_t> data(size);
+    memcpy(data.data(), lpResource, size);
+    FreeResource(hMem);
+    /*
+    hr = D3DX11CompileFromResource(
+        HINST_THISCOMPONENT,
+        pszResource,
+        L"LoadResourceShader",
+        nullptr,
+        nullptr,
+        szEntryPoint,
+        szShaderModel,
+        dwShaderFlags,
+        0,
+        nullptr,
+        ppBlob,
+        &pErrorBlob,
+        nullptr);*/
+    hr = D3DCompile(data.data(),
+        size,
+        "LoadResourceShader",
+        nullptr,
+        nullptr,
+        szEntryPoint,
+        szShaderModel,
+        dwShaderFlags,
+        0,
+        ppBlob,
+        &pErrorBlob);
 
     if (FAILED(hr)) {
         LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromResource failed, hr = " << hr;
@@ -1366,15 +1366,15 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromFile(
              &pErrorBlob,
              nullptr);*/
 
-	hr = D3DCompileFromFile(szFileName,
-		nullptr,
-		nullptr,
-		szEntryPoint,
-		szShaderModel,
-		dwShaderFlags,
-		0,
-		ppBlobOut,
-		&pErrorBlob);
+    hr = D3DCompileFromFile(szFileName,
+        nullptr,
+        nullptr,
+        szEntryPoint,
+        szShaderModel,
+        dwShaderFlags,
+        0,
+        ppBlobOut,
+        &pErrorBlob);
 
     if (FAILED(hr)) {
         LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromFile failed, hr = " << hr;

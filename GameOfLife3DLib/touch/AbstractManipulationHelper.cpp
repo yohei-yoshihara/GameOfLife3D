@@ -170,7 +170,7 @@ ManipulationResult AbstractManipulationHelper::_OnLeftMouseUp(HWND hWnd, UINT me
         // NOTE: the first SetTimer request is always slow (over 500ms)
         if ((ret = ::SetTimer(hWnd, m_timerIdForDoubleClick, GetDoubleClickTime(), nullptr)) == 0) {
             DWORD lastError = GetLastError();
-			LOG(SEVERITY_LEVEL_ERROR) << L"SetTimer failed with error " << lastError;
+            LOG(SEVERITY_LEVEL_ERROR) << L"SetTimer failed with error " << lastError;
             ManipulationResult result(false, false);
             return result;
         }

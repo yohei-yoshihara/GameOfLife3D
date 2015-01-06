@@ -56,8 +56,8 @@ HRESULT gameOfLife3D::draw3d::Draw3DWithCPU::MoveNextGeneration(
 {
     CHK_FATAL_HRESULT(m_pLifeSimulator->Compute());
     std::vector<gameOfLife3D::lifeSimulator::LifeData> lifeData(m_pLifeSimulator->GetMaxNumberOfLifeData());
-    m_pLifeSimulator->CopyNext(&lifeData.front());
-    CHK_FATAL_HRESULT(m_pVertexGenerator->Add(&lifeData.front()));
+    m_pLifeSimulator->CopyNext(lifeData.data());
+    CHK_FATAL_HRESULT(m_pVertexGenerator->Add(lifeData.data()));
     CHK_FATAL_HRESULT(m_pVertexGenerator->Update(pD3DInteropHelper));
     return S_OK;
 }

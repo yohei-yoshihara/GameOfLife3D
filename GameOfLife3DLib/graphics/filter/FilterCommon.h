@@ -7,7 +7,7 @@ namespace filter
 {
 struct Vertex {
     DirectX::XMFLOAT3 Pos;
-	DirectX::XMFLOAT2 Tex;
+    DirectX::XMFLOAT2 Tex;
 };
 
 class FilterCommon

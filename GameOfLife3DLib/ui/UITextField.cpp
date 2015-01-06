@@ -358,7 +358,7 @@ HRESULT ui::UITextField::_RenderText(
                                       compositionAttribute.endPos - compositionAttribute.startPos,
                                       point.x,
                                       point.y,
-                                      &hitTestMetrics.front(),
+                                      hitTestMetrics.data(),
                                       actualHitTextCount,
                                       &actualHitTextCount
                                   ));
@@ -508,7 +508,7 @@ void ui::UITextField::_RenderHighlight(
                 acpEnd - acpStart,
                 x,
                 y,
-                &hitTestMetrics.front(),
+                hitTestMetrics.data(),
                 actualHitTextCount,
                 &actualHitTextCount
             );
@@ -702,7 +702,7 @@ HRESULT ui::UITextField::GetTextExt( LONG acpStart, LONG acpEnd, RECT *prc, BOOL
 
     std::vector<DWRITE_HIT_TEST_METRICS> hitTestMetrics(actualCount);
     m_textLayout->HitTestTextRange(acpStart, acpEnd - acpStart + 1, INNER_MARGIN, INNER_MARGIN,
-                                   &hitTestMetrics.front(), actualCount, &actualCount);
+                                   hitTestMetrics.data(), actualCount, &actualCount);
 
     if (actualCount > 0) {
         UIPoint p1;

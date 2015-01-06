@@ -72,13 +72,13 @@ HRESULT graphics::filter::GaussFilter::_SetGaussParameters(int width, int height
     ID3D10EffectScalarVariable* pVarWeight = m_pGaussEffect->GetVariableByName("WEIGHT")->AsScalar();
     hr = pVarWeight != nullptr ? S_OK : E_FAIL;
     if (SUCCEEDED(hr)) {
-        hr = pVarWeight->SetFloatArray(&m_gaussWeight.front(), 0, NUMBER_OF_WEIGHTS);
+        hr = pVarWeight->SetFloatArray(m_gaussWeight.data(), 0, NUMBER_OF_WEIGHTS);
     }
 
     ID3D10EffectScalarVariable* pVarTapOffsetX = m_pGaussEffect->GetVariableByName("TAPOFFSET_X")->AsScalar();
-    pVarTapOffsetX->SetFloatArray(&m_tapOffsetX.front(), 0, NUMBER_OF_WEIGHTS);
+    pVarTapOffsetX->SetFloatArray(m_tapOffsetX.data(), 0, NUMBER_OF_WEIGHTS);
     ID3D10EffectScalarVariable* pVarTapOffsetY = m_pGaussEffect->GetVariableByName("TAPOFFSET_Y")->AsScalar();
-    pVarTapOffsetY->SetFloatArray(&m_tapOffsetY.front(), 0, NUMBER_OF_WEIGHTS);
+    pVarTapOffsetY->SetFloatArray(m_tapOffsetY.data(), 0, NUMBER_OF_WEIGHTS);
 
     return S_OK;
 }

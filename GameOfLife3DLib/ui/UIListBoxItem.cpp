@@ -37,10 +37,10 @@ ui::UIListBoxItem::UIListBoxItem(void) :
     m_preferredBitmapSize(64.0f, 64.0f),
     m_marginBetweenBitmapAndText(4.0f),
     m_textColorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOXITEM_DEFAULT_TEXT_COLORSET)),
-    m_textBrushSet(new graphics::brush::BrushSet()),
+    m_textBrushSet(std::make_unique<graphics::brush::BrushSet>()),
     m_bodyColorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOXITEM_DEFAULT_BODY_COLORSET)),
-    m_bodyBrushSet(new graphics::brush::BrushSet()),
-    m_bodyRect(new graphics::figure::RectangleFigure()),
+    m_bodyBrushSet(std::make_unique<graphics::brush::BrushSet>()),
+    m_bodyRect(std::make_unique<graphics::figure::RectangleFigure>()),
     m_mainText(),
     m_mainTextFontAttribute(12.0f),
     m_mainTextFormat(),
@@ -63,7 +63,7 @@ ui::UIListBoxItem::UIListBoxItem(void) :
     m_textChanged(false),
     m_resourceChanged(false),
     m_mainTextNumberOfLines(2),
-    m_scrollBar(new ui::UIScrollBar())
+    m_scrollBar(std::unique_ptr<ui::UIScrollBar>())
 {
 #ifdef DEBUG_UILISTBOXITEM
     LOG_ENTER(SEVERITY_LEVEL_DEBUG);

@@ -26,7 +26,7 @@ ui::UIListBox::UIListBox(SCROLL_DIRECTION scrollDirection, UISize preferredBitma
     m_itemHeight(0.0f),
     m_scrollBarMarginFromSide(8.0f),
     m_scrollBarThick(20.0f),
-    m_rectFigure(new graphics::figure::RectangleFigure()),
+    m_rectFigure(std::make_unique<graphics::figure::RectangleFigure>()),
     m_colorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOX_COLORSETDEF)),
     m_scrollBar(std::make_shared<ui::UIScrollBar>()),
     m_displayPositionOffset(0.0f)

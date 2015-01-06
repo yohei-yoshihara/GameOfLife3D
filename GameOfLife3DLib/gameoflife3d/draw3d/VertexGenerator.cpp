@@ -301,7 +301,7 @@ void gameOfLife3D::draw3d::VertexGenerator::CopyVertexes( OUT std::vector<Vertex
 {
     vertexes.resize(GetMaxVertexes());
     UINT n;
-    CopyVertexes(&vertexes.front(), &n);
+    CopyVertexes(vertexes.data(), &n);
     vertexes.resize(n);
 }
 
@@ -328,7 +328,7 @@ void gameOfLife3D::draw3d::VertexGenerator::CopyIndexes( OUT std::vector<VERTEX_
 {
     indexes.resize(GetMaxIndexes());
     UINT n;
-    CopyIndexes(&indexes.front(), &n);
+    CopyIndexes(indexes.data(), &n);
     indexes.resize(n);
 }
 

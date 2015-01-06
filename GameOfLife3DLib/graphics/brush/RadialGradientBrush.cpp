@@ -45,7 +45,7 @@ HRESULT graphics::brush::RadialGradientBrush::CreateDeviceDependentResource(
     HRESULT hr = S_OK;
     CComPtr<ID2D1GradientStopCollection> gradientStopCollection;
     CHK_FATAL_HRESULT(pRenderTarget->CreateGradientStopCollection(
-                          &m_gradientStops.front(),
+                          m_gradientStops.data(),
                           static_cast<UINT>(m_gradientStops.size()),
                           D2D1_GAMMA_2_2,
                           D2D1_EXTEND_MODE_CLAMP,

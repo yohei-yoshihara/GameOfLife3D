@@ -78,7 +78,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Initialize(graphics::D3DIn
         }
 #ifdef DEBUG_LIFESIMULATOR
         LOG(SEVERITY_LEVEL_DEBUG) << L"Buffer Index = " << bufIndex;
-        Dump(&lifeData.front());
+        Dump(lifeData.data());
 #endif
         D3D11_BUFFER_DESC bufDesc;
         ZeroMemory( &bufDesc, sizeof(bufDesc) );
@@ -88,7 +88,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Initialize(graphics::D3DIn
         bufDesc.StructureByteStride = sizeof(gameOfLife3D::lifeSimulator::LifeData);
 
         D3D11_SUBRESOURCE_DATA initData;
-        initData.pSysMem = &lifeData.front();
+        initData.pSysMem = lifeData.data();
         CHK_FATAL_HRESULT(m_pDevice->CreateBuffer(
                               &bufDesc,
                               &initData,

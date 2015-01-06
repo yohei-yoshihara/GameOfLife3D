@@ -32,7 +32,7 @@ HRESULT gameOfLife3D::MainWnd::Initialize()
     HICON hIcon = LoadIcon(HINST_THISCOMPONENT, MAKEINTRESOURCE(IDI_APP));
     if (hIcon == nullptr) {
         DWORD lastError = GetLastError();
-		LOG(SEVERITY_LEVEL_ERROR) << L"LoadIcon failed with error: " << lastError;
+        LOG(SEVERITY_LEVEL_ERROR) << L"LoadIcon failed with error: " << lastError;
         return E_FAIL;
     }
 

@@ -12,10 +12,10 @@ const UINT graphics::filter::FilterCommon::INPUT_LAYOUT_ARRAYSIZE =
     ARRAYSIZE(graphics::filter::FilterCommon::INPUT_LAYOUT);
 
 const graphics::filter::Vertex graphics::filter::FilterCommon::VERTEX_ARRAY[] = {
-	{ XMFLOAT3(-1.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
-	{ XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-	{ XMFLOAT3(-1.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) }
+    { XMFLOAT3(-1.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) },
+    { XMFLOAT3(1.0f, -1.0f, 0.0f), XMFLOAT2(1.0f, 1.0f) },
+    { XMFLOAT3(1.0f, 1.0f, 0.0f), XMFLOAT2(1.0f, 0.0f) },
+    { XMFLOAT3(-1.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) }
 };
 
 const UINT graphics::filter::FilterCommon::VERTEX_ARRAY_BYTEWIDTH =

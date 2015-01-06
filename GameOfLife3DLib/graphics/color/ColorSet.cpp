@@ -70,7 +70,7 @@ void graphics::color::ColorSet::AddColors(const wchar_t *colorDesc)
             m_colors.push_back(solidColor);
             if (solidColorDO->label.length() > 0) {
                 solidColor->SetLabel(solidColorDO->label);
-				m_labelToColorMap.insert({ solidColorDO->label, solidColor });
+                m_labelToColorMap.insert({ solidColorDO->label, solidColor });
             }
                                                              }
                                                              break;
@@ -81,7 +81,7 @@ void graphics::color::ColorSet::AddColors(const wchar_t *colorDesc)
             m_colors.push_back(linearColor);
             if (linearColorDO->label.length() > 0) {
                 linearColor->SetLabel(linearColorDO->label);
-				m_labelToColorMap.insert({ linearColorDO->label, linearColor });
+                m_labelToColorMap.insert({ linearColorDO->label, linearColor });
             }
                                                               }
                                                               break;
@@ -92,7 +92,7 @@ void graphics::color::ColorSet::AddColors(const wchar_t *colorDesc)
             m_colors.push_back(radialColor);
             if (radialColorDO->label.length() > 0) {
                 radialColor->SetLabel(radialColorDO->label);
-				m_labelToColorMap.insert({ radialColorDO->label, radialColor });
+                m_labelToColorMap.insert({ radialColorDO->label, radialColor });
             }
                                                               }
                                                               break;
@@ -105,7 +105,7 @@ void graphics::color::ColorSet::AddColor(const std::shared_ptr<graphics::color::
 {
     m_colors.push_back(color);
     if (color->GetLabel().length() > 0) {
-		m_labelToColorMap.insert({ color->GetLabel(), color });
+        m_labelToColorMap.insert({ color->GetLabel(), color });
     }
 }
 
