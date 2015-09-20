@@ -24,7 +24,7 @@
 #include <unordered_map>
 #include <tuple>
 #include <regex>
-
+/*
 #ifdef INT8_MIN
 #undef INT8_MIN
 #endif
@@ -74,7 +74,7 @@
 #ifdef UINT64_MAX
 #undef UINT64_MAX
 #endif
-
+*/
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 

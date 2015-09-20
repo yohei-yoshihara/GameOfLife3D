@@ -127,7 +127,7 @@ LRESULT CALLBACK gameOfLife3D::MainWnd::WndProc( HWND hWnd, UINT message, WPARAM
     if (message == WM_CREATE) {
         LPCREATESTRUCT pcs = (LPCREATESTRUCT) lParam;
         MainWnd *pMainWnd = (MainWnd*) pcs->lpCreateParams;
-        SetWindowLongPtr(hWnd, GWLP_USERDATA, PtrToUlong(pMainWnd));
+        SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pMainWnd));
         result = 1;
     } else {
         MainWnd *pMainWnd = reinterpret_cast<MainWnd*>(

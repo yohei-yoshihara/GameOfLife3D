@@ -290,7 +290,7 @@ LRESULT CALLBACK gameOfLife3D::CanvasPanel::WndProc( HWND hWnd, UINT message, WP
         ::SetWindowLongPtrW(
             hWnd,
             GWLP_USERDATA,
-            PtrToUlong(pCanvasPanel)
+            reinterpret_cast<LONG_PTR>(pCanvasPanel)
         );
 
         pCanvasPanel->OnCreate();
