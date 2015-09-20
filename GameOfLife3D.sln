@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+Microsoft Visual Studio Solution File, Format Version 14.00
+# Visual Studio 2015
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameOfLife3D", "GameOfLife3D\GameOfLife3D.vcxproj", "{06DD139F-D5CB-4113-BD81-CF8DA17E5A71}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C5D92882-22F4-47DD-B7BB-40F848A60F24} = {C5D92882-22F4-47DD-B7BB-40F848A60F24}
