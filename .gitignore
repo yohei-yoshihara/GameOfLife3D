@@ -3,6 +3,7 @@
 
 #*.dll
 #*.lib
+*.fxo
 *.orig
 *.com
 *.dll.config
@@ -18,13 +19,12 @@
 *.vcxproj.filters
 *.cache
 *.bml
-*.fxo
 *.opensdf
 ribbonres.h
 ribbonres.rc
 [Dd]ebug/
 [Rr]elease/
-.ht/
+.hg/
 
 # VS Upgrade stuff #
 ####################
@@ -43,4 +43,3 @@ ipch/
 ######################
 
 Thumbs.db
-.hg
