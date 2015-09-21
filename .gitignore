@@ -19,6 +19,7 @@
 *.cache
 *.bml
 *.fxo
+*.opensdf
 ribbonres.h
 ribbonres.rc
 [Dd]ebug/

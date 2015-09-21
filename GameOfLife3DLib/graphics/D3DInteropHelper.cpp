@@ -1326,6 +1326,8 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(
                     errorMessage->push_back(static_cast<wchar_t>(errMsg[i]));
                 }
             }
+			std::string _errMsg(errMsg, pErrorBlob->GetBufferSize());
+			LOG(SEVERITY_LEVEL_ERROR) << _errMsg;
         }
         if (pErrorBlob) {
             pErrorBlob->Release();
@@ -1683,22 +1685,25 @@ HRESULT graphics::D3DInteropHelper::_CreateCSDevice(
     UNREFERENCED_PARAMETER(pAdapter);
     HRESULT hr = S_OK;
 
-    if ( m_pD3D11Device->GetFeatureLevel() >= D3D_FEATURE_LEVEL_11_0) {
+	D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS hwopts;
+	m_pD3D11Device->CheckFeatureSupport(D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS, &hwopts, sizeof(hwopts));
+
+    if ( m_pD3D11Device->GetFeatureLevel() >= D3D_FEATURE_LEVEL_11_0 && hwopts.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x) {
         *ppDevice = m_pD3D11Device;
         *ppImmediateContext = m_pD3D11ImmediateContext;
         m_sharedCSDevice = true;
         m_computeShaderSupport = true;
         LOG(SEVERITY_LEVEL_INFO) << L"Hardware Compute Shader(DX11) is found.";
     } else {
-        D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS hwopts;
-        m_pD3D11Device->CheckFeatureSupport( D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS, &hwopts, sizeof(hwopts) );
-        if ( hwopts.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x ) {
-            *ppDevice = m_pD3D11Device;
-            *ppImmediateContext = m_pD3D11ImmediateContext;
-            m_sharedCSDevice = true;
-            m_computeShaderSupport = true;
-            LOG(SEVERITY_LEVEL_INFO) << L"Hardware Compute Shader(DX10) is found.";
-        } else {
+        //D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS hwopts;
+        //m_pD3D11Device->CheckFeatureSupport( D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS, &hwopts, sizeof(hwopts) );
+        //if ( hwopts.ComputeShaders_Plus_RawAndStructuredBuffers_Via_Shader_4_x ) {
+        //    *ppDevice = m_pD3D11Device;
+        //    *ppImmediateContext = m_pD3D11ImmediateContext;
+        //    m_sharedCSDevice = true;
+        //    m_computeShaderSupport = true;
+        //    LOG(SEVERITY_LEVEL_INFO) << L"Hardware Compute Shader(DX10) is found.";
+        //} else {
             UINT uCreationFlags = flags | D3D11_CREATE_DEVICE_SINGLETHREADED;
 #if defined(DEBUG) || defined(_DEBUG)
             uCreationFlags |= D3D11_CREATE_DEVICE_DEBUG;
@@ -1724,7 +1729,7 @@ HRESULT graphics::D3DInteropHelper::_CreateCSDevice(
                 m_computeShaderSupport = false;
                 hr = E_FAIL;
             }
-        }
+        //}
     }
 
     return hr;

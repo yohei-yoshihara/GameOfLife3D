@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IncludePath>$(SolutionDir)\GameOfLife3D_test\gtest\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\GameOfLife3D_test\gtest\lib\static;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\GameOfLife3D_test\gtest\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup />

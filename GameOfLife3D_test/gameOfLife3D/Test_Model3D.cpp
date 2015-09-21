@@ -252,7 +252,7 @@ TEST( gameOfLife3D_Model3D, test_003 )
     ASSERT_FLOAT_EQ(8.0f, cubes[3].y);
     ASSERT_FLOAT_EQ(5.0f, cubes[3].z);
 }
-*/
+
 TEST( gameOfLife3D_Model3D, test_004 )
 {
     const static UINT width = 1;
@@ -320,3 +320,4 @@ TEST( gameOfLife3D_Model3D, test_004 )
     ASSERT_FLOAT_EQ(8.0f, cubes[1].z);
 
 }
+*/

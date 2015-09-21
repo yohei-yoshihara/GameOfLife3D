@@ -45,7 +45,7 @@ struct Data {
 };
 
 StructuredBuffer<Data> current : register(t0);
-RWStructuredBuffer<Data> next : register(t1);
+RWStructuredBuffer<Data> next : register(u0);
 
 [numthreads(1, 1, 1)]
 void main( uint3 tid : SV_DispatchThreadID )
