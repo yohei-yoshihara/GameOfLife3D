@@ -15,5 +15,12 @@ From version 0.2.0, it supports to read an external DirectX Compute Shader file.
 - TSF (Text Services Framework)
 - MUI (Multilingual User Interface)
 
-<p>"Game of Life 3D" works on Windows 7/8 and Vista (with Platform Update).</p>
+<p>"Game of Life 3D" works on Windows 10/8/7 and Vista (with Platform Update).</p>
 [The original project site is here](http://gameoflife3d.codeplex.com/)
+
+# Install
+
+1. Install Visual Studio 2015 Community Edition.
+2. Install [Boost 1.59 Windows binaries](http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/)
+   (boost_1_59_0-msvc-14.0-64.exe and boost_1_59_0-msvc-14.0-32.exe).
+3. Install [WiX Toolset 3.10](http://wixtoolset.org/).
