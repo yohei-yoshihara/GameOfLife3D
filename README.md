@@ -18,7 +18,7 @@ From version 0.2.0, it supports to read an external DirectX Compute Shader file.
 <p>"Game of Life 3D" works on Windows 10/8/7 and Vista (with Platform Update).</p>
 [The original project site is here](http://gameoflife3d.codeplex.com/)
 
-# Install
+# Build
 
 1. Install Visual Studio 2015 Community Edition.
 2. Install [Boost 1.59 Windows binaries](http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/)
