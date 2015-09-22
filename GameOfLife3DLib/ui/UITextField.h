@@ -9,33 +9,28 @@
 #include "ui/UITextStoreACP.h"
 #include "tsf/TSFManager.h"
 
-namespace ui
-{
+namespace ui {
 #define UI_UITEXTFIELD_SOFTWARE_CARET
 
-class CompositionAttribute
-{
-public:
+  class CompositionAttribute {
+  public:
     LONG startPos;
     LONG endPos;
     TF_DISPLAYATTRIBUTE displayAttribute;
-};
+  };
 
-class UITextField :
-    public UIBase,
-    public IUITextField,
-    public std::enable_shared_from_this<UITextField>
-{
-public:
+  class UITextField : public UIBase, public IUITextField, public std::enable_shared_from_this<UITextField> {
+  public:
     static const FLOAT INNER_MARGIN;
-private:
+
+  private:
     // set true when Initialize finished
     bool m_initialized;
     // set true when CreateDeviceDependentResources finished
     bool m_resourceCreated;
     // the horizontal position of the display area
     // (distance from the left position of the text)
-    FLOAT  m_textDisplayAreaHPos;
+    FLOAT m_textDisplayAreaHPos;
     // the size of the text (obtained from text metrics)
     UISize m_textSize;
     // the font attribute of the text
@@ -80,44 +75,35 @@ private:
     std::vector<CompositionAttribute> m_compositionAttributes;
 
     ui::UIPoint m_caretPosInTextCoordinate;
-    FLOAT       m_caretHeight;
+    FLOAT m_caretHeight;
 
-public:
+  public:
     UITextField(void);
     virtual ~UITextField(void);
     virtual void SetTSFManager(const std::shared_ptr<tsf::TSFManager> &tsfManager) {
-        m_tsfManager = tsfManager;
+      m_tsfManager = tsfManager;
     }
-    virtual HRESULT Initialize(
-        graphics::D3DInteropHelper *pD3DInteropHelper);
-    virtual HRESULT CreateDeviceIndependentResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper);
-    virtual HRESULT CreateDeviceDependentResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1RenderTarget *pRenderTarget);
-    virtual HRESULT Render(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT Initialize(graphics::D3DInteropHelper *pD3DInteropHelper);
+    virtual HRESULT CreateDeviceIndependentResources(graphics::D3DInteropHelper *pD3DInteropHelper);
+    virtual HRESULT CreateDeviceDependentResources(graphics::D3DInteropHelper *pD3DInteropHelper,
+                                                   ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
     virtual void DiscardDeviceDependentResources();
 
     virtual void SetText(const std::wstring &text);
-    virtual const std::wstring & GetText() const;
+    virtual const std::wstring &GetText() const;
     virtual void SetFontAttribute(const graphics::FontAttribute &fontAttribute) {
-        m_fontAttribute = fontAttribute;
+      m_fontAttribute = fontAttribute;
     }
     virtual UIRectangle GetTextDisplayArea() const {
-        return UIRectangle(
-                   GetX() + INNER_MARGIN,
-                   GetY() + INNER_MARGIN,
-                   GetWidth() - INNER_MARGIN * 2.0f,
-                   GetHeight() - INNER_MARGIN * 2.0f);
+      return UIRectangle(GetX() + INNER_MARGIN, GetY() + INNER_MARGIN, GetWidth() - INNER_MARGIN * 2.0f,
+                         GetHeight() - INNER_MARGIN * 2.0f);
     }
     virtual UIPoint GetTextDisplayAreaStartPoint() const {
-        return UIPoint(GetX() + INNER_MARGIN, GetY() + INNER_MARGIN);
+      return UIPoint(GetX() + INNER_MARGIN, GetY() + INNER_MARGIN);
     }
     virtual UISize GetTextDisplayAreaSize() const {
-        return UISize(GetWidth() - INNER_MARGIN * 2.0f,
-                      GetHeight() - INNER_MARGIN * 2.0f);
+      return UISize(GetWidth() - INNER_MARGIN * 2.0f, GetHeight() - INNER_MARGIN * 2.0f);
     }
     virtual HRESULT UpdateDisplayAreaPosition();
 
@@ -132,47 +118,51 @@ public:
 
     // IUITextField (start)
     virtual HWND GetHWnd() const;
-    virtual ITfContext* GetContext() const {
-        return m_pContext;
+    virtual ITfContext *GetContext() const {
+      return m_pContext;
     }
-    virtual LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
-    virtual HRESULT GetTextExt( LONG acpStart, LONG acpEnd, RECT *prc, BOOL *pfClipped );
+    virtual LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+    virtual HRESULT GetTextExt(LONG acpStart, LONG acpEnd, RECT *prc, BOOL *pfClipped);
     virtual void NotifySelectionHasChanged();
-    virtual void NotifyTextReplace( LONG oldTotalLength, LONG startPos, LONG replacedTextLength, LONG textToInsertLength );
-    virtual void NotifyTextInsert( LONG oldTotalLength, LONG startPos, LONG textToInsertLength );
-    virtual void NotifyTextRemove( LONG oldTotalLength, LONG startPos, LONG removedTextLength );
-    virtual void AddCompositionRenderInfo( LONG startPos, LONG endPos, const TF_DISPLAYATTRIBUTE* pDisplayAttribute );
+    virtual void NotifyTextReplace(LONG oldTotalLength, LONG startPos, LONG replacedTextLength,
+                                   LONG textToInsertLength);
+    virtual void NotifyTextInsert(LONG oldTotalLength, LONG startPos, LONG textToInsertLength);
+    virtual void NotifyTextRemove(LONG oldTotalLength, LONG startPos, LONG removedTextLength);
+    virtual void AddCompositionRenderInfo(LONG startPos, LONG endPos, const TF_DISPLAYATTRIBUTE *pDisplayAttribute);
     virtual void NotifyCompositionRenderInfoChange();
     virtual void ClearCompositionRenderInfo();
-    virtual void CalculateSelectionFromDragRect(
-        FLOAT startX, FLOAT startY,
-        FLOAT endX, FLOAT endY,
-        OUT bool* inside,
-        OUT LONG* acpStart,
-        OUT LONG* acpEnd,
-        OUT TsActiveSelEnd* activeSelEnd);
+    virtual void CalculateSelectionFromDragRect(FLOAT startX, FLOAT startY, FLOAT endX, FLOAT endY, OUT bool *inside,
+                                                OUT LONG *acpStart, OUT LONG *acpEnd, OUT TsActiveSelEnd *activeSelEnd);
     // IUITextField (end)
 
     HRESULT _RecreateTextLayout(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
-    void _RenderBackground( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget );
-    void _RenderBox( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget );
-    HRESULT _RenderText( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget, UIRectangle textRect );
-    void _RenderHighlight( graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget, UIRectangle textRect );
-    HRESULT _CalculateCaretSizeAndPosition(
-        OUT UIPoint &caretPosInTextCoordinate,
-        OUT DWRITE_HIT_TEST_METRICS *pHitTestMetrics);
+    void _RenderBackground(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
+    void _RenderBox(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
+    HRESULT _RenderText(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget,
+                        UIRectangle textRect);
+    void _RenderHighlight(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget,
+                          UIRectangle textRect);
+    HRESULT _CalculateCaretSizeAndPosition(OUT UIPoint &caretPosInTextCoordinate,
+                                           OUT DWRITE_HIT_TEST_METRICS *pHitTestMetrics);
     HRESULT _CalculateTextSize(OUT UISize &textSize);
 
     // events (start)
-    virtual void OnChar(HWND hWnd, WPARAM wParam, LPARAM lParam, CHAR_TYPE charType, wchar_t c, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnLeftMouseDown(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPoint, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnDraggingStart(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnDraggingEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnSetFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
-    virtual void OnKillFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG timestampInMilliSeconds, OUT bool* eaten);
+    virtual void OnChar(HWND hWnd, WPARAM wParam, LPARAM lParam, CHAR_TYPE charType, wchar_t c,
+                        ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnLeftMouseDown(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPoint,
+                                 ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDraggingStart(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                                 ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                            ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDraggingEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                               ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnSetFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG timestampInMilliSeconds,
+                            OUT bool *eaten);
+    virtual void OnKillFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG timestampInMilliSeconds,
+                             OUT bool *eaten);
     // events (end)
-};
+  };
 }
 
 #endif // UI_UITEXTFIELD_H_

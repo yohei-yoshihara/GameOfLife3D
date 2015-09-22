@@ -2,11 +2,9 @@
 
 #include "Common.h"
 
-namespace gameOfLife3D
-{
-class IMainWnd
-{
-public:
+namespace gameOfLife3D {
+  class IMainWnd {
+  public:
     virtual UINT GetRibbonHeight() const = 0;
     virtual HWND GetHWnd() const = 0;
     virtual void OnStart() = 0;
@@ -20,5 +18,5 @@ public:
     virtual void OnOpenCSFile() = 0;
     virtual void SetFPSEnable(bool fpsEnabled) = 0;
     virtual bool IsFPSEnabled() const = 0;
-};
+  };
 }

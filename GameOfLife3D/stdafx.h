@@ -108,11 +108,16 @@
 #include <UIAnimation.h>
 
 #ifndef Assert
-#if defined( DEBUG ) || defined( _DEBUG )
-#define Assert(b) do {if (!(b)) {OutputDebugStringA("Assert: " #b "\n");}} while(0)
+#if defined(DEBUG) || defined(_DEBUG)
+#define Assert(b)                                                                                                      \
+  do {                                                                                                                 \
+    if (!(b)) {                                                                                                        \
+      OutputDebugStringA("Assert: " #b "\n");                                                                          \
+    }                                                                                                                  \
+  } while (0)
 #else
 #define Assert(b)
-#endif //DEBUG || _DEBUG
+#endif // DEBUG || _DEBUG
 #endif
 
 #define ASSERT assert
@@ -132,31 +137,27 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 // SafeAcquire
 template <typename InterfaceType>
-inline InterfaceType* SafeAcquire(InterfaceType* newObject)
-{
-    if (newObject != nullptr) {
+inline InterfaceType *SafeAcquire(InterfaceType *newObject) {
+  if (newObject != nullptr) {
 #ifdef DEBUG_RESOURCE
-        LOG(SEVERITY_LEVEL_INFO) << L"[RESOURCE] Acquire [" << std::hex << newObject << L"]" << std::dec;
+    LOG(SEVERITY_LEVEL_INFO) << L"[RESOURCE] Acquire [" << std::hex << newObject << L"]" << std::dec;
 #endif
-        newObject->AddRef();
-    }
-    return newObject;
+    newObject->AddRef();
+  }
+  return newObject;
 }
 
 // SafeRelease
-template<class Interface>
-inline void SafeRelease(
-    Interface **ppInterfaceToRelease
-)
-{
-    if (*ppInterfaceToRelease != nullptr) {
+template <class Interface>
+inline void SafeRelease(Interface **ppInterfaceToRelease) {
+  if (*ppInterfaceToRelease != nullptr) {
 #ifdef DEBUG_RESOURCE
-        LOG(SEVERITY_LEVEL_INFO) << L"[RESOURCE] Release [" << std::hex << *ppInterfaceToRelease << L"]" << std::dec;
+    LOG(SEVERITY_LEVEL_INFO) << L"[RESOURCE] Release [" << std::hex << *ppInterfaceToRelease << L"]" << std::dec;
 #endif
-        (*ppInterfaceToRelease)->Release();
-        (*ppInterfaceToRelease) = nullptr;
-    }
+    (*ppInterfaceToRelease)->Release();
+    (*ppInterfaceToRelease) = nullptr;
+  }
 }
 
-#pragma warning(disable: 4714)
-#pragma warning(disable: 4503)
+#pragma warning(disable : 4714)
+#pragma warning(disable : 4503)

@@ -11,65 +11,57 @@
 #include "graphics/GraphicsCommon.h"
 #include "ui/UICommon.h"
 
-namespace graphics
-{
-class FPSUtil;
+namespace graphics {
+  class FPSUtil;
 }
 
-namespace touch
-{
-class ManipulationHelper;
+namespace touch {
+  class ManipulationHelper;
 }
 
-namespace gameOfLife3D
-{
-namespace dialogs
-{
-class SettingsDialog;
-}
-namespace io
-{
-class LifeFile;
-}
-namespace draw3d
-{
-class VertexGenerator;
-}
-class MainWnd;
+namespace gameOfLife3D {
+  namespace dialogs {
+    class SettingsDialog;
+  }
+  namespace io {
+    class LifeFile;
+  }
+  namespace draw3d {
+    class VertexGenerator;
+  }
+  class MainWnd;
 
 #define NUMBER_OF_LIGHTS 2
 
-struct ConstantBuffer {
+  struct ConstantBuffer {
     DirectX::XMMATRIX mWorld;
     DirectX::XMMATRIX mView;
     DirectX::XMMATRIX mProjection;
     DirectX::XMFLOAT4 vLightDir[NUMBER_OF_LIGHTS];
     DirectX::XMFLOAT4 vLightColor[NUMBER_OF_LIGHTS];
-};
+  };
 
-struct EyeInfo {
+  struct EyeInfo {
     DirectX::XMFLOAT4 eye;
     DirectX::XMFLOAT4 at;
     DirectX::XMFLOAT4 up;
-};
+  };
 
-struct EyePosInfo {
+  struct EyePosInfo {
     float theta;
     float phi;
     float radius;
-};
+  };
 
-struct LightInfo {
+  struct LightInfo {
     DirectX::XMFLOAT4 vLightDir;
     DirectX::XMFLOAT4 vLightColor;
-};
+  };
 
-class CanvasPanel :
-    public graphics::ID3DInteropAdapter,
-    public animation::IAnimationWindow,
-    public std::enable_shared_from_this<CanvasPanel>
-{
-private:
+  class CanvasPanel : public graphics::ID3DInteropAdapter,
+                      public animation::IAnimationWindow,
+                      public std::enable_shared_from_this<CanvasPanel> {
+  private:
     bool m_isInitialized;
     UINT m_ribbonHeight;
     HWND m_hwnd;
@@ -80,12 +72,12 @@ private:
     std::shared_ptr<gameOfLife3D::dialogs::SettingsDialog> m_settingsDialog;
 
     // Direct 3D
-    ID3D11Buffer       *m_pConstantBuffer;
-    DirectX::XMFLOAT4X4          m_world;
-    DirectX::XMFLOAT4X4          m_view;
-    DirectX::XMFLOAT4X4          m_projection;
-    EyeInfo             m_eyeInfo;
-    EyePosInfo          m_eyePosInfo;
+    ID3D11Buffer *m_pConstantBuffer;
+    DirectX::XMFLOAT4X4 m_world;
+    DirectX::XMFLOAT4X4 m_view;
+    DirectX::XMFLOAT4X4 m_projection;
+    EyeInfo m_eyeInfo;
+    EyePosInfo m_eyePosInfo;
     std::array<LightInfo, NUMBER_OF_LIGHTS> m_lightInfo;
 
     std::shared_ptr<gameOfLife3D::lifeSimulator::AbstractLifeSimulator> m_pLifeSimulator;
@@ -109,24 +101,22 @@ private:
 
     std::shared_ptr<gameOfLife3D::draw3d::IDraw3D> m_pDraw3D;
 
-protected:
-    HRESULT _UpdateConstantBuffer(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID3D11Device *pDevice,
-        ID3D11DeviceContext *pImmediateContext );
+  protected:
+    HRESULT _UpdateConstantBuffer(graphics::D3DInteropHelper *pD3DInteropHelper, ID3D11Device *pDevice,
+                                  ID3D11DeviceContext *pImmediateContext);
 
-public:
+  public:
     CanvasPanel(void);
     virtual ~CanvasPanel(void);
     bool IsInitialized(void) {
-        return m_isInitialized;
+      return m_isInitialized;
     }
     void SetGestureConfigs(HWND hWnd);
     HRESULT Initialize(std::weak_ptr<MainWnd> mainWnd);
     HRESULT InitializeComponents();
     HRESULT OnCreate();
     HWND GetHWnd() const {
-        return m_hwnd;
+      return m_hwnd;
     }
     HRESULT OnRender();
 
@@ -137,34 +127,20 @@ public:
     virtual HRESULT Invalidate();
 
     // interface graphics::ID3DInteropAdapter
-    virtual HRESULT CreateDeviceIndependentResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1Factory *pD2DFactory,
-        IWICImagingFactory *pWICFactory,
-        IDWriteFactory *pDWriteFactory);
-    virtual HRESULT CreateD2DResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1Factory *pD2DFactory,
-        ID2D1RenderTarget *pRenderTarget);
-    virtual HRESULT Draw2D(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT CreateDeviceIndependentResources(graphics::D3DInteropHelper *pD3DInteropHelper,
+                                                     ID2D1Factory *pD2DFactory, IWICImagingFactory *pWICFactory,
+                                                     IDWriteFactory *pDWriteFactory);
+    virtual HRESULT CreateD2DResources(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1Factory *pD2DFactory,
+                                       ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT Draw2D(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
 
     // Direct 3D
-    virtual HRESULT CreateD3DResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID3D11Device *pDevice,
-        ID3D11DeviceContext *pImmeidiateContext);
-    virtual HRESULT RecreateSizedResources(
-        UINT nWidth,
-        UINT nHeight,
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID3D11Device *pDevice,
-        ID3D11DeviceContext *pImmeidiateContext);
-    virtual HRESULT Draw3D(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID3D11Device *pDevice,
-        ID3D11DeviceContext *pImmeidiateContext);
+    virtual HRESULT CreateD3DResources(graphics::D3DInteropHelper *pD3DInteropHelper, ID3D11Device *pDevice,
+                                       ID3D11DeviceContext *pImmeidiateContext);
+    virtual HRESULT RecreateSizedResources(UINT nWidth, UINT nHeight, graphics::D3DInteropHelper *pD3DInteropHelper,
+                                           ID3D11Device *pDevice, ID3D11DeviceContext *pImmeidiateContext);
+    virtual HRESULT Draw3D(graphics::D3DInteropHelper *pD3DInteropHelper, ID3D11Device *pDevice,
+                           ID3D11DeviceContext *pImmeidiateContext);
     virtual void DiscardDeviceResources();
 
     static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -184,12 +160,12 @@ public:
     void RandomizeInitialData();
     void OpenCSFile(const std::wstring &fileName);
     void SetFPSEnable(bool fpsEnabled) {
-        m_fpsEnabled = fpsEnabled;
+      m_fpsEnabled = fpsEnabled;
     }
     bool IsFPSEnabled() const {
-        return m_fpsEnabled;
+      return m_fpsEnabled;
     }
-};
+  };
 }
 
 #endif // GAMEOFLIFE3D_CANVASPANEL_H_

@@ -2,20 +2,15 @@
 
 #include "Common.h"
 
-namespace gameOfLife3D
-{
-class RibbonFactory;
+namespace gameOfLife3D {
+  class RibbonFactory;
 
-class Ribbon :
-    public CComObjectRootEx<CComMultiThreadModel>,
-    public IUIApplication,
-    public IUICommandHandler
-{
-private:
+  class Ribbon : public CComObjectRootEx<CComMultiThreadModel>, public IUIApplication, public IUICommandHandler {
+  private:
     RibbonFactory *m_pRibbonFactory;
     IUIRibbon *m_pUiRibbon;
 
-public:
+  public:
     BEGIN_COM_MAP(Ribbon)
     COM_INTERFACE_ENTRY(IUIApplication)
     COM_INTERFACE_ENTRY(IUICommandHandler)
@@ -26,9 +21,9 @@ public:
 
     HRESULT Initialize(RibbonFactory *pRibbonFactory);
     UINT GetRibbonHeight() const {
-        UINT ribbonHeight = 0;
-        m_pUiRibbon->GetHeight(&ribbonHeight);
-        return ribbonHeight;
+      UINT ribbonHeight = 0;
+      m_pUiRibbon->GetHeight(&ribbonHeight);
+      return ribbonHeight;
     }
 
     STDMETHOD(OnViewChanged)(
@@ -40,7 +35,6 @@ public:
 
     void updateRibbonHeight();
 
-
     STDMETHOD(OnCreateUICommand)(
         UINT32 nCmdID,
         __in UI_COMMANDTYPE typeID,
@@ -51,18 +45,11 @@ public:
         __in UI_COMMANDTYPE typeID,
         __in_opt IUICommandHandler* pCommandHandler);
 
-    STDMETHODIMP Execute(
-        UINT nCmdID,
-        UI_EXECUTIONVERB verb,
-        __in_opt const PROPERTYKEY* key,
-        __in_opt const PROPVARIANT* ppropvarValue,
-        __in_opt IUISimplePropertySet* pCommandExecutionProperties);
+    STDMETHODIMP Execute(UINT nCmdID, UI_EXECUTIONVERB verb, __in_opt const PROPERTYKEY *key,
+                         __in_opt const PROPVARIANT *ppropvarValue,
+                         __in_opt IUISimplePropertySet *pCommandExecutionProperties);
 
-    STDMETHODIMP UpdateProperty(
-        UINT nCmdID,
-        __in REFPROPERTYKEY key,
-        __in_opt const PROPVARIANT* ppropvarCurrentValue,
-        __out PROPVARIANT* ppropvarNewValue);
-};
-
+    STDMETHODIMP UpdateProperty(UINT nCmdID, __in REFPROPERTYKEY key, __in_opt const PROPVARIANT *ppropvarCurrentValue,
+                                __out PROPVARIANT *ppropvarNewValue);
+  };
 }

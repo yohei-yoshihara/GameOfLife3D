@@ -3,11 +3,9 @@
 
 using namespace ui;
 
-ui::UIProgressBar::UIProgressBar(void)
-{
-    SetFocusable(true);
+ui::UIProgressBar::UIProgressBar(void) {
+  SetFocusable(true);
 }
 
-ui::UIProgressBar::~UIProgressBar(void)
-{
+ui::UIProgressBar::~UIProgressBar(void) {
 }

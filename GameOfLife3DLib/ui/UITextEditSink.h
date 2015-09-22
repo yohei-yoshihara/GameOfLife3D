@@ -6,28 +6,26 @@
 #include "ui/UITextDisplayAttribute.h"
 #include "ui/IUITextField.h"
 
-namespace ui
-{
+namespace ui {
 
-class UITextDisplayAttribute;
+  class UITextDisplayAttribute;
 
-class UITextEditSink : public ITfTextEditSink
-{
-private:
+  class UITextEditSink : public ITfTextEditSink {
+  private:
     std::weak_ptr<IUITextField> m_editControl;
     ULONG m_refCount;
     UITextDisplayAttribute m_displayAttribute;
     DWORD m_editCookie;
 
-public:
+  public:
     UITextEditSink();
     virtual ~UITextEditSink(void);
     virtual HRESULT Initialize(std::weak_ptr<IUITextField> pEditControl);
-    void SetDisplayAttributeMgr(ITfDisplayAttributeMgr* pDisplayAttributeMgr);
-    void SetCategoryMgr(ITfCategoryMgr* pCategoryMgr);
+    void SetDisplayAttributeMgr(ITfDisplayAttributeMgr *pDisplayAttributeMgr);
+    void SetCategoryMgr(ITfCategoryMgr *pCategoryMgr);
 
     // IUnknown methods.
-    STDMETHOD(QueryInterface)(REFIID, LPVOID*);
+    STDMETHOD(QueryInterface)(REFIID, LPVOID *);
     STDMETHOD_(DWORD, AddRef)();
     STDMETHOD_(DWORD, Release)();
 
@@ -36,8 +34,7 @@ public:
 
     HRESULT Advise(ITfContext *pTfContext);
     HRESULT Unadvise(ITfContext *pTfContext);
-};
-
+  };
 }
 
 #endif // UI_TEXTEDITSINK_H_

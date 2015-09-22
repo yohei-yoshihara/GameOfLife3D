@@ -5,20 +5,17 @@
 #include "graphics/color/ColorUtil.h"
 #include "ui/UIBase.h"
 
-namespace ui
-{
-typedef std::function<void(FLOAT)> UIScrollBarPositionChangedCallback;
+namespace ui {
+  typedef std::function<void(FLOAT)> UIScrollBarPositionChangedCallback;
 
-class UIScrollBar :
-    public UIBase,
-    public std::enable_shared_from_this<UIScrollBar>
-{
-public:
+  class UIScrollBar : public UIBase, public std::enable_shared_from_this<UIScrollBar> {
+  public:
     enum SCROLLBAR_DIRECTION {
-        SCROLLBAR_DIRECTION_HORIZONTAL,
-        SCROLLBAR_DIRECTION_VERTICAL,
+      SCROLLBAR_DIRECTION_HORIZONTAL,
+      SCROLLBAR_DIRECTION_VERTICAL,
     };
-private:
+
+  private:
     SCROLLBAR_DIRECTION m_direction;
     FLOAT m_minValue;
     FLOAT m_maxValue;
@@ -38,196 +35,141 @@ private:
 
     std::vector<UIScrollBarPositionChangedCallback> m_positionChangedCallbacks;
 
-public:
+  public:
     UIScrollBar();
     virtual ~UIScrollBar();
     void SetDirection(SCROLLBAR_DIRECTION direction) {
-        m_direction = direction;
+      m_direction = direction;
     }
     SCROLLBAR_DIRECTION GetDirection() const {
-        return m_direction;
+      return m_direction;
     }
     void SetMinValue(FLOAT minValue) {
-        m_minValue = minValue;
-        m_propertyChanged = true;
+      m_minValue = minValue;
+      m_propertyChanged = true;
     }
     FLOAT GetMinValue() const {
-        return m_minValue;
+      return m_minValue;
     }
     void SetMaxValue(FLOAT maxValue) {
-        m_maxValue = maxValue;
-        m_propertyChanged = true;
+      m_maxValue = maxValue;
+      m_propertyChanged = true;
     }
     FLOAT GetMaxValue() const {
-        return m_maxValue;
+      return m_maxValue;
     }
     void SetPageSize(FLOAT pageSize) {
-        m_pageSize = pageSize;
-        m_propertyChanged = true;
+      m_pageSize = pageSize;
+      m_propertyChanged = true;
     }
     FLOAT GetPageSize() const {
-        return m_pageSize;
+      return m_pageSize;
     }
     void SetCurrentValue(FLOAT currentValue) {
-        m_currentValue = currentValue;
-        m_propertyChanged = true;
+      m_currentValue = currentValue;
+      m_propertyChanged = true;
     }
     FLOAT GetCurrentValue() const {
-        return m_currentValue;
+      return m_currentValue;
     }
 
     FLOAT GetTotalThick() const {
-        return m_direction == SCROLLBAR_DIRECTION_HORIZONTAL ?
-               GetHeight() : GetWidth();
+      return m_direction == SCROLLBAR_DIRECTION_HORIZONTAL ? GetHeight() : GetWidth();
     }
     FLOAT GetTotalLength() const {
-        return m_direction == SCROLLBAR_DIRECTION_HORIZONTAL ?
-               GetWidth() : GetHeight();
+      return m_direction == SCROLLBAR_DIRECTION_HORIZONTAL ? GetWidth() : GetHeight();
     }
     FLOAT GetSlideAreaThick() const {
-        return GetTotalThick() -  GetSlideAreaMargin() * 2.0f;
+      return GetTotalThick() - GetSlideAreaMargin() * 2.0f;
     }
     FLOAT GetSlideAreaLength() const {
-        return GetTotalLength() -
-               (GetArrowMargin() +
-                GetArrowLength() +
-                GetSplitterMargin() +
-                GetSplitterThick() +
-                GetSlideAreaMargin()) * 2.0f;
+      return GetTotalLength()
+             - (GetArrowMargin() + GetArrowLength() + GetSplitterMargin() + GetSplitterThick() + GetSlideAreaMargin())
+                   * 2.0f;
     }
     FLOAT GetSlideAreaMargin() const {
-        return 2.0f;
+      return 2.0f;
     }
     FLOAT GetSlideAreaOffset() const {
-        return GetArrowMargin() + GetArrowLength() +
-               GetSplitterMargin() + GetSplitterThick() +
-               GetSlideAreaMargin();
+      return GetArrowMargin() + GetArrowLength() + GetSplitterMargin() + GetSplitterThick() + GetSlideAreaMargin();
     }
     // bar
     FLOAT GetBarPosition() const {
-        return GetSlideAreaLength() * GetCurrentValue() / (GetMaxValue() - GetMinValue());
+      return GetSlideAreaLength() * GetCurrentValue() / (GetMaxValue() - GetMinValue());
     }
     FLOAT GetBarLength() const {
-        return GetSlideAreaLength() * GetPageSize() / (GetMaxValue() - GetMinValue());
+      return GetSlideAreaLength() * GetPageSize() / (GetMaxValue() - GetMinValue());
     }
     FLOAT GetBarThick() const {
-        return GetSlideAreaThick();
+      return GetSlideAreaThick();
     }
     FLOAT GetBarOffset() const {
-        return GetArrowMargin() +
-               GetArrowLength() +
-               GetSplitterMargin() +
-               GetSplitterThick() +
-               GetSlideAreaMargin() +
-               GetBarPosition();
+      return GetArrowMargin() + GetArrowLength() + GetSplitterMargin() + GetSplitterThick() + GetSlideAreaMargin()
+             + GetBarPosition();
     }
     // arrow
     FLOAT GetArrowLength() const {
-        return GetArrowThick();
+      return GetArrowThick();
     }
     FLOAT GetArrowThick() const {
-        return GetTotalThick() - GetArrowMargin() * 2.0f;
+      return GetTotalThick() - GetArrowMargin() * 2.0f;
     }
     FLOAT GetArrowMargin() const {
-        return 2.0f;
+      return 2.0f;
     }
     FLOAT GetArrow1Offset() const {
-        return GetArrowMargin();
+      return GetArrowMargin();
     }
     FLOAT GetArrow2Offset() const {
-        return GetArrowMargin() +
-               GetArrowLength() +
-               GetSplitterMargin() * 2.0f +
-               GetSplitterThick() * 2.0f +
-               GetSlideAreaMargin() * 2.0f +
-               GetSlideAreaLength();
+      return GetArrowMargin() + GetArrowLength() + GetSplitterMargin() * 2.0f + GetSplitterThick() * 2.0f
+             + GetSlideAreaMargin() * 2.0f + GetSlideAreaLength();
     }
     // splitter
     FLOAT GetSplitterMargin() const {
-        return 2.0f;
+      return 2.0f;
     }
     FLOAT GetSplitterThick() const {
-        return 1.0f;
+      return 1.0f;
     }
     FLOAT GetSplitterHeight() const {
-        return GetBarThick() - GetSplitterMargin() * 2.0f;
+      return GetBarThick() - GetSplitterMargin() * 2.0f;
     }
     FLOAT GetSplitterOffset() const {
-        return GetArrowMargin() + GetArrowLength() + GetSplitterMargin();
+      return GetArrowMargin() + GetArrowLength() + GetSplitterMargin();
     }
     void AddPositionChangedCallback(UIScrollBarPositionChangedCallback callback) {
-        m_positionChangedCallbacks.push_back(callback);
+      m_positionChangedCallbacks.push_back(callback);
     }
     void ClearPositionChangedCallback() {
-        m_positionChangedCallbacks.clear();
+      m_positionChangedCallbacks.clear();
     }
     void FirePositionChangedEvent() {
-        for (auto it = m_positionChangedCallbacks.begin(); it != m_positionChangedCallbacks.end(); ++it) {
-            (*it)(m_currentValue);
-        }
+      for (auto it = m_positionChangedCallbacks.begin(); it != m_positionChangedCallbacks.end(); ++it) {
+        (*it)(m_currentValue);
+      }
     }
 
-    virtual HRESULT Initialize(
-        graphics::D3DInteropHelper *pD3DInteropHelper);
-    virtual HRESULT CreateDeviceDependentResources(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1RenderTarget *pRenderTarget);
-    virtual HRESULT Render(
-        graphics::D3DInteropHelper *pD3DInteropHelper,
-        ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT Initialize(graphics::D3DInteropHelper *pD3DInteropHelper);
+    virtual HRESULT CreateDeviceDependentResources(graphics::D3DInteropHelper *pD3DInteropHelper,
+                                                   ID2D1RenderTarget *pRenderTarget);
+    virtual HRESULT Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
     virtual void DiscardDeviceDependentResources();
 
-    virtual void OnLeftMouseDown(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UIPoint clientPoint,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
-    virtual void OnDraggingStart(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UI2Points clientDragRect,
-        UIDelta delta,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
-    virtual void OnDragging(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UI2Points clientDragRect,
-        UIDelta delta,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
-    virtual void OnDraggingEnd(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UI2Points clientDragRect,
-        UIDelta delta,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
-    virtual void OnMouseOver(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UIPoint clientPoint,
-        UIDelta delta,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
-    virtual void OnMouseOut(
-        HWND hWnd,
-        WPARAM wParam,
-        LPARAM lParam,
-        UIPoint clientPoint,
-        UIDelta delta,
-        ULONGLONG timestampInMilliSeconds,
-        OUT bool* eaten);
+    virtual void OnLeftMouseDown(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPoint,
+                                 ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDraggingStart(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                                 ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                            ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnDraggingEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points clientDragRect, UIDelta delta,
+                               ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnMouseOver(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPoint, UIDelta delta,
+                             ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
+    virtual void OnMouseOut(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPoint, UIDelta delta,
+                            ULONGLONG timestampInMilliSeconds, OUT bool *eaten);
     HRESULT UpdateBarPosition();
     void MoveBarPosition(FLOAT d);
     void SetBarPosition(FLOAT pos);
-};
-
+  };
 }
 #endif // UI_UISCROLLBAR_H_
