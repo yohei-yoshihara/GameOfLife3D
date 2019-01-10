@@ -1,5 +1,6 @@
 Game of Life 3D
 ===============
+![Screenshot](/screenshots/screenshot_small1.png?raw=true "screenshot")
 
 This is an implementation of Game of Life with 3D view. It calculates the rules of 'Conway's Game of Life' with Compute Shader (DirectCompute) and displays cells with Direct X11 (using Direct3D, Direct2D and DirectWrite). It supports Windows 7 and Vista with DirectX 10/11 GPU.
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  
+  <?define ProductName="GameOfLife3D" ?>
+  <?define ProductVersion="0.5.2.0" ?>
+  <?define ProductManufacturer="Yohei Yoshihara" ?>
+  
+  <?if $(var.Platform) = x64 ?>
+    <?define ProductId="7449a1fd-c5e6-456c-97ae-6693c086da1c" ?>
+    <?define ProductUpgradeCode="71c7df9e-da3d-46d4-a94f-03ffcaabb6c4" ?>
+    <?define Win64="yes" ?>
+    <?define PlatformProgramFilesFolder="ProgramFiles64Folder" ?>
+    <?define BinaryDir="..\x64\Release" ?>
+  <?else ?>
+    <?define ProductId="68b7b5a4-90f2-407e-88e3-2d056a871ce7" ?>
+    <?define ProductUpgradeCode="8591307a-1bba-4525-bc75-6d2258a9eea5" ?>
+    <?define Win64="no" ?>
+    <?define PlatformProgramFilesFolder="ProgramFilesFolder" ?>
+    <?define BinaryDir="..\Release" ?>
+  <?endif ?>
+
+</Include>
