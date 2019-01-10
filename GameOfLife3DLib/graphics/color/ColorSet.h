@@ -9,26 +9,32 @@ namespace graphics {
     private:
       std::vector<std::shared_ptr<graphics::color::IColor>> m_colors;
       std::unordered_map<std::wstring, std::shared_ptr<graphics::color::IColor>> m_labelToColorMap;
+	        void AddColors(const wchar_t *colorDesc);
 
     public:
       ColorSet()
           : m_colors()
           , m_labelToColorMap() {
       }
-      ColorSet(const wchar_t *colorDesc)
-          : m_colors()
-          , m_labelToColorMap() {
-        AddColors(colorDesc);
-      }
+	  ColorSet(const std::shared_ptr<graphics::color::IColor> &color)
+		  : m_colors()
+		  , m_labelToColorMap(){
+		  AddColor(color);
+	  }
+//      ColorSet(const wchar_t *colorDesc)
+//          : m_colors()
+//          , m_labelToColorMap() {
+//        AddColors(colorDesc);
+//      }
       ~ColorSet() {
       }
-      void AddColors(const wchar_t *colorDesc);
+//      void AddColors(const wchar_t *colorDesc);
       void AddColor(const std::shared_ptr<graphics::color::IColor> &color);
       void Clear();
-      void SetColors(const wchar_t *colorDesc) {
-        Clear();
-        AddColors(colorDesc);
-      }
+//      void SetColors(const wchar_t *colorDesc) {
+//        Clear();
+//        AddColors(colorDesc);
+//      }
       size_t GetNumberOfColors() const {
         return m_colors.size();
       }

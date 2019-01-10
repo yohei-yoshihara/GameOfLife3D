@@ -24,20 +24,16 @@
 
 #ifdef _DEBUG
 #pragma comment(lib, "../x64/Debug/GameOfLife3DLib.lib")
-#pragma comment(lib, "../x64/Debug/GameOfLife3D_colorsetdef.lib")
 #else
 #pragma comment(lib, "../x64/Release/GameOfLife3DLib.lib")
-#pragma comment(lib, "../x64/Release/GameOfLife3D_colorsetdef.lib")
 #endif
 
 #else
 
 #ifdef _DEBUG
 #pragma comment(lib, "../Debug/GameOfLife3DLib.lib")
-#pragma comment(lib, "../Debug/GameOfLife3D_colorsetdef.lib")
 #else
 #pragma comment(lib, "../Release/GameOfLife3DLib.lib")
-#pragma comment(lib, "../Release/GameOfLife3D_colorsetdef.lib")
 #endif
 
 #endif

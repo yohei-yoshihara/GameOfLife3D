@@ -1,156 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="497E4835-ABFB-4FC7-A999-7AED5198CD25" Name="GameOfLife3D" Language="1033" Version="0.5.1.0" 
-           Manufacturer="CX5SOFTWARE" UpgradeCode="16D388C0-0CE8-4055-A1E1-300496582D92">
-		<Package InstallerVersion="200" Compressed="yes" Description="Game of Life 3D" Manufacturer="CX5SOFTWARE"/>
 
-		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+  <?include Settings.wxi?>
 
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLLOCATION" Name="GameOfLife3D">
+  <?warning $(var.Platform)?>
+  
+  <Product 
+      Id="$(var.ProductId)" 
+      Name="$(var.ProductName)" 
+      Language="1033" 
+      Version="$(var.ProductVersion)" 
+      Manufacturer="$(var.ProductManufacturer)" 
+      UpgradeCode="$(var.ProductUpgradeCode)">
+    
+    <Package 
+      InstallerVersion="400" 
+      InstallPrivileges="elevated"
+      Compressed="yes" 
+      InstallScope="perMachine" 
+      Manufacturer="$(var.ProductManufacturer)" 
+      Description="$(var.ProductName)"
+      Platform="$(var.Platform)"/>
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <MajorUpgrade
+      AllowDowngrades="no"
+      Schedule="afterInstallFinalize"
+      MigrateFeatures="yes"
+      DowngradeErrorMessage="A later or current version of [ProductName] is already installed. To install this version, uninstall the installed version first."
+	    />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="INSTALLLOCATION" Name="GameOfLife3D">
           <Directory Id="enUS" Name="en-US"/>
           <Directory Id="jaJP" Name="ja-JP"/>
         </Directory>
-			</Directory>
+      </Directory>
       <Directory Id="ProgramMenuFolder">
         <Directory Id="APPLICATIONPROGRAMFOLDER" Name="GameOfLife3D"/>
       </Directory>
     </Directory>
 
+    <Icon Id="GameOfLife3D_File_ico" SourceFile="GameOfLife3D.ico"/>
+
     <DirectoryRef Id="INSTALLLOCATION">
-      <Component Id="GameOfLife3DExe" Guid="C19AAA31-527B-4564-8407-AE97EC23A0F7">
-        <File Id="GameOfLife3D.exe" Name="GameOfLife3D.exe" DiskId="1" Source="..\Release\GameOfLife3D.exe" KeyPath="yes"/>
+      <Component Id="GameOfLife3DExe" Guid="f811afca-f563-4c95-8e75-aec5567f719f" Win64="$(var.Win64)">
+        <File Id="GameOfLife3D.exe" Name="GameOfLife3D.exe" DiskId="1" Source="$(var.BinaryDir)\GameOfLife3D.exe" KeyPath="yes"/>
+        <File Id="GameOfLife3D_File.ico" Name="GameOfLife3D_File.ico" DiskId="1" Source="GameOfLife3D.ico" KeyPath="no"/>
       </Component>
-      <Component Id="license.rtf" Guid="37E9E9A5-D9E4-4B6A-A680-C0CED06177B3">
+      <Component Id="license.rtf" Guid="a2f289b0-e0ea-4f0c-866d-500d671c96d8" Win64="$(var.Win64)">
         <File Id="license.rtf" Name="license.rtf" DiskId="1" Source="license.rtf" KeyPath="yes"/>
       </Component>
-      <Component Id="GameOfLife3D_MUI.dll" Guid="CFBCDCFD-EB77-4F4E-8DC0-6F3B70EB0051">
-        <File Id="GameOfLife3D_MUI.dll" Name="GameOfLife3D_MUI.dll" DiskId="1" Source="..\Release\GameOfLife3D_MUI.dll" KeyPath="yes"/>
+      <Component Id="GameOfLife3D_MUI.dll" Guid="310759d7-dc1a-40ff-8497-0a7ad87c7d08" Win64="$(var.Win64)">
+        <File Id="GameOfLife3D_MUI.dll" Name="GameOfLife3D_MUI.dll" DiskId="1" Source="$(var.BinaryDir)\GameOfLife3D_MUI.dll" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="enUS">
-      <Component Id="enUS_gameoflife3d_mui.dll.mui" Guid="A452E25C-209F-4244-A653-2CE01D1E146F">
-        <File Id="enUS_gameoflife3d_mui.dll.mui" Name="gameoflife3d_mui.dll.mui" DiskId="1" Source="..\Release\en-US\gameoflife3d_mui.dll.mui" KeyPath="yes"/>
+      <Component Id="enUS_GameOfLife3D_MUI.dll.mui" Guid="c425991c-f5b5-4313-ab5b-cc552970cc77">
+        <File Id="enUS_GameOfLife3D_MUI.dll.mui" Name="GameOfLife3D_MUI.dll.mui" DiskId="1" Source="$(var.BinaryDir)\en-US\GameOfLife3D_MUI.dll.mui" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="jaJP">
-      <Component Id="jaJP_gameoflife3d_mui.dll.mui" Guid="5E39CEB3-AF4F-40E2-9221-FC9EC51845C5">
-        <File Id="jaJP_gameoflife3d_mui.dll.mui" Name="gameoflife3d_mui.dll.mui" DiskId="1" Source="..\Release\ja-JP\gameoflife3d_mui.dll.mui" KeyPath="yes"/>
+      <Component Id="jaJP_GameOfLife3D_MUI.dll.mui" Guid="b21419a1-61e0-4e0f-aa39-bf2b8eb736e7">
+        <File Id="jaJP_GameOfLife3D_MUI.dll.mui" Name="GameOfLife3D_MUI.dll.mui" DiskId="1" Source="$(var.BinaryDir)\ja-JP\GameOfLife3D_MUI.dll.mui" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="APPLICATIONPROGRAMFOLDER">
-      <Component Id="ApplicationShortcut" Guid="516B3BD3-CB5F-47FF-9364-C174285FB176">
+      <Component Id="ApplicationShortcut" Guid="64b5fc73-021b-495c-9a0f-347500b56f67">
         <Shortcut Id="ApplicationStartMenuShortcut_GameOfLife3DExe"
                   Name="GameOfLife3D"
-                  Description="Game of Life 3D"
+                  Description="GameOfLife3D"
                   Target="[INSTALLLOCATION]GameOfLife3D.exe"
                   WorkingDirectory="INSTALLLOCATION" Icon="GameOfLife3D.ico">
-          <Icon Id="GameOfLife3D.ico" SourceFile="..\GameOfLife3D\GameOfLife3D.ico"/>
+          <Icon Id="GameOfLife3D.ico" SourceFile="GameOfLife3D.ico"/>
         </Shortcut>
         <Shortcut Id="UninstallProduct"
                   Name="Uninstall GameOfLife3D"
-                  Description="Uninstall Game of Life 3D"
+                  Description="Uninstall GameOfLife3D"
                   Target="[System64Folder]msiexec.exe"
                   Arguments="/x [ProductCode]"/>
         <RemoveFolder Id="APPLICATIONPROGRAMFOLDER" On="uninstall"/>
-        <RegistryValue Root="HKCU" Key="Software\CX5SOFTWARE\GameOfLife3D" Name="installed"
+        <RegistryValue Root="HKCU" Key="Software\GameOfLife3D\GameOfLife3D" Name="installed"
                       Type="integer" Value="1" KeyPath="yes"/>
       </Component>
     </DirectoryRef>
-<!--
-    <DirectoryRef Id="INSTALLLOCATION">
-      <Directory Id="DirectXRedistDirectory" Name="DirectX_Jun2010">
-        <Component Id="DirectXRedist" Guid="20507869-C2B8-4068-923B-1C2C9DDEF186">
-          <File Id="DXSETUPEXE"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\DXSETUP.exe"
-                  KeyPath="yes"
-                  Checksum="yes"/>
-          <File Id="dxupdate.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\dxupdate.cab"/>
-          <File Id="dxdllreg_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\dxdllreg_x86.cab"/>
-          <File Id="dsetup32.dll"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\dsetup32.dll"/>
-          <File Id="dsetup.dll"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\dsetup.dll"/>
-
-          <File Id="Jun2010_D3DCompiler_43_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_D3DCompiler_43_x64.cab"/>
-          <File Id="Jun2010_D3DCompiler_43_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_D3DCompiler_43_x86.cab"/>
-
-          <File Id="Jun2010_d3dcsx_43_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dcsx_43_x86.cab"/>
-          <File Id="Jun2010_d3dcsx_43_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dcsx_43_x64.cab"/>
-
-          <File Id="Jun2010_d3dx10_43_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx10_43_x86.cab"/>
-          <File Id="Jun2010_d3dx10_43_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx10_43_x64.cab"/>
-
-          <File Id="Jun2010_d3dx11_43_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx11_43_x86.cab"/>
-          <File Id="Jun2010_d3dx11_43_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx11_43_x64.cab"/>
-
-          <File Id="Jun2010_d3dx9_43_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx9_43_x86.cab"/>
-          <File Id="Jun2010_d3dx9_43_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_d3dx9_43_x64.cab"/>
-
-          <File Id="Jun2010_XACT_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_XACT_x86.cab"/>
-          <File Id="Jun2010_XACT_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_XACT_x64.cab"/>
-
-          <File Id="Jun2010_XAudio_x86.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_XAudio_x86.cab"/>
-          <File Id="Jun2010_XAudio_x64.cab"
-                  Source="C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Redist\Jun2010_XAudio_x64.cab"/>
-        </Component>
-      </Directory>
-    </DirectoryRef>
--->
     <Feature Id="ProductFeature" Title="GameOfLife3D_WiX" Level="1">
       <ComponentRef Id="GameOfLife3DExe"/>
       <ComponentRef Id="license.rtf"/>
       <ComponentRef Id="GameOfLife3D_MUI.dll"/>
-      <ComponentRef Id="enUS_gameoflife3d_mui.dll.mui"/>
-      <ComponentRef Id="jaJP_gameoflife3d_mui.dll.mui"/>
+      <ComponentRef Id="enUS_GameOfLife3D_MUI.dll.mui"/>
+      <ComponentRef Id="jaJP_GameOfLife3D_MUI.dll.mui"/>
       <ComponentRef Id="ApplicationShortcut"/>
     </Feature>
-<!--
-    <Feature Id="DirectXRedist"
-              Title="DirectX Runtime June 2010"
-              AllowAdvertise="no"
-              Display="hidden" Level="1">
-      <ComponentRef Id="DirectXRedist"/>
-    </Feature>
-
-    <CustomAction Id="InstallDirectX"
-                       FileKey="DXSETUPEXE"
-                       ExeCommand="/silent"
-                       Execute="deferred"
-                       Impersonate="no"
-                       Return="check"/>
-                       -->
     <InstallExecuteSequence>
-      <!--
-      <Custom Action="InstallDirectX" Before="InstallFinalize">
-        <![CDATA[NOT REMOVE]]>
-      </Custom>
-      -->
     </InstallExecuteSequence>
-
+    
     <UI>
       <ProgressText Action="InstallDirectX">Installing DirectX June 2010</ProgressText>
     </UI>
-
+    
     <UIRef Id="WixUI_InstallDir"/>
     <UIRef Id="WixUI_ErrorProgressText" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
@@ -159,5 +112,6 @@
     <Condition Message="This application is only supported on Windows Vista, Windows 7, or higher.">
       <![CDATA[Installed OR (VersionNT >= 600)]]>
     </Condition>
+
   </Product>
 </Wix>

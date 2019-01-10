@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.rtf" />
+    <Content Include="Settings.wxi" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

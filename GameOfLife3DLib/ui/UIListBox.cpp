@@ -3,6 +3,7 @@
 #include "graphics//D3DInteropHelper.h"
 #include "graphics/color/ColorValue.h"
 #include "graphics/color/ColorSet.h"
+#include "graphics/color/SolidColor.h"
 #include "graphics/brush/BrushSet.h"
 #include "graphics/figure/RectangleFigure.h"
 #include "graphics//decorator/Frame.h"
@@ -12,8 +13,8 @@
 
 // #define DEBUG_UILISTBOX
 
-const wchar_t *UILISTBOX_COLORSETDEF = L"solid(rgba(0x0b0b0b, 1.0)),"
-                                       L"solid(rgba(0x353535, 1.0))";
+//const wchar_t *UILISTBOX_COLORSETDEF = L"solid(rgba(0x0b0b0b, 1.0)),"
+//                                       L"solid(rgba(0x353535, 1.0))";
 
 ui::UIListBox::UIListBox(SCROLL_DIRECTION scrollDirection, UISize preferredBitmapSize)
     : m_scrollDirection(scrollDirection)
@@ -26,12 +27,18 @@ ui::UIListBox::UIListBox(SCROLL_DIRECTION scrollDirection, UISize preferredBitma
     , m_scrollBarMarginFromSide(8.0f)
     , m_scrollBarThick(20.0f)
     , m_rectFigure(std::make_unique<graphics::figure::RectangleFigure>())
-    , m_colorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOX_COLORSETDEF))
+    , m_colorSet(std::make_shared<graphics::color::ColorSet>(/*UILISTBOX_COLORSETDEF*/))
     , m_scrollBar(std::make_shared<ui::UIScrollBar>())
     , m_displayPositionOffset(0.0f) {
 #ifdef DEBUG_UILISTBOX
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
+
+  // L"solid(rgba(0x0b0b0b, 1.0)),"
+  // L"solid(rgba(0x353535, 1.0))";
+  m_colorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x0b0b0b, 1.0)));
+  m_colorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x353535, 1.0)));
+
   AddElement(m_scrollBar);
   AddBeforeAddElementCallback([&](std::shared_ptr<UIBase> element) -> bool {
     element->SetParentContainer(shared_from_this());

@@ -27,7 +27,7 @@
     <SccLocalPath>Svn</SccLocalPath>
     <SccProvider>SubversionScc</SccProvider>
     <ProjectName>GameOfLife3D</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -192,11 +192,11 @@
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">fxc /Zi /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">shaders\gauss.fxo</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Zi /T fx_4_0 /Fo gauss.fxo shaders\gauss.fx</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">fxc /Zi /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">shaders\gauss.fxo</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">fxc /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">shaders\gauss.fxo</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fxc /T fx_4_0 /Fo gauss.fxo shaders\gauss.fx</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">fxc /T fx_4_0 /Fo shaders\gauss.fxo shaders\gauss.fx</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">shaders\gauss.fxo</Outputs>
     </CustomBuild>
     <CustomBuild Include="shaders\blend.fx">

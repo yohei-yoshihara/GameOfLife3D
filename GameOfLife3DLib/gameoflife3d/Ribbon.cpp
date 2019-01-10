@@ -28,28 +28,28 @@ HRESULT gameOfLife3D::Ribbon::Initialize(RibbonFactory *pRibbonFactory) {
 #endif
   m_pRibbonFactory = pRibbonFactory;
 
-  CComPtr<IPropertyStore> spPropertyStore;
+  //CComPtr<IPropertyStore> spPropertyStore;
 
-  if (SUCCEEDED(pRibbonFactory->GetFramework()->QueryInterface(&spPropertyStore))) {
-    PROPVARIANT propvarBackground;
-    PROPVARIANT propvarHighlight;
-    PROPVARIANT propvarText;
+  //if (SUCCEEDED(pRibbonFactory->GetFramework()->QueryInterface(&spPropertyStore))) {
+  //  PROPVARIANT propvarBackground;
+  //  PROPVARIANT propvarHighlight;
+  //  PROPVARIANT propvarText;
+  //
+  //  // UI_HSBCOLOR BackgroundColor = UI_HSB_256(210, 20, 20);
+  //  UI_HSBCOLOR BackgroundColor = UI_HSB_256(35, 0, 30);
+  //  UI_HSBCOLOR HighlightColor = UI_HSB_256(360, 100, 100);
+  //  UI_HSBCOLOR TextColor = UI_HSB_256(360, 0, 100);
 
-    // UI_HSBCOLOR BackgroundColor = UI_HSB_256(210, 20, 20);
-    UI_HSBCOLOR BackgroundColor = UI_HSB_256(35, 0, 30);
-    UI_HSBCOLOR HighlightColor = UI_HSB_256(360, 100, 100);
-    UI_HSBCOLOR TextColor = UI_HSB_256(360, 0, 100);
+  //  InitPropVariantFromUInt32(BackgroundColor, &propvarBackground);
+  //  InitPropVariantFromUInt32(HighlightColor, &propvarHighlight);
+  //  InitPropVariantFromUInt32(TextColor, &propvarText);
 
-    InitPropVariantFromUInt32(BackgroundColor, &propvarBackground);
-    InitPropVariantFromUInt32(HighlightColor, &propvarHighlight);
-    InitPropVariantFromUInt32(TextColor, &propvarText);
+  //  spPropertyStore->SetValue(UI_PKEY_GlobalBackgroundColor, propvarBackground);
+  //  spPropertyStore->SetValue(UI_PKEY_GlobalHighlightColor, propvarHighlight);
+  //  spPropertyStore->SetValue(UI_PKEY_GlobalTextColor, propvarText);
 
-    spPropertyStore->SetValue(UI_PKEY_GlobalBackgroundColor, propvarBackground);
-    spPropertyStore->SetValue(UI_PKEY_GlobalHighlightColor, propvarHighlight);
-    spPropertyStore->SetValue(UI_PKEY_GlobalTextColor, propvarText);
-
-    spPropertyStore->Commit();
-  }
+  //  spPropertyStore->Commit();
+  //}
 
   updateRibbonHeight();
 #ifdef RIBBON_DEBUG

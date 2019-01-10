@@ -4,6 +4,8 @@
 #include "graphics/D3DInteropHelper.h"
 #include "graphics/brush/BrushSet.h"
 #include "graphics/color/ColorSet.h"
+#include "graphics/color/SolidColor.h"
+#include "graphics/color/LinearGradientColor.h"
 #include "graphics/decorator/FrameDecorator.h"
 #include "graphics/figure/RectangleFigure.h"
 #include "ui/UIScrollBar.h"
@@ -16,16 +18,16 @@ T max3(T v1, T v2, T v3) {
   return std::max(v1, std::max(v2, v3));
 }
 
-const wchar_t *UILISTBOXITEM_DEFAULT_TEXT_COLORSET = L"solid[mainTextBrush](rgba(#ffffff,1.0)),"
-                                                     L"solid[subText1Brush](rgba(#ffffff,1.0)),"
-                                                     L"solid[subText2Brush](rgba(#ffffff,1.0)),"
-                                                     L"solid[backgroundBrush](rgba(#000000,1.0))";
+//const wchar_t *UILISTBOXITEM_DEFAULT_TEXT_COLORSET = L"solid[mainTextBrush](rgba(#ffffff,1.0)),"
+//                                                     L"solid[subText1Brush](rgba(#ffffff,1.0)),"
+//                                                     L"solid[subText2Brush](rgba(#ffffff,1.0)),"
+//                                                     L"solid[backgroundBrush](rgba(#000000,1.0))";
 
-const wchar_t *UILISTBOXITEM_DEFAULT_BODY_COLORSET
-    = L"linear[normal](TOP_BOTTOM,rgba(#404040,1.0)@0.0,rgba(#2a2a2a,1.0)@1.0),"
-      L"linear[mouseover](TOP_BOTTOM,rgba(#505050,1.0)@0.0,rgba(#3a3a3a,1.0)@1.0)";
+//const wchar_t *UILISTBOXITEM_DEFAULT_BODY_COLORSET
+//    = L"linear[normal](TOP_BOTTOM,rgba(#404040,1.0)@0.0,rgba(#2a2a2a,1.0)@1.0),"
+//      L"linear[mouseover](TOP_BOTTOM,rgba(#505050,1.0)@0.0,rgba(#3a3a3a,1.0)@1.0)";
 
-const wchar_t *UILISTBOXITEM_DEFAULT_FRAME_COLORSET = L"solid(rgba(#353535,1.0))";
+//const wchar_t *UILISTBOXITEM_DEFAULT_FRAME_COLORSET = L"solid(rgba(#353535,1.0))";
 
 // コンストラクタ
 ui::UIListBoxItem::UIListBoxItem(void)
@@ -33,9 +35,9 @@ ui::UIListBoxItem::UIListBoxItem(void)
     , m_preferredTextAreaSize(0.0f, 0.0f)
     , m_preferredBitmapSize(64.0f, 64.0f)
     , m_marginBetweenBitmapAndText(4.0f)
-    , m_textColorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOXITEM_DEFAULT_TEXT_COLORSET))
+    , m_textColorSet(std::make_shared<graphics::color::ColorSet>(/*UILISTBOXITEM_DEFAULT_TEXT_COLORSET*/))
     , m_textBrushSet(std::make_unique<graphics::brush::BrushSet>())
-    , m_bodyColorSet(std::make_shared<graphics::color::ColorSet>(UILISTBOXITEM_DEFAULT_BODY_COLORSET))
+    , m_bodyColorSet(std::make_shared<graphics::color::ColorSet>(/*UILISTBOXITEM_DEFAULT_BODY_COLORSET*/))
     , m_bodyBrushSet(std::make_unique<graphics::brush::BrushSet>())
     , m_bodyRect(std::make_unique<graphics::figure::RectangleFigure>())
     , m_mainText()
@@ -64,6 +66,35 @@ ui::UIListBoxItem::UIListBoxItem(void)
 #ifdef DEBUG_UILISTBOXITEM
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
+
+  // L"solid[mainTextBrush](rgba(#ffffff,1.0)),"
+  // L"solid[subText1Brush](rgba(#ffffff,1.0)),"
+  // L"solid[subText2Brush](rgba(#ffffff,1.0)),"
+  // L"solid[backgroundBrush](rgba(#000000,1.0))";
+  m_textColorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0xffffff, 1.0), L"mainTextBrush"));
+  m_textColorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0xffffff, 1.0), L"subText1Brush"));
+  m_textColorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0xffffff, 1.0), L"subText2Brush"));
+  m_textColorSet->AddColor(std::make_shared<graphics::color::SolidColor>(graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x000000, 1.0), L"backgroundBrush"));
+
+  // L"linear[normal](TOP_BOTTOM,rgba(#404040,1.0)@0.0,rgba(#2a2a2a,1.0)@1.0),"
+  // L"linear[mouseover](TOP_BOTTOM,rgba(#505050,1.0)@0.0,rgba(#3a3a3a,1.0)@1.0)";
+  graphics::color::GradientStopCollection normalGradientStops;
+  normalGradientStops.AddGradientStop(graphics::color::GradientStop(0.0, graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x404040, 1.0)));
+  normalGradientStops.AddGradientStop(graphics::color::GradientStop(1.0, graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x2a2a2a, 1.0)));
+  auto normalGradient = std::make_shared<graphics::color::LinearGradientColor>();
+  normalGradient->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
+  normalGradient->SetColor(normalGradientStops);
+  normalGradient->SetLabel(L"normal");
+  m_bodyColorSet->AddColor(normalGradient);
+
+  graphics::color::GradientStopCollection mouseoverGradientStops;
+  mouseoverGradientStops.AddGradientStop(graphics::color::GradientStop(0.0, graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x505050, 1.0)));
+  mouseoverGradientStops.AddGradientStop(graphics::color::GradientStop(1.0, graphics::color::ColorValue(graphics::color::ColorValue::COLOR_TYPE_RGBA, 0x3a3a3a, 1.0)));
+  auto mouseoverGradient = std::make_shared<graphics::color::LinearGradientColor>();
+  mouseoverGradient->SetGradientDirection(graphics::GRADIENT_DIRECTION_TOP_BOTTOM);
+  mouseoverGradient->SetColor(normalGradientStops);
+  mouseoverGradient->SetLabel(L"mouseover");
+  m_bodyColorSet->AddColor(mouseoverGradient);
 
   SetFocusable(true);
 

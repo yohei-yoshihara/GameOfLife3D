@@ -23,7 +23,12 @@ namespace graphics {
           , m_originalColor(color)
           , m_currentColor(color) {
       }
-      virtual ~SolidColor() {
+	  SolidColor(const graphics::color::ColorValue &color, const std::wstring &label)
+		  : m_label(label)
+		  , m_originalColor(color)
+		  , m_currentColor(color) {
+	  }
+	  virtual ~SolidColor() {
       }
       void SetLabel(const std::wstring &label) {
         m_label = label;

@@ -26,3 +26,4 @@ muirct.exe -c .\GameOfLife3D_MUI.dll -v 2 -e .\%LANG_NAME%\GameOfLife3D_MUI.dll.
 IF EXIST .\GameOfLife3D_MUI_dummy.dll del .\GameOfLife3D_MUI_dummy.dll
 
 popd
+exit 0
