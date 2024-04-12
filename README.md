@@ -6,7 +6,8 @@ This is an implementation of Game of Life with 3D view. It calculates the rules 
 
 From version 0.2.0, it supports to read an external DirectX Compute Shader file. You can write your own rules with Compute Shader.
 
-<p>Currently, the following technologies are used:</p>
+Currently, the following technologies are used:
+
 - C++ 14
 - DirectX11 - Direct3D
 - DirectCompute (Compute Shader)
@@ -16,7 +17,7 @@ From version 0.2.0, it supports to read an external DirectX Compute Shader file.
 - TSF (Text Services Framework)
 - MUI (Multilingual User Interface)
 
-<p>"Game of Life 3D" works on Windows 10/8/7 and Vista (with Platform Update).</p>
+"Game of Life 3D" works on Windows 10/8/7 and Vista (with Platform Update).
 [The original project site is here](http://gameoflife3d.codeplex.com/)
 
 # Build
