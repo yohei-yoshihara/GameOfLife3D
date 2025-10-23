@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Common.h"
 #include "util/Utils.h"
 #include "animation/IAnimationWindow.h"
@@ -1133,8 +1133,11 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(PCWSTR pszResource
           errorMessage->push_back(static_cast<wchar_t>(errMsg[i]));
         }
       }
-      std::string _errMsg(errMsg, pErrorBlob->GetBufferSize());
-      LOG(SEVERITY_LEVEL_ERROR) << _errMsg;
+
+      int len = MultiByteToWideChar(CP_UTF8, 0, errMsg, -1, nullptr, 0);
+      std::wstring errMsgW(len, L'\0');
+      MultiByteToWideChar(CP_UTF8, 0, errMsg, -1, &errMsgW[0], len);
+      LOG(SEVERITY_LEVEL_ERROR) << errMsgW;
     }
     if (pErrorBlob) {
       pErrorBlob->Release();

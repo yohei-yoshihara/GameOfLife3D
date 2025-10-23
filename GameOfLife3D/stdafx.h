@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "targetver.h"
 
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <vector>
 #include <queue>
