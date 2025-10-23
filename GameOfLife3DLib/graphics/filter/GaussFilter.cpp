@@ -105,7 +105,7 @@ HRESULT graphics::filter::GaussFilter::ApplyFilter(IN graphics::D3DInteropHelper
     // Load pixel shader
     hr = pD3DInteropHelper->LoadD3D10ResourceShader(pDevice, MAKEINTRESOURCE(IDR_GAUSS_SHADER), &m_pGaussEffect);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"Load 'gauss.fx' effect failed, hr = " << hr;
+      SPDLOG_ERROR(L"Load 'gauss.fx' effect failed, hr = {}", hr);
     }
     if (SUCCEEDED(hr)) {
       // Obtain the technique
@@ -278,7 +278,7 @@ graphics::filter::GaussFilter::CreateVertexAndIndexBufferForFilter(graphics::D3D
     D3D10_PASS_DESC PassDesc;
     m_pTechniqueNoRef->GetPassByIndex(0)->GetDesc(&PassDesc);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"GetPassByIndex(0)->GetDesc() failed, " << hr;
+      SPDLOG_ERROR(L"GetPassByIndex(0)->GetDesc() failed, {}", hr);
     }
 
     hr = pD3DInteropHelper->GetD3D10Device()->CreateInputLayout(graphics::filter::FilterCommon::INPUT_LAYOUT,
@@ -288,7 +288,7 @@ graphics::filter::GaussFilter::CreateVertexAndIndexBufferForFilter(graphics::D3D
     LOG_RESOURCE(SEVERITY_LEVEL_DEBUG, m_pVertexLayout);
 #endif
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreateInputLayout failed, " << hr;
+      SPDLOG_ERROR(L"CreateInputLayout failed, {}", hr);
     }
   }
 

@@ -68,7 +68,7 @@ HRESULT ui::UIInternalDialog::Initialize(graphics::D3DInteropHelper *pD3DInterop
   UIInsets insets(2.0f, m_textMetrics.height + 2.0f + TEXT_MARGIN, 2.0f, 2.0f);
   SetInsets(insets);
 #ifdef DEBUG_UIINTERNALDIALOG
-  LOG(SEVERITY_LEVEL_DEBUG) << L"insets = " << insets;
+  SPDLOG_DEBUG( << L"insets = " << insets;
 #endif
   return S_OK;
 }
@@ -108,7 +108,9 @@ HRESULT ui::UIInternalDialog::Render(graphics::D3DInteropHelper *pD3DInteropHelp
       = origMatrix * D2D1::Matrix3x2F::Translation(0.0f, m_textMetrics.height + 2.0f + TEXT_MARGIN);
   pRenderTarget->SetTransform(matrix);
   for (size_t i = 0; i < GetNumberOfElements(); ++i) {
-    LOG(SEVERITY_LEVEL_DEBUG) << GetElement(i)->GetBounds();
+    SPDLOG_DEBUG(L"({}, {}, {}, {})", GetElement(i)->GetBounds().x,
+                 GetElement(i)->GetBounds().y, GetElement(i)->GetBounds().width,
+                 GetElement(i)->GetBounds().height);
   }
   UIContainer::Render(pD3DInteropHelper, pRenderTarget);
   pRenderTarget->SetTransform(origMatrix);

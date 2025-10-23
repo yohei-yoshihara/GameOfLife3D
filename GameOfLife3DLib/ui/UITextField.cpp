@@ -698,7 +698,7 @@ HRESULT ui::UITextField::UpdateDisplayAreaPosition() {
   DWRITE_HIT_TEST_METRICS hitTestMetrics;
   HRESULT hr = _CalculateCaretSizeAndPosition(caretPosInTextCoordinate, &hitTestMetrics);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"_CalculateCaretSizeAndPosition failed, hr = " << hr;
+    SPDLOG_ERROR(L"_CalculateCaretSizeAndPosition failed, hr = {:x}", hr);
     return hr;
   }
 #ifdef DEBUG_UITEXTFIELD
@@ -733,7 +733,7 @@ void ui::UITextField::CalculateSelectionFromDragRect(FLOAT startX, FLOAT startY,
     UISize textSize;
     HRESULT hr = _CalculateTextSize(textSize);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"_CalculateTextSize failed, hr = " << hr;
+      SPDLOG_ERROR(L"_CalculateTextSize failed, hr = {:x}", hr);
       *inside = false;
       return;
     }
@@ -754,7 +754,7 @@ void ui::UITextField::CalculateSelectionFromDragRect(FLOAT startX, FLOAT startY,
     UISize textSize;
     HRESULT hr = _CalculateTextSize(textSize);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"_CalculateTextSize failed, hr = " << hr;
+      SPDLOG_ERROR(L"_CalculateTextSize failed, hr = {:x}", hr);
       *inside = false;
       return;
     }

@@ -127,15 +127,15 @@ HRESULT ui::UIListBoxItem::Initialize(graphics::D3DInteropHelper *pD3DInteropHel
   CHK_WARN_HRESULT(__InitializeSubText(pD3DInteropHelper, m_subText2, m_subText2FontAttribute, m_subText2Format,
                                        m_subText2Layout, m_subText2Metrics, m_subText2LayoutRect));
 #ifdef DEBUG_UILISTBOXITEM
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_mainTextLayout->GetMaxWidth() = " << m_mainTextLayout->GetMaxWidth();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_mainTextLayout->GetMaxHeight() = " << m_mainTextLayout->GetMaxHeight();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText1Layout->GetMaxWidth() = " << m_subText1Layout->GetMaxWidth();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText1Layout->GetMaxHeight() = " << m_subText1Layout->GetMaxHeight();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText2Layout->GetMaxWidth() = " << m_subText2Layout->GetMaxWidth();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText2Layout->GetMaxHeight() = " << m_subText2Layout->GetMaxHeight();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_mainTextMetrics = " << m_mainTextMetrics;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText1Metrics = " << m_subText1Metrics;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"m_subText2Metrics = " << m_subText2Metrics;
+  SPDLOG_DEBUG( << L"m_mainTextLayout->GetMaxWidth() = " << m_mainTextLayout->GetMaxWidth();
+  SPDLOG_DEBUG( << L"m_mainTextLayout->GetMaxHeight() = " << m_mainTextLayout->GetMaxHeight();
+  SPDLOG_DEBUG( << L"m_subText1Layout->GetMaxWidth() = " << m_subText1Layout->GetMaxWidth();
+  SPDLOG_DEBUG( << L"m_subText1Layout->GetMaxHeight() = " << m_subText1Layout->GetMaxHeight();
+  SPDLOG_DEBUG( << L"m_subText2Layout->GetMaxWidth() = " << m_subText2Layout->GetMaxWidth();
+  SPDLOG_DEBUG( << L"m_subText2Layout->GetMaxHeight() = " << m_subText2Layout->GetMaxHeight();
+  SPDLOG_DEBUG( << L"m_mainTextMetrics = " << m_mainTextMetrics;
+  SPDLOG_DEBUG( << L"m_subText1Metrics = " << m_subText1Metrics;
+  SPDLOG_DEBUG( << L"m_subText2Metrics = " << m_subText2Metrics;
 #endif
 
   __CalculateLayoutRect();
@@ -276,7 +276,7 @@ void ui::UIListBoxItem::__CalculateLayoutRect() {
 //                                  m_textLayoutRect.height);
 //         SetBounds(bounds);
 #ifdef DEBUG_UILISTBOXITEM
-    LOG(SEVERITY_LEVEL_DEBUG) << L"bounds = " << bounds;
+    SPDLOG_DEBUG( << L"bounds = " << bounds;
 #endif
   } else {
     // ビットマップ
@@ -319,7 +319,7 @@ void ui::UIListBoxItem::__CalculateLayoutRect() {
 //                         m_marginBetweenBitmapAndText;
 //         SetBounds(bounds);
 #ifdef DEBUG_UILISTBOXITEM
-    LOG(SEVERITY_LEVEL_DEBUG) << L"bounds = " << bounds;
+    SPDLOG_DEBUG( << L"bounds = " << bounds;
 #endif
   }
 
@@ -372,7 +372,7 @@ HRESULT ui::UIListBoxItem::Render(graphics::D3DInteropHelper *pD3DInteropHelper,
 
 //     CComPtr<ID2D1SolidColorBrush> redBrush = nullptr;
 //     pRenderTarget->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), D2D1::BrushProperties(), &redBrush);
-//     LOG(SEVERITY_LEVEL_DEBUG) << L"width = " << GetWidth() << L", height = " << GetHeight();
+//     SPDLOG_DEBUG( << L"width = " << GetWidth() << L", height = " << GetHeight();
 //     pRenderTarget->DrawRectangle(D2D1::RectF(0.0f, 0.0f, GetWidth(), GetHeight()), redBrush);
 
 #ifdef DEBUG_UILISTBOXITEM

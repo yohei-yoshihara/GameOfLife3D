@@ -164,7 +164,7 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
   HRESULT hr = S_OK;
 
   if (m_hwnd == nullptr) {
-    LOG(SEVERITY_LEVEL_WARN) << L"HWND has not been set.";
+    SPDLOG_WARN(L"HWND has not been set.");
     return S_FALSE;
   }
 
@@ -185,24 +185,24 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
     CComPtr<IDXGIFactory1> pDXGIFactory1 = nullptr;
     hr = CreateDXGIFactory1(__uuidof(IDXGIFactory1), (void **)&pDXGIFactory1);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"Creating DXGIFactory1 was failed";
+      SPDLOG_ERROR(L"Creating DXGIFactory1 was failed");
       return hr;
     }
     // *** Get DXGIAdapter1 ***
     CComPtr<IDXGIAdapter1> pDXGIAdapter1 = nullptr;
     hr = pDXGIFactory1->EnumAdapters1(adapterIndex, &pDXGIAdapter1);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"EnumAdapters1 was failed";
+      SPDLOG_ERROR(L"EnumAdapters1 was failed");
       return hr;
     }
     // *** Create ID3D11Device ***
-    LOG(SEVERITY_LEVEL_INFO) << L"Try to create ID3D11Device";
+    SPDLOG_INFO(L"Try to create ID3D11Device");
     D3D_DRIVER_TYPE d3dDriverTypeAttempt[] = {
-        //             D3D_DRIVER_TYPE_HARDWARE,
+                     D3D_DRIVER_TYPE_HARDWARE,
         D3D_DRIVER_TYPE_UNKNOWN, D3D_DRIVER_TYPE_WARP,
     };
     wchar_t *d3dDriverTypeAttemptLabel[] = {
-        //             L"D3D_DRIVER_TYPE_HARDWARE",
+                     L"D3D_DRIVER_TYPE_HARDWARE",
         L"D3D_DRIVER_TYPE_UNKNOWN", L"D3D_DRIVER_TYPE_WARP",
     };
 
@@ -216,12 +216,12 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
                               &m_pD3D11ImmediateContext);
       if (SUCCEEDED(hr)) {
         m_d3D11DeviceHardware = (i == 0);
-        LOG(SEVERITY_LEVEL_INFO) << L"driver type :" << d3dDriverTypeAttemptLabel[i];
+        SPDLOG_INFO(L"driver type :{}", d3dDriverTypeAttemptLabel[i]);
         break;
       }
     }
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"Creating D3D11 device was failed.";
+      SPDLOG_ERROR(L"Creating D3D11 device was failed.");
       return hr;
     }
     if (SUCCEEDED(hr)) {
@@ -249,7 +249,7 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
       swapDesc.Windowed = TRUE;
       hr = pDXGIFactory1->CreateSwapChain(m_pD3D11Device, &swapDesc, &m_pD3D11SwapChain);
       if (FAILED(hr)) {
-        LOG(SEVERITY_LEVEL_FATAL) << L"Creating swap chain was failed.";
+        SPDLOG_ERROR(L"Creating swap chain was failed.");
         return hr;
       }
     }
@@ -257,12 +257,12 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
     // Create Compute Shader Device
     hr = _CreateCSDevice(pDXGIAdapter1, 0, &m_pD3D11CSDevice, &m_pD3D11CSImmediateContext);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_WARN) << L"Creating Compute Shader device was failed.";
+      SPDLOG_WARN(L"Creating Compute Shader device was failed.");
       hr = S_OK;
     }
 
     // Create ID3D10Device1
-    LOG(SEVERITY_LEVEL_INFO) << L"Try to create ID3D10Device1";
+    SPDLOG_INFO(L"Try to create ID3D10Device1");
     D3D10_DRIVER_TYPE d3d10DriverTypeAttempt[] = {
         D3D10_DRIVER_TYPE_HARDWARE, D3D10_DRIVER_TYPE_WARP,
     };
@@ -277,12 +277,12 @@ HRESULT graphics::D3DInteropHelper::CreateDeviceResources(UINT adapterIndex) {
     for (size_t i = 0; i < ARRAYSIZE(d3d10DriverTypeAttempt); ++i) {
       hr = _CreateD3DDevice10(pDXGIAdapter1, d3d10DriverTypeAttempt[i], nDeviceFlags, &m_pD3D10Device);
       if (SUCCEEDED(hr)) {
-        LOG(SEVERITY_LEVEL_INFO) << L"driver type :" << d3d10DriverTypeAttemptLabel[i];
+        SPDLOG_INFO(L"driver type :{}", d3d10DriverTypeAttemptLabel[i]);
         break;
       }
     }
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"Creating D3D10 device was failed.";
+      SPDLOG_ERROR(L"Creating D3D10 device was failed.");
       return hr;
     }
     if (SUCCEEDED(hr)) {
@@ -334,7 +334,7 @@ HRESULT graphics::D3DInteropHelper::_CreateD3DDeviceResources11() {
   rsDesc.AntialiasedLineEnable = FALSE;
   hr = m_pD3D11Device->CreateRasterizerState(&rsDesc, &m_pD3D11RasterizerState);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"CreateRasterizerState failed, " << hr;
+    SPDLOG_ERROR(L"CreateRasterizerState failed, {}", hr);
   }
 
 #ifdef DEBUG_GRAPHICS_D3DINTEROPHELPER_
@@ -369,14 +369,14 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
 
   hr = m_pD3D11SwapChain->ResizeBuffers(1, nWidth, nHeight, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
   if (FAILED(hr)) {
-    LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"resize the swap chain failed.";
+    SPDLOG_ERROR(L"resize the swap chain failed. hr={:x}", hr);
   }
 
   CComPtr<ID3D11Resource> pBackBufferResource = nullptr;
   if (SUCCEEDED(hr)) {
     hr = m_pD3D11SwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBufferResource));
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"getting a buffer from the swap chain was failed.";
+      SPDLOG_ERROR(L"getting a buffer from the swap chain was failed. hr={:x}", hr);
     }
   }
 
@@ -388,7 +388,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
     renderDesc.Texture2D.MipSlice = 0;
     hr = m_pD3D11Device->CreateRenderTargetView(pBackBufferResource, &renderDesc, &m_pD3D11BackBufferRenderTargetView);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"creating a render target view was failed. hr = " << hr;
+      SPDLOG_ERROR(L"creating a render target view was failed. hr={:x}", hr);
     }
   }
 
@@ -410,7 +410,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
 
     hr = m_pD3D11Device->CreateTexture2D(&texDesc, nullptr, &m_pD3D11DepthStencil);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"creating a depth stencil texture was failed. hr = " << hr;
+      SPDLOG_ERROR(L"creating a depth stencil texture was failed. hr = {:x}", hr);
     }
   }
 
@@ -423,7 +423,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
     depthViewDesc.Texture2D.MipSlice = 0;
     hr = m_pD3D11Device->CreateDepthStencilView(m_pD3D11DepthStencil, &depthViewDesc, &m_pD3D11DepthStencilView);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"creating depth stencil view was failed. hr = " << hr;
+      SPDLOG_ERROR(L"creating depth stencil view was failed. hr = {:x}", hr);
     }
   }
 
@@ -442,7 +442,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
   if (SUCCEEDED(hr)) {
     hr = m_pD3D11SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID *)&m_pD3D11BackBuffer);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << "Getting the back buffer from the swap chain was failed, hr = " << hr;
+      SPDLOG_ERROR(L"Getting the back buffer from the swap chain was failed, hr = {:x}", hr);
     }
   }
 
@@ -462,14 +462,14 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
 
     hr = m_pD3D11Device->CreateTexture2D(&sharedTexDesc, nullptr, &m_pD3D11SharedTexture);
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"CreateTexture2D was failed.";
+      SPDLOG_ERROR(L"CreateTexture2D was failed.");
     }
   }
 
   if (SUCCEEDED(hr)) {
     hr = m_pD3D11SharedTexture->QueryInterface(__uuidof(IDXGIKeyedMutex), (void **)&m_pD3D11KeyedMutex);
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"could not obtain KeyedMutex from shared texture.";
+      SPDLOG_ERROR(L"could not obtain KeyedMutex from shared texture. hr = {:x}", hr);
     }
   }
 
@@ -477,12 +477,12 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
     CComPtr<IDXGIResource> resource = nullptr;
     hr = m_pD3D11SharedTexture->QueryInterface(__uuidof(IDXGIResource), (void **)&resource);
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"could not obtain IDXGIResource from shared texture.";
+      SPDLOG_ERROR(L"could not obtain IDXGIResource from shared texture. hr = {:x}", hr);
     }
     if (SUCCEEDED(hr)) {
       hr = resource->GetSharedHandle(&m_d3d11SharedHandle);
       if (FAILED(hr)) {
-        LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"could not obtain shared handle from shared texture.";
+        SPDLOG_ERROR(L"could not obtain shared handle from shared texture. hr = {:x}", hr);
       }
     }
   }
@@ -491,14 +491,14 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
     hr = m_pD3D10Device->OpenSharedResource(m_d3d11SharedHandle, __uuidof(IDXGISurface1),
                                             (void **)&m_pD3D10SharedSurface);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"OpenSharedResource failed, hr = " << hr;
+      SPDLOG_ERROR(L"OpenSharedResource failed, hr = {:x}", hr);
     }
   }
 
   if (SUCCEEDED(hr)) {
     hr = m_pD3D10SharedSurface->QueryInterface(__uuidof(IDXGIKeyedMutex), (void **)&m_pD3D10KeyedMutex);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not obtain IDXGIKeyedMutex from shared surface, hr = " << hr;
+      SPDLOG_ERROR(L"could not obtain IDXGIKeyedMutex from shared surface, hr = {:x}", hr);
     }
   }
 
@@ -512,7 +512,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
         dpiY);
     hr = m_pD2DFactory->CreateDxgiSurfaceRenderTarget(m_pD3D10SharedSurface, &props, &m_pD2DTexture2DRenderTargetD3D11);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"creating a DXGI surface render target for Direct2D was failed. hr = " << hr;
+      SPDLOG_ERROR(L"creating a DXGI surface render target for Direct2D was failed. hr = {:x}", hr);
     }
   }
 
@@ -541,7 +541,7 @@ HRESULT graphics::D3DInteropHelper::_RecreateSizedResources11(UINT nWidth, UINT 
 
     hr = m_pD3D11Device->CreateBlendState(&blendDesc, &m_pD3D11BlendState);
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"CreateBlendState failed";
+      SPDLOG_ERROR(L"CreateBlendState failed. hr = {:x}", hr);
     }
   }
 
@@ -646,10 +646,15 @@ HRESULT graphics::D3DInteropHelper::_CreateD3DDevice11(IDXGIAdapter1 *pAdapter, 
   HRESULT hr = S_OK;
 
   static const D3D_FEATURE_LEVEL levelAttempts[] = {
-      D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0, D3D_FEATURE_LEVEL_9_3,
+      D3D_FEATURE_LEVEL_11_1, D3D_FEATURE_LEVEL_11_0,
+      D3D_FEATURE_LEVEL_10_1,
+      D3D_FEATURE_LEVEL_10_0,
+      D3D_FEATURE_LEVEL_9_3,
   };
   static const wchar_t *levelLabels[] = {
-      L"D3D_FEATURE_LEVEL_11_0", L"D3D_FEATURE_LEVEL_10_1", L"D3D_FEATURE_LEVEL_10_0", L"D3D_FEATURE_LEVEL_9_3",
+      L"D3D_FEATURE_LEVEL_11_1", L"D3D_FEATURE_LEVEL_11_0",
+      L"D3D_FEATURE_LEVEL_10_1", L"D3D_FEATURE_LEVEL_10_0",
+      L"D3D_FEATURE_LEVEL_9_3",
   };
 
   ID3D11Device *pDevice = nullptr;
@@ -665,7 +670,7 @@ HRESULT graphics::D3DInteropHelper::_CreateD3DDevice11(IDXGIAdapter1 *pAdapter, 
     pImmediateContext = nullptr;
     for (size_t i = 0; i < ARRAYSIZE(levelAttempts); ++i) {
       if (featureLevel == levelAttempts[i]) {
-        LOG(SEVERITY_LEVEL_INFO) << L"found " << levelLabels[i] << L" device";
+        SPDLOG_INFO(L"found {} device", levelLabels[i]);
         break;
       }
     }
@@ -698,7 +703,7 @@ HRESULT graphics::D3DInteropHelper::_CreateD3DDevice10(IDXGIAdapter *pAdapter, D
     if (SUCCEEDED(hr)) {
       *ppDevice = pDevice;
       pDevice = nullptr;
-      LOG(SEVERITY_LEVEL_INFO) << L"found " << levelLabels[level] << L" device";
+      SPDLOG_INFO(L"found {} device", levelLabels[level]);
       break;
     }
   }
@@ -789,7 +794,7 @@ HRESULT graphics::D3DInteropHelper::ListAdapters(OUT std::vector<std::wstring> a
   CComPtr<IDXGIFactory1> pDXGIFactory = nullptr;
   hr = CreateDXGIFactory(__uuidof(IDXGIFactory1), (void **)&pDXGIFactory);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"CreateDXGIFactory failed";
+    SPDLOG_ERROR(L"CreateDXGIFactory failed. hr = {:x}", hr);
     return hr;
   }
 
@@ -800,7 +805,7 @@ HRESULT graphics::D3DInteropHelper::ListAdapters(OUT std::vector<std::wstring> a
     ZeroMemory(&adapterDesc, sizeof(adapterDesc));
     hr = pAdapter->GetDesc1(&adapterDesc);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"IDXGIAdapter1::GetDesc1 failed";
+      SPDLOG_ERROR(L"IDXGIAdapter1::GetDesc1 failed. hr = {:x}", hr);
       return hr;
     }
     adapterDescriptions.push_back(std::wstring(adapterDesc.Description));
@@ -817,7 +822,7 @@ HRESULT graphics::D3DInteropHelper::CreateSharedSurface(UINT width, UINT height,
   if (SUCCEEDED(hr)) {
     sharedSurface = _sharedSurface;
   } else {
-    LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"could not create a shared surface.";
+    SPDLOG_ERROR(L"could not create a shared surface. hr = {:x}", hr);
   }
   return hr;
 }
@@ -833,13 +838,13 @@ HRESULT graphics::D3DInteropHelper::Blend(ID3D11Texture2D *pTexture) {
     CComPtr<ID3DBlob> pVSBlob = nullptr;
     hr = CompileShaderFromResource(MAKEINTRESOURCE(IDR_SHADER_BLEND), "VS", "vs_4_0", &pVSBlob);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"LoadResourceShader(VS) failed, hr = " << hr;
+      SPDLOG_ERROR(L"LoadResourceShader(VS) failed, hr = {:x}", hr);
       return hr;
     }
     hr = m_pD3D11Device->CreateVertexShader(pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(), nullptr,
                                             &m_pVertexShaderForBlend);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreateVertexShader failed, hr = " << hr;
+      SPDLOG_ERROR(L"CreateVertexShader failed, hr = {:x}", hr);
       return hr;
     }
 
@@ -849,7 +854,7 @@ HRESULT graphics::D3DInteropHelper::Blend(ID3D11Texture2D *pTexture) {
                                              pVSBlob->GetBufferPointer(), pVSBlob->GetBufferSize(),
                                              &m_pVertexLayoutForBlend);
       if (FAILED(hr)) {
-        LOG(SEVERITY_LEVEL_ERROR) << L"CreateInputLayout failed, hr = " << hr;
+        SPDLOG_ERROR(L"CreateInputLayout failed, hr = {:x}", hr);
         return hr;
       }
     }
@@ -860,13 +865,13 @@ HRESULT graphics::D3DInteropHelper::Blend(ID3D11Texture2D *pTexture) {
     CComPtr<ID3DBlob> pPSBlob = nullptr;
     hr = CompileShaderFromResource(MAKEINTRESOURCE(IDR_SHADER_BLEND), "PS", "ps_4_0", &pPSBlob);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"LoadResourceShader(PS) failed, hr = " << hr;
+      SPDLOG_ERROR(L"LoadResourceShader(PS) failed, hr = {:x}", hr);
       return hr;
     }
     hr = m_pD3D11Device->CreatePixelShader(pPSBlob->GetBufferPointer(), pPSBlob->GetBufferSize(), nullptr,
                                            &m_pPixelShaderForBlend);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreatePixelShader failed, hr = " << hr;
+      SPDLOG_ERROR(L"CreatePixelShader failed, hr = {:x}", hr);
       return hr;
     }
   }
@@ -884,7 +889,7 @@ HRESULT graphics::D3DInteropHelper::Blend(ID3D11Texture2D *pTexture) {
     sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
     hr = m_pD3D11Device->CreateSamplerState(&sampDesc, &m_pSamplerLinearForBlend);
     if (FAILED(hr)) {
-      LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"CreateSamplerState failed.";
+      SPDLOG_ERROR(L"CreateSamplerState failed. hr = {:x}", hr);
       return hr;
     }
   }
@@ -899,7 +904,7 @@ HRESULT graphics::D3DInteropHelper::Blend(ID3D11Texture2D *pTexture) {
   SafeRelease(&m_pTextureRVForBlend);
   hr = m_pD3D11Device->CreateShaderResourceView(pTexture, &desc, &m_pTextureRVForBlend);
   if (FAILED(hr)) {
-    LOG_HRESULT(SEVERITY_LEVEL_ERROR, hr) << L"CreateShaderResourceView failed.";
+    SPDLOG_ERROR(L"CreateShaderResourceView failed. hr = {:x}", hr);
     return hr;
   }
 
@@ -1124,7 +1129,7 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(PCWSTR pszResource
                   0, ppBlob, &pErrorBlob);
 
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromResource failed, hr = " << hr;
+    SPDLOG_ERROR(L"D3DX11CompileFromResource failed, hr = {:x}", hr);
     if (pErrorBlob != nullptr) {
       char *errMsg = reinterpret_cast<char *>(pErrorBlob->GetBufferPointer());
       OutputDebugStringA(errMsg);
@@ -1137,7 +1142,7 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromResource(PCWSTR pszResource
       int len = MultiByteToWideChar(CP_UTF8, 0, errMsg, -1, nullptr, 0);
       std::wstring errMsgW(len, L'\0');
       MultiByteToWideChar(CP_UTF8, 0, errMsg, -1, &errMsgW[0], len);
-      LOG(SEVERITY_LEVEL_ERROR) << errMsgW;
+      SPDLOG_ERROR(errMsgW);
     }
     if (pErrorBlob) {
       pErrorBlob->Release();
@@ -1177,7 +1182,7 @@ HRESULT graphics::D3DInteropHelper::CompileShaderFromFile(WCHAR *szFileName, LPC
                           &pErrorBlob);
 
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"D3DX11CompileFromFile failed, hr = " << hr;
+    SPDLOG_ERROR(L"D3DX11CompileFromFile failed, hr = {:x}", hr);
     if (pErrorBlob != nullptr) {
       char *errMsg = reinterpret_cast<char *>(pErrorBlob->GetBufferPointer());
       OutputDebugStringA(errMsg);
@@ -1289,8 +1294,8 @@ HRESULT graphics::D3DInteropHelper::DetectMSAA() {
       break;
     }
   }
-  LOG(SEVERITY_LEVEL_INFO) << L"MSAA Sample Count = " << m_msaaSampleCount;
-  LOG(SEVERITY_LEVEL_INFO) << L"MSAA Quality Level = " << m_msaaQuality;
+  SPDLOG_INFO(L"MSAA Sample Count = {}", m_msaaSampleCount);
+  SPDLOG_INFO(L"MSAA Quality Level = {}", m_msaaQuality);
   return S_OK;
 }
 
@@ -1368,8 +1373,8 @@ HRESULT graphics::D3DInteropHelper::CreateD3D10Texture2D(UINT width, UINT height
 
 #ifdef DEBUG
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"hr = " << std::hex << hr << std::dec;
-    LOG(SEVERITY_LEVEL_ERROR) << L"width = " << width << L", height = " << height;
+    SPDLOG_ERROR(L"hr = {:x}", hr);
+    SPDLOG_ERROR(L"width = {}, height = {}", width, height);
   }
 #endif
 
@@ -1416,7 +1421,9 @@ HRESULT graphics::D3DInteropHelper::CreateD2DSharedBitmapFromD3D10Texture2D(ID2D
 
 HRESULT graphics::D3DInteropHelper::_CreateCSDevice(IDXGIAdapter1 *pAdapter, UINT flags, OUT ID3D11Device **ppDevice,
                                                     OUT ID3D11DeviceContext **ppImmediateContext) {
-  static const D3D_FEATURE_LEVEL flvl[] = {D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0};
+  static const D3D_FEATURE_LEVEL flvl[] = {
+      D3D_FEATURE_LEVEL_11_1, D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1,
+      D3D_FEATURE_LEVEL_10_0};
 
   UNREFERENCED_PARAMETER(pAdapter);
   HRESULT hr = S_OK;
@@ -1430,7 +1437,7 @@ HRESULT graphics::D3DInteropHelper::_CreateCSDevice(IDXGIAdapter1 *pAdapter, UIN
     *ppImmediateContext = m_pD3D11ImmediateContext;
     m_sharedCSDevice = true;
     m_computeShaderSupport = true;
-    LOG(SEVERITY_LEVEL_INFO) << L"Hardware Compute Shader(DX11) is found.";
+    SPDLOG_INFO(L"Hardware Compute Shader(DX11) is found.");
   } else {
     // D3D11_FEATURE_DATA_D3D10_X_HARDWARE_OPTIONS hwopts;
     // m_pD3D11Device->CheckFeatureSupport( D3D11_FEATURE_D3D10_X_HARDWARE_OPTIONS, &hwopts, sizeof(hwopts) );
@@ -1451,9 +1458,9 @@ HRESULT graphics::D3DInteropHelper::_CreateCSDevice(IDXGIAdapter1 *pAdapter, UIN
     if (SUCCEEDED(hr) && flOut >= D3D_FEATURE_LEVEL_11_0) {
       m_sharedCSDevice = false;
       m_computeShaderSupport = true;
-      LOG_HRESULT(SEVERITY_LEVEL_INFO, hr) << L"Software Compute Shader is found.";
+      SPDLOG_INFO(L"Software Compute Shader is found.");
     } else {
-      LOG_HRESULT(SEVERITY_LEVEL_INFO, hr) << L"Compute Shader could not be found.";
+      SPDLOG_INFO(L"Compute Shader could not be found.");
       m_sharedCSDevice = false;
       m_computeShaderSupport = false;
       hr = E_FAIL;

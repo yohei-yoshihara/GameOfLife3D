@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 
 #include "../GameOfLife3D/libs.h"
 
@@ -11,7 +11,7 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
     logging::InitLogger(L"test.log");
-    LOG(SEVERITY_LEVEL_DEBUG) << L"logging start";
+    SPDLOG_DEBUG( << L"logging start";
     testing::InitGoogleTest(&argc, argv);
     int ret = RUN_ALL_TESTS();
     getchar();

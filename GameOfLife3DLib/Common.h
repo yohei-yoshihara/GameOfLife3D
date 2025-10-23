@@ -10,7 +10,7 @@
 {                                                                                                                 \
     HRESULT __hr__ = expression;                                                                                       \
     if (FAILED(__hr__)) {                                                                                              \
-      LOG(SEVERITY_LEVEL_FATAL) << #expression << L", hr = " << std::hex << __hr__ << std::dec;                        \
+      SPDLOG_CRITICAL(L"{}, hr = {:x}", expression, __hr__);                            \
       throw std::runtime_error(#expression);                                                                           \
     }                                                                                                                  \
   \
@@ -30,13 +30,13 @@
 #define CHK_ERROR_HRESULT(retValue, expression)                                                                        \
   retValue = expression;                                                                                               \
   if (FAILED(retValue)) {                                                                                              \
-    LOG(SEVERITY_LEVEL_FATAL) << #expression << L", hr = " << std::hex << retValue << std::dec;                        \
+    SPDLOG_CRITICAL(L"{}, hr = {:x}", expression, retValue);                        \
   }
 
 #define CHK_ERROR_BOOL(retValue, expression)                                                                           \
   retValue = expression;                                                                                               \
   if (retValue == 0) {                                                                                                 \
-    LOG(SEVERITY_LEVEL_FATAL) << #expression << L", last error = " << std::hex << GetLastError() << std::dec;          \
+    SPDLOG_CRITICAL(L"{}, last error = {}", expression, GetLastError());                                                   \
     throw std::runtime_error(#expression);                                                                             \
   }
 
@@ -45,7 +45,7 @@
 {                                                                                                                 \
     HRESULT __hr__ = expression;                                                                                       \
     if (FAILED(__hr__)) {                                                                                              \
-      LOG(SEVERITY_LEVEL_WARN) << #expression << L", hr = " << std::hex << __hr__ << std::dec;                         \
+      SPDLOG_WARN(L"{}, hr = {:x}", expression, __hr__);                         \
     }                                                                                                                  \
   \
 }
@@ -55,7 +55,7 @@
 {                                                                                                                 \
     BOOL __b__ = expression;                                                                                           \
     if (__b__ == 0) {                                                                                                  \
-      LOG(SEVERITY_LEVEL_WARN) << #expression << L", last error = " << std::hex << GetLastError() << std::dec;         \
+      SPDLOG_WARN(L"{}, last error = {:x}", expression, GetLastError());         \
     }                                                                                                                  \
   \
 }

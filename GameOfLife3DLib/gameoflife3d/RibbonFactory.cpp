@@ -20,31 +20,31 @@ HRESULT gameOfLife3D::RibbonFactory::Initialize(std::weak_ptr<IMainWnd> mainWnd)
   m_mainWnd = mainWnd;
   HRESULT hr = CoCreateInstance(CLSID_UIRibbonFramework, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&m_pFramework));
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"CoCreateInstance failed, hr = " << hr;
+    SPDLOG_ERROR(L"CoCreateInstance failed, hr = {:x}", hr);
     return hr;
   }
 
   hr = CComObject<gameOfLife3D::Ribbon>::CreateInstance(&m_pApplication);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"CComObject<Ribbon>::CreateInstance failed, hr = " << hr;
+    SPDLOG_ERROR(L"CComObject<Ribbon>::CreateInstance failed, hr = {:x}", hr);
     return hr;
   }
 
   hr = m_pFramework->Initialize(mainWnd.lock()->GetHWnd(), m_pApplication);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"IUIFramework::Initialize failed, hr = " << hr;
+    SPDLOG_ERROR(L"IUIFramework::Initialize failed, hr = {:x}", hr);
     return hr;
   }
 
   hr = m_pFramework->LoadUI(MUI::GetHModule(), L"APPLICATION_RIBBON");
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"IUIFramework::LoadUI failed, hr = " << hr;
+    SPDLOG_ERROR(L"IUIFramework::LoadUI failed, hr = {:x}", hr);
     return hr;
   }
 
   hr = m_pApplication->Initialize(this);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"Ribbon::Initialize failed, hr = " << hr;
+    SPDLOG_ERROR(L"Ribbon::Initialize failed, hr = {:x}", hr);
     return hr;
   }
 

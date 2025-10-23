@@ -63,7 +63,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Initialize(graphics::D3DIn
       }
     }
 #ifdef DEBUG_LIFESIMULATOR
-    LOG(SEVERITY_LEVEL_DEBUG) << L"Buffer Index = " << bufIndex;
+    SPDLOG_DEBUG(L"Buffer Index = {}", bufIndex);
     Dump(lifeData.data());
 #endif
     D3D11_BUFFER_DESC bufDesc;
@@ -129,7 +129,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Compute() {
   D3D11_MAPPED_SUBRESOURCE mappedResource;
   m_pImmediateContext->Map(debugCurrentBuf, 0, D3D11_MAP_READ, 0, &mappedResource);
   gameOfLife3D::lifeSimulator::LifeData *pData = (gameOfLife3D::lifeSimulator::LifeData *)mappedResource.pData;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"Current Buffer (" << m_currentIndex << L")";
+  SPDLOG_DEBUG(L"Current Buffer ({})", m_currentIndex);
   Dump(pData);
   m_pImmediateContext->Unmap(debugCurrentBuf, 0);
   SafeRelease(&debugCurrentBuf);
@@ -137,7 +137,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Compute() {
   ID3D11Buffer *debugNextBuf = CreateAndCopyToDebugBuf(m_pDataBuffer[m_nextIndex]);
   m_pImmediateContext->Map(debugNextBuf, 0, D3D11_MAP_READ, 0, &mappedResource);
   pData = (gameOfLife3D::lifeSimulator::LifeData *)mappedResource.pData;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"Next Buffer (" << m_nextIndex << L")";
+  SPDLOG_DEBUG(L"Next Buffer ({})", m_nextIndex);
   Dump(pData);
   m_pImmediateContext->Unmap(debugNextBuf, 0);
   SafeRelease(&debugNextBuf);
@@ -146,7 +146,7 @@ HRESULT gameOfLife3D::lifeSimulator::LifeSimulatorCS::Compute() {
   m_currentIndex = (m_currentIndex + 1) % 2;
   m_nextIndex = (m_currentIndex + 1) % 2;
 #ifdef DEBUG_LIFESIMULATOR
-  LOG(SEVERITY_LEVEL_DEBUG) << L"Change index: current = " << m_currentIndex << L", next = " << m_nextIndex;
+  SPDLOG_DEBUG(L"Change index: current = {}, next = {}", m_currentIndex, m_nextIndex);
 #endif
 
   ID3D11ShaderResourceView *pSRV = nullptr;
@@ -181,7 +181,7 @@ void gameOfLife3D::lifeSimulator::LifeSimulatorCS::Dump(gameOfLife3D::lifeSimula
       UINT index = x + y * GetWidth();
       sstr << data[index].alive << L" ";
     }
-    LOG(SEVERITY_LEVEL_DEBUG) << sstr.str();
+    SPDLOG_DEBUG(sstr.str());
   }
 }
 

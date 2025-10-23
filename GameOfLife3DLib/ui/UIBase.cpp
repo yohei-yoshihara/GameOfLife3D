@@ -17,7 +17,7 @@ ui::UIBase::~UIBase() {
 
 HRESULT _ClientToScreen(std::shared_ptr<ui::UIContainer> parent, ui::UIPoint &out) {
   if (parent.get() == nullptr) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"parent container null, " << *parent;
+    SPDLOG_ERROR(L"parent container null");
     return E_FAIL;
   }
 
@@ -78,7 +78,7 @@ HRESULT ui::UIBase::ClientToScreen(ui::UIRectangle clientRect, ui::UIRectangle &
 
 HRESULT _ClientToWindow(std::shared_ptr<ui::UIContainer> parent, ui::UIPoint &out) {
   if (parent.get() == nullptr) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"parent container null, " << *parent;
+    SPDLOG_ERROR(L"parent container null");
     return E_FAIL;
   }
 

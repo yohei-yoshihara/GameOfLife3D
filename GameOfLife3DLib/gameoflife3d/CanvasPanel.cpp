@@ -134,7 +134,7 @@ HRESULT gameOfLife3D::CanvasPanel::Initialize(std::weak_ptr<MainWnd> mainWnd) {
 
   m_ribbonHeight = _mainWnd->GetRibbonHeight();
 #ifdef DEBUG_CANVASPANEL
-  LOG(SEVERITY_LEVEL_DEBUG) << L"ribbon height = " << m_ribbonHeight;
+  SPDLOG_DEBUG( << L"ribbon height = " << m_ribbonHeight;
 #endif
 
   WNDCLASSEX wcex = {sizeof(WNDCLASSEX)};
@@ -252,14 +252,14 @@ void gameOfLife3D::CanvasPanel::SetGestureConfigs(HWND hWnd) {
   BOOL bResult = SetGestureConfig(hWnd, 0, uiGcs, gc, sizeof(GESTURECONFIG));
   if (!bResult) {
     DWORD lastError = GetLastError();
-    LOG(SEVERITY_LEVEL_ERROR) << L"SetGestureConfig failed with error: " << lastError;
+    SPDLOG_ERROR(L"SetGestureConfig failed with error: {}", lastError);
   }
 }
 
 LRESULT CALLBACK gameOfLife3D::CanvasPanel::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 #ifdef DEBUG_CANVASPANEL_WINMSG
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
-// LOG(SEVERITY_LEVEL_DEBUG) << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
+// SPDLOG_DEBUG( << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
 #endif
 
   LRESULT result = 0;
@@ -414,7 +414,7 @@ HRESULT gameOfLife3D::CanvasPanel::Draw2D(graphics::D3DInteropHelper *pD3DIntero
     std::wstring fps;
     bool updated;
     m_fpsUtil->UpdateFPS(fps, updated);
-    LOG(SEVERITY_LEVEL_INFO) << L"fps = " << fps;
+    SPDLOG_INFO(L"fps = {}", fps);
     if (updated) {
       m_pFpsTextLayout = nullptr;
       CHK_FATAL_HRESULT(pD3DInteropHelper->GetDWriteFactory()->CreateTextLayout(

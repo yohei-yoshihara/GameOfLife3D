@@ -45,7 +45,7 @@ HRESULT ui::UILabel::Initialize(graphics::D3DInteropHelper *pD3DInteropHelper) {
   IDWriteInlineObject *inline3;
   DWRITE_TRIMMING trimming3;
   m_textLayout->GetTrimming(&trimming3, &inline3);
-  LOG(SEVERITY_LEVEL_DEBUG) << L"trimming " << trimming3.granularity << L", " << trimming3.delimiter << L", "
+  SPDLOG_DEBUG( << L"trimming " << trimming3.granularity << L", " << trimming3.delimiter << L", "
                             << trimming3.delimiterCount;
   SafeRelease(&inline3);
 #endif
@@ -88,7 +88,7 @@ HRESULT ui::UILabel::Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1
   if (m_textFormat == nullptr || m_textLayout == nullptr) {
     HRESULT hr = Initialize(pD3DInteropHelper);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreateDeviceDependentResources failed, hr = " << hr;
+      SPDLOG_ERROR(L"CreateDeviceDependentResources failed, hr = {:x}", hr);
       return hr;
     }
   }

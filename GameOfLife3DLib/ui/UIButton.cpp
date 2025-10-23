@@ -125,7 +125,7 @@ HRESULT ui::UIButton::Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D
   if (m_textFormat == nullptr || m_textLayout == nullptr) {
     HRESULT hr = CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreateResources failed, hr = " << hr;
+      SPDLOG_ERROR(L"CreateResources failed, hr = {:x}", hr);
       return hr;
     }
   }
@@ -233,7 +233,7 @@ void ui::UIButton::OnMouseOver(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint 
     m_status = BUTTON_STATUS_MOUSEOVER;
     *eaten = true;
 #ifdef DEBUG_EVENT
-    LOG(SEVERITY_LEVEL_DEBUG) << L"status -> MOUSEOVER";
+    SPDLOG_DEBUG( << L"status -> MOUSEOVER";
 #endif
   }
 #ifdef DEBUG_EVENT

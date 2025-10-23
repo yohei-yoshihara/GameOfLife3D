@@ -18,7 +18,7 @@ namespace graphics {
     static void GetLineMetrics(IN IDWriteTextLayout *pTextLayout, OUT std::vector<DWRITE_LINE_METRICS> &lineMetrics);
     static void GetClusterMetrics(IN IDWriteTextLayout *pTextLayout,
                                   OUT std::vector<DWRITE_CLUSTER_METRICS> &clusterMetrics);
-    static void DumpMetrics(IN SEVERITY_LEVEL severityLevel, IN const std::wstring &layoutName,
+    static void DumpMetrics(IN const std::wstring &layoutName,
                             IN IDWriteTextLayout *pTextLayout);
     static HRESULT CreateTextLayoutWithTrimming(IN IDWriteFactory *factory, IN IDWriteTextFormat *textFormat,
                                                 IN const std::wstring &text, IN FLOAT width, IN size_t numberOfLines,

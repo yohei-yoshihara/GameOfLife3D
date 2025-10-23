@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Common.h"
 #include "gameOfLife3D/draw3d/VertexGenerator.h"
 
@@ -17,24 +17,24 @@ void MinMax(const float value, float &minValue, float &maxValue)
 void AnalyzeVertices(const std::vector<gameOfLife3D::draw3d::VertexInfo> &vertices, OUT std::vector<XMFLOAT3> &cubes)
 {
     for (size_t i = 0; i < vertices.size(); i += 24) {
-        LOG(SEVERITY_LEVEL_DEBUG) << L"*** i = " << i;
+        SPDLOG_DEBUG( << L"*** i = " << i;
         XMFLOAT3 minPos = XMFLOAT3(FLT_MAX, FLT_MAX, FLT_MAX);
         XMFLOAT3 maxPos = XMFLOAT3(-FLT_MAX, -FLT_MAX, -FLT_MAX);
         for (size_t j = 0; j < 24; ++j) {
-            LOG(SEVERITY_LEVEL_DEBUG) << L"****** j = " << j;
-            LOG(SEVERITY_LEVEL_DEBUG) << L"****** index = " << (i + j);
+            SPDLOG_DEBUG( << L"****** j = " << j;
+            SPDLOG_DEBUG( << L"****** index = " << (i + j);
             const gameOfLife3D::draw3d::VertexInfo &v = vertices[i + j];
             MinMax(v.pos.x, minPos.x, maxPos.x);
             MinMax(v.pos.y, minPos.y, maxPos.y);
             MinMax(v.pos.z, minPos.z, maxPos.z);
         }
-        LOG(SEVERITY_LEVEL_DEBUG) << L"*** min = " << minPos.x << L"," << minPos.y << L"," << minPos.z;
-        LOG(SEVERITY_LEVEL_DEBUG) << L"*** max = " << maxPos.x << L"," << maxPos.y << L"," << maxPos.z;
+        SPDLOG_DEBUG( << L"*** min = " << minPos.x << L"," << minPos.y << L"," << minPos.z;
+        SPDLOG_DEBUG( << L"*** max = " << maxPos.x << L"," << maxPos.y << L"," << maxPos.z;
         XMFLOAT3 centerPos;
         centerPos.x = (maxPos.x - minPos.x) / 2.0f + minPos.x;
         centerPos.y = (maxPos.y - minPos.y) / 2.0f + minPos.y;
         centerPos.z = (maxPos.z - minPos.z) / 2.0f + minPos.z;
-        LOG(SEVERITY_LEVEL_DEBUG) << L"*** center = " << centerPos.x << L"," << centerPos.y << L"," << centerPos.z;
+        SPDLOG_DEBUG( << L"*** center = " << centerPos.x << L"," << centerPos.y << L"," << centerPos.z;
         cubes.push_back(centerPos);
     }
 }

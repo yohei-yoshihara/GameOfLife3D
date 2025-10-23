@@ -127,7 +127,7 @@ ManipulationResult AbstractManipulationHelper::_OnLeftMouseDoubleClick(HWND hWnd
   // Left mouse button double click
   if (!::KillTimer(hWnd, m_timerIdForDoubleClick)) {
     DWORD lastError = GetLastError();
-    LOG(SEVERITY_LEVEL_ERROR) << L"KillTimer failed with error " << lastError;
+    SPDLOG_ERROR(L"KillTimer failed with error {}", lastError);
     ManipulationResult result(false, false);
     return result;
   }
@@ -164,7 +164,7 @@ ManipulationResult AbstractManipulationHelper::_OnLeftMouseUp(HWND hWnd, UINT me
     // NOTE: the first SetTimer request is always slow (over 500ms)
     if ((ret = ::SetTimer(hWnd, m_timerIdForDoubleClick, GetDoubleClickTime(), nullptr)) == 0) {
       DWORD lastError = GetLastError();
-      LOG(SEVERITY_LEVEL_ERROR) << L"SetTimer failed with error " << lastError;
+      SPDLOG_ERROR(L"SetTimer failed with error {}", lastError);
       ManipulationResult result(false, false);
       return result;
     }
@@ -182,7 +182,7 @@ ManipulationResult AbstractManipulationHelper::_OnTimer(HWND hWnd, UINT message,
   ULONGLONG currentTimestampInMilliSeconds = GetCurrentTimestampInMilliSeconds();
   if (wParam == m_timerIdForDoubleClick) {
     if (!::KillTimer(hWnd, m_timerIdForDoubleClick)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"KillTimer failed";
+      SPDLOG_ERROR(L"KillTimer failed");
       ManipulationResult result(false, false);
       return result;
     }
@@ -243,7 +243,7 @@ ManipulationResult AbstractManipulationHelper::_OnGesture(HWND hWnd, UINT messag
   gi.cbSize = sizeof(gi);
   BOOL bResult = GetGestureInfo((HGESTUREINFO)lParam, &gi);
   if (!bResult) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"GetGestureInfo failed, err=" << GetLastError();
+    SPDLOG_ERROR(L"GetGestureInfo failed, err={}", GetLastError());
     result.requireInvalidateRect = false;
     result.wasHandled = false;
     return result;

@@ -25,27 +25,27 @@ void tsf::TSFManager::Initialize() {
   HRESULT hr
       = CoCreateInstance(CLSID_TF_ThreadMgr, nullptr, CLSCTX_INPROC_SERVER, IID_ITfThreadMgr, (void **)&m_pThreadMgr);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"instantiation a thread manager failed";
+    SPDLOG_ERROR(L"instantiation a thread manager failed");
   }
 
   if (SUCCEEDED(hr)) {
     ActivateThreadMgr();
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"activate the thread manager failed";
+      SPDLOG_ERROR(L"activate the thread manager failed");
     }
   }
 
   if (SUCCEEDED(hr)) {
     hr = m_pThreadMgr->QueryInterface(IID_ITfKeystrokeMgr, (void **)&m_pKeyMgr);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"initialize a key manager failed";
+      SPDLOG_ERROR(L"initialize a key manager failed");
     }
   }
 
   if (SUCCEEDED(hr)) {
     hr = m_pThreadMgr->QueryInterface(IID_ITfMessagePump, (void **)&m_pMsgPump);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"initialize message pump failed";
+      SPDLOG_ERROR(L"initialize message pump failed");
     }
   }
 
@@ -53,7 +53,7 @@ void tsf::TSFManager::Initialize() {
     hr = CoCreateInstance(CLSID_TF_CategoryMgr, nullptr, CLSCTX_INPROC_SERVER, IID_ITfCategoryMgr,
                           (LPVOID *)&m_pCategoryMgr);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"Failed to create an instance of ITfCategoryMgr, hr = " << hr;
+      SPDLOG_ERROR(L"Failed to create an instance of ITfCategoryMgr, hr = {:x}", hr);
     }
   }
 
@@ -61,7 +61,7 @@ void tsf::TSFManager::Initialize() {
     hr = CoCreateInstance(CLSID_TF_DisplayAttributeMgr, nullptr, CLSCTX_INPROC_SERVER, IID_ITfDisplayAttributeMgr,
                           (LPVOID *)&m_pDisplayAttrMgr);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"Failed to create an instance of ITfDisplayAttributeMgr, hr = " << hr;
+      SPDLOG_ERROR(L"Failed to create an instance of ITfDisplayAttributeMgr, hr = {:x}", hr);
     }
   }
 }
@@ -119,7 +119,7 @@ HRESULT tsf::TSFManager::ActivateThreadMgr() {
     if (SUCCEEDED(hr)) {
       m_isThreadMgrActivated = true;
     } else {
-      LOG(SEVERITY_LEVEL_ERROR) << L"Failed to activate thread manager, " << hr;
+      SPDLOG_ERROR(L"Failed to activate thread manager, hr = {:x}", hr);
     }
   }
   return hr;
@@ -132,7 +132,7 @@ HRESULT tsf::TSFManager::DeactivateThreadMagr() {
     if (SUCCEEDED(hr)) {
       m_isThreadMgrActivated = false;
     } else {
-      LOG(SEVERITY_LEVEL_ERROR) << L"Failed to deactivate thread manager, " << hr;
+      SPDLOG_ERROR(L"Failed to deactivate thread manager, hr = {:x}", hr);
     }
   }
   return hr;

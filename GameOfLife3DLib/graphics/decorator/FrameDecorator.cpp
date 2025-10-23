@@ -103,7 +103,7 @@ HRESULT graphics::decorator::FrameDecorator::CreateDeviceDependentResource(
 
 #ifdef DEBUG_FRAMEDECORATOR
   for (size_t i = 0; i < m_brushSet->GetNumberOfBrushes(); ++i) {
-    LOG(SEVERITY_LEVEL_DEBUG) << L"raw brush[" << i << "] = " << std::hex << m_brushSet->Get(i)->GetBrush() << std::dec;
+    SPDLOG_DEBUG( << L"raw brush[" << i << "] = " << std::hex << m_brushSet->Get(i)->GetBrush() << std::dec;
   }
   LOG_LEAVE(SEVERITY_LEVEL_DEBUG);
 #endif
@@ -116,7 +116,7 @@ HRESULT graphics::decorator::FrameDecorator::Render(graphics::D3DInteropHelper *
 #ifdef DEBUG_FRAMEDECORATOR
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
   for (size_t i = 0; i < m_brushSet->GetNumberOfBrushes(); ++i) {
-    LOG(SEVERITY_LEVEL_DEBUG) << L"raw brush[" << i << "] = " << std::hex << m_brushSet->Get(i)->GetBrush() << std::dec;
+    SPDLOG_DEBUG( << L"raw brush[" << i << "] = " << std::hex << m_brushSet->Get(i)->GetBrush() << std::dec;
   }
 #endif
 
@@ -134,7 +134,7 @@ HRESULT graphics::decorator::FrameDecorator::Render(graphics::D3DInteropHelper *
     case graphics::decorator::Frame::BRUSH_REFERENCE_TYPE_BY_INDEX: {
       size_t index = m_frames[i].GetBrushIndex();
 #ifdef DEBUG_FRAMEDECORATOR
-      LOG(SEVERITY_LEVEL_DEBUG) << L"brush index = " << index << L", brush = " << std::hex << m_brushSet->Get(index)
+      SPDLOG_DEBUG( << L"brush index = " << index << L", brush = " << std::hex << m_brushSet->Get(index)
                                 << L", raw brush = " << m_brushSet->Get(index)->GetBrush() << std::dec;
 #endif
       brush = m_brushSet->Get(index)->GetBrush(bounds, opacity);

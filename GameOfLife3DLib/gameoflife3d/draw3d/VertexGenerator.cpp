@@ -142,9 +142,9 @@ void gameOfLife3D::draw3d::VertexGenerator::Dump() {
     }
     std::vector<XMFLOAT3> cubes;
     _AnalyzeVertices(*gen.vertexes.get(), cubes);
-    LOG(SEVERITY_LEVEL_DEBUG) << "Generation = " << genId << L", number of cubes = " << cubes.size();
+    SPDLOG_DEBUG("Generation = {}, number of cubes = {}", genId, cubes.size());
     for (UINT i = 0; i < cubes.size(); ++i) {
-      LOG(SEVERITY_LEVEL_DEBUG) << L"  cube(" << cubes[i].x << L"," << cubes[i].y << L"," << cubes[i].z << L")";
+      SPDLOG_DEBUG(L"  cube({}, {}, {})", cubes[i].x, cubes[i].y, cubes[i].z);
     }
   }
 }
@@ -181,7 +181,7 @@ HRESULT gameOfLife3D::draw3d::VertexGenerator::Add(const gameOfLife3D::lifeSimul
         XMStoreFloat3(&destVertex.pos, pos);
         destVertex.normal = src.normal;
         destVertex.color = XMFLOAT4(lifeData.color.x, lifeData.color.y, lifeData.color.z, 1.0f);
-        //                 LOG(SEVERITY_LEVEL_DEBUG) << L"color: " << destVertex.color.x << L"," << destVertex.color.y
+        //                 SPDLOG_DEBUG( << L"color: " << destVertex.color.x << L"," << destVertex.color.y
         //                     << L"," << destVertex.color.z << L"," << destVertex.color.w;
 
         gen.vertexes->push_back(destVertex);
@@ -257,7 +257,7 @@ void gameOfLife3D::draw3d::VertexGenerator::CopyVertexes(VertexInfo *vertexes, O
     XMFLOAT3 pos = CalculateCubeCenterPosition(cubeLength, cubeMargin, 0, 0, generation);
     for (UINT i = 0; i < gen.vertexes->size(); ++i) {
       if (vIndex >= m_maxNumberOfVertexes) {
-        LOG(SEVERITY_LEVEL_ERROR) << L"vertex index over max";
+        SPDLOG_ERROR(L"vertex index over max");
         throw std::runtime_error("vertex index over max");
       }
       vertexes[vIndex] = gen.vertexes->at(i);
@@ -287,7 +287,7 @@ void gameOfLife3D::draw3d::VertexGenerator::CopyIndexes(VERTEX_INDEX *indexes, O
     GenerationVertexData &gen = m_generationVertexData[generation];
     for (UINT i = 0; i < gen.indexes->size(); ++i) {
       if (iIndex >= m_maxNumberOfIndexes) {
-        LOG(SEVERITY_LEVEL_ERROR) << L"index index over max";
+        SPDLOG_ERROR(L"index index over max");
         throw std::runtime_error("index index over max");
       }
       indexes[iIndex] = indexSum + gen.indexes->at(i);
@@ -310,15 +310,15 @@ void gameOfLife3D::draw3d::VertexGenerator::CheckVertexAndIndex(IN const VertexI
                                                                 IN UINT numberOfIndexes) {
   UNREFERENCED_PARAMETER(vertexes);
   if (numberOfVertexes % NUMBER_OF_VERTICES_PER_LIFE != 0) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"invalid number of vertexes" << numberOfVertexes;
+    SPDLOG_ERROR(L"invalid number of vertexes", numberOfVertexes);
   }
   if (numberOfIndexes % NUMBER_OF_INDEXES_PER_LIFE != 0) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"invalid number of indexes" << numberOfIndexes;
+    SPDLOG_ERROR(L"invalid number of indexes", numberOfIndexes);
   }
   UINT nCubes_v = numberOfVertexes / NUMBER_OF_VERTICES_PER_LIFE;
   UINT nCubes_i = numberOfIndexes / NUMBER_OF_INDEXES_PER_LIFE;
   if (nCubes_v != nCubes_i) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"invalid number of cubes, nCubes_v = " << nCubes_v << L", nCubes_i = " << nCubes_i;
+    SPDLOG_ERROR(L"invalid number of cubes, nCubes_v = {}, nCubes_i = {}", nCubes_v, nCubes_i);
   }
   for (UINT i = 0; i < nCubes_v; ++i) {
     UINT startIndex = i * NUMBER_OF_VERTICES_PER_LIFE;
@@ -326,8 +326,7 @@ void gameOfLife3D::draw3d::VertexGenerator::CheckVertexAndIndex(IN const VertexI
     for (UINT j = 0; j < NUMBER_OF_INDEXES_PER_LIFE; ++j) {
       VERTEX_INDEX index = indexes[i * NUMBER_OF_INDEXES_PER_LIFE + j];
       if (index < startIndex || endIndex < index) {
-        LOG(SEVERITY_LEVEL_ERROR) << L"index is out of range, index = " << index << L", startIndex = " << startIndex
-                                  << L", endIndex = " << endIndex;
+        SPDLOG_ERROR(L"index is out of range, index = {}, startIndex = {}, endIndex = {}", index, startIndex, endIndex);
       }
     }
   }

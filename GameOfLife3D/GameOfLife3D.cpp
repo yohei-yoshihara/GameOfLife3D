@@ -44,13 +44,13 @@ int APIENTRY wWinMain(HINSTANCE /* hInstance */, HINSTANCE /* hPrevInstance */, 
   }
 
   LPWSTR lpCmdLine = GetCommandLineW();
-  LOG(SEVERITY_LEVEL_INFO) << L"cmdLine=\"" << lpCmdLine << L"\"";
+  SPDLOG_INFO(L"cmdLine=\"{}\"", lpCmdLine);
 
   LPWSTR *szArglist = nullptr;
   int nArgs = 0;
   szArglist = CommandLineToArgvW(lpCmdLine, &nArgs);
   if (nullptr == szArglist) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"CommandLineToArgvW failed\n";
+    SPDLOG_ERROR(L"CommandLineToArgvW failed");
     return 0;
   }
 
@@ -60,17 +60,6 @@ int APIENTRY wWinMain(HINSTANCE /* hInstance */, HINSTANCE /* hPrevInstance */, 
   //    SetProcessPreferredUILanguages(MUI_LANGUAGE_NAME, L"nl-NL", &numLangs);
   if (MUI::Initialize(L"GameOfLife3D_MUI.dll") != S_OK) {
     return 3;
-  }
-
-  // check OS version
-  bool vista = util::OSVersionChecker::IsVista();
-  bool win7 = util::OSVersionChecker::IsWin7();
-  LOG(SEVERITY_LEVEL_INFO) << L"Vista = " << std::boolalpha << vista;
-  LOG(SEVERITY_LEVEL_INFO) << L"Win7 = " << std::boolalpha << win7;
-
-  if (!vista && !win7) {
-    MessageBox(nullptr, L"GameOfLife3D only works Vista and Win7", L"OS check error", MB_OK | MB_ICONERROR);
-    return -1;
   }
 
   if (SUCCEEDED(CoInitialize(nullptr))) {

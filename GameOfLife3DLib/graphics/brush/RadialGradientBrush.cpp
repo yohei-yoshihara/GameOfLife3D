@@ -17,14 +17,12 @@ graphics::brush::RadialGradientBrush::~RadialGradientBrush(void) {
 void graphics::brush::RadialGradientBrush::_CalculateParameters(const D2D1_RECT_F &rect, OUT D2D1_POINT_2F &center,
                                                                 OUT D2D1_POINT_2F &offset, OUT FLOAT &radiusX,
                                                                 OUT FLOAT &radiusY) {
-  LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"rect=" << rect.left << L"," << rect.top << L"," << rect.right << L","
-                                  << rect.bottom;
+  SPDLOG_DEBUG(L"ENTER {}: rect={}, {}, {}, {}", __func__, rect.left, rect.top, rect.right, rect.bottom);
   radiusX = (rect.right - rect.left) / 2.0f;
   radiusY = (rect.bottom - rect.top) / 2.0f;
   center = D2D1::Point2F(rect.left + radiusX, rect.top + radiusY);
   offset = D2D1::Point2F(radiusX * m_gradientOriginOffsetRate.width, radiusY * m_gradientOriginOffsetRate.height);
-  LOG_LEAVE(SEVERITY_LEVEL_DEBUG) << L"center = " << center.x << L"," << center.y << L", offset = " << offset.x << L","
-                                  << offset.y << L", radius = " << radiusX << L"," << radiusY;
+  SPDLOG_DEBUG(L"LEAVE {}: center = {},{}, offset = {},{} radius = {},{}", __func__, center.x, center.y, offset.x, offset.y, radiusX, radiusY);
 }
 
 HRESULT graphics::brush::RadialGradientBrush::CreateDeviceDependentResource(ID2D1RenderTarget *pRenderTarget,

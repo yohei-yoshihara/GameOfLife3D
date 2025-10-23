@@ -116,13 +116,13 @@ HRESULT ui::UITextEditSink::Advise(ITfContext *pTfContext) {
   ITfSource *source = nullptr;
   hr = pTfContext->QueryInterface(IID_ITfSource, (void **)&source);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"QueryInterface failed";
+    SPDLOG_ERROR(L"QueryInterface failed");
   }
 
   if (SUCCEEDED(hr)) {
     hr = source->AdviseSink(IID_ITfTextEditSink, (ITfTextEditSink *)this, &m_editCookie);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"AdviseSink failed";
+      SPDLOG_ERROR(L"AdviseSink failed");
     }
   }
   SafeRelease(&source);
@@ -138,12 +138,12 @@ HRESULT ui::UITextEditSink::Unadvise(ITfContext *pTfContext) {
   ITfSource *source = nullptr;
   hr = pTfContext->QueryInterface(IID_ITfSource, (void **)&source);
   if (FAILED(hr)) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"QueryInterface failed";
+    SPDLOG_ERROR(L"QueryInterface failed");
   }
   if (SUCCEEDED(hr)) {
     hr = source->UnadviseSink(m_editCookie);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"UnadviseSink failed";
+      SPDLOG_ERROR(L"UnadviseSink failed");
     }
   }
   SafeRelease(&source);

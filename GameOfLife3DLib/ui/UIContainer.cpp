@@ -26,7 +26,7 @@ HRESULT ui::UIContainer::Initialize(graphics::D3DInteropHelper *pD3DInteropHelpe
   for (auto it = m_initializationCallback.begin(); it != m_initializationCallback.end(); ++it) {
     HRESULT hr = (*it)(pD3DInteropHelper);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"initialization failed in initialization callback, hr = " << hr;
+      SPDLOG_ERROR(L"initialization failed in initialization callback, hr = {:x}", hr);
       return hr;
     }
   }
@@ -35,8 +35,7 @@ HRESULT ui::UIContainer::Initialize(graphics::D3DInteropHelper *pD3DInteropHelpe
     auto element = GetElement(i);
     HRESULT hr = element->Initialize(pD3DInteropHelper);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"failed to initialize a child element, hr = " << hr;
-      LOG(SEVERITY_LEVEL_ERROR) << *element;
+      SPDLOG_ERROR(L"failed to initialize a child element, hr = {:x}", hr);
       return hr;
     }
   }
@@ -49,8 +48,7 @@ HRESULT ui::UIContainer::CreateDeviceDependentResources(graphics::D3DInteropHelp
     auto element = GetElement(i);
     HRESULT hr = element->CreateDeviceDependentResources(pD3DInteropHelper, pRenderTarget);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"failed to create device dependent resources for a child element, hr = " << hr;
-      LOG(SEVERITY_LEVEL_ERROR) << *element;
+      SPDLOG_ERROR(L"failed to create device dependent resources for a child element, hr = {:x}", hr);
       return hr;
     }
   }
@@ -105,7 +103,7 @@ HRESULT ui::UIContainer::Render(graphics::D3DInteropHelper *pD3DInteropHelper, I
     pD3DInteropHelper->PushMatrix(pRenderTarget, D2D1::Matrix3x2F::Translation(x, y));
     HRESULT hr = element->Render(pD3DInteropHelper, pRenderTarget);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"render a child element failed, index = " << i << L", hr = " << hr;
+      SPDLOG_ERROR(L"render a child element failed, index = {}, hr = {:x}", i, hr);
     }
     pD3DInteropHelper->PopMatrix(pRenderTarget);
   }
@@ -137,11 +135,11 @@ void ui::UIContainer::OnLeftMouseDown(HWND hWnd, WPARAM wParam, LPARAM lParam, U
   for (size_t i = 0; i < GetNumberOfElements(); ++i) {
     auto child = GetElement(i);
 #ifdef DEBUG_UICONTAINER
-    LOG(SEVERITY_LEVEL_DEBUG) << *child;
+    SPDLOG_DEBUG( << *child;
 #endif
     if (child->HitTest(clientPoint, GetInsets().left, GetInsets().top)) {
 #ifdef DEBUG_UICONTAINER
-      LOG(SEVERITY_LEVEL_DEBUG) << L"Hit";
+      SPDLOG_DEBUG( << L"Hit";
 #endif
       m_leftDownChild = child;
       child->OnLeftMouseDown(hWnd, wParam, lParam, child->Translate(clientPoint, GetInsets().left, GetInsets().top),
@@ -303,7 +301,7 @@ void ui::UIContainer::OnMouseOver(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoi
     if (!m_mouseOverChild.expired()) {
       auto mouseOverChild = m_mouseOverChild.lock();
 #ifdef DEBUG_UICONTAINER
-      LOG(SEVERITY_LEVEL_DEBUG) << L"leave from [" << *mouseOverChild << L"]";
+      SPDLOG_DEBUG( << L"leave from [" << *mouseOverChild << L"]";
 #endif
       mouseOverChild->OnMouseOut(hWnd, wParam, lParam,
                                  mouseOverChild->Translate(clientPoint, GetInsets().left, GetInsets().top), delta,

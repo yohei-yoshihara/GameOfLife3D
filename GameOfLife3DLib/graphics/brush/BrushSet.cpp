@@ -62,7 +62,7 @@ HRESULT graphics::brush::BrushSet::CreateDeviceDependentResource(ID2D1RenderTarg
   for (size_t i = 0; i < m_brushes.size(); ++i) {
     CHK_FATAL_HRESULT(m_brushes[i]->CreateDeviceDependentResource(pRenderTarget, rect, opacity));
 #ifdef DEBUG_BRUSHSET
-    LOG(SEVERITY_LEVEL_DEBUG) << L"raw brush[" << i << L"] = " << std::hex << m_brushes[i]->GetBrush() << std::dec;
+    SPDLOG_DEBUG( << L"raw brush[" << i << L"] = " << std::hex << m_brushes[i]->GetBrush() << std::dec;
 #endif
   }
   m_deviceDependentResourceCreated = SUCCEEDED(hr);

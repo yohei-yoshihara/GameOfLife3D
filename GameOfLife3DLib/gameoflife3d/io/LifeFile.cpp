@@ -31,7 +31,7 @@ gameOfLife3D::io::LIFEFILE_RESULT gameOfLife3D::io::LifeFile::Load(const std::ws
   std::wstring line;
   std::getline(ifs, line);
   if (ifs.eof() || ifs.fail() || ifs.bad()) {
-    LOG(SEVERITY_LEVEL_ERROR) << L"could not read the file '" << fileName << L"'";
+    SPDLOG_ERROR(L"could not read the file '{}'", fileName);
     return LIFEFILE_RESULT_ILLEGALFORMAT;
   }
   LIFEFILE_RESULT result;

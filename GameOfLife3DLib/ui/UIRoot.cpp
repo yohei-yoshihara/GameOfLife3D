@@ -71,8 +71,8 @@ HRESULT ui::UIRoot::Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1R
   } else {
     // internal dialog displaying
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return E_FAIL;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -132,8 +132,8 @@ void ui::UIRoot::OnSetFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG t
     UIContainer::OnSetFocus(hWnd, wParam, lParam, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -147,8 +147,8 @@ void ui::UIRoot::OnKillFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG 
     UIContainer::OnKillFocus(hWnd, wParam, lParam, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -159,21 +159,21 @@ void ui::UIRoot::OnKillFocus(HWND hWnd, WPARAM wParam, LPARAM lParam, ULONGLONG 
 void ui::UIRoot::OnChar(HWND hWnd, WPARAM wParam, LPARAM lParam, CHAR_TYPE charType, wchar_t c,
                         ULONGLONG timestampInMilliSeconds, OUT bool *eaten) {
 #ifdef DEBUG_EVENT
-  LOG_ENTER(SEVERITY_LEVEL_DEBUG) << L"char = " << c;
+  SPDLOG_DEBUG(L"ENTER {}: char = {}", __func__, c);
 #endif
   if (m_displayingDialogName.length() == 0 || m_dialogs.count(m_displayingDialogName) == 0) {
     UIContainer::OnChar(hWnd, wParam, lParam, charType, c, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
     dialog->OnChar(hWnd, wParam, lParam, charType, c, timestampInMilliSeconds, eaten);
   }
 #ifdef DEBUG_EVENT
-  LOG_LEAVE(SEVERITY_LEVEL_DEBUG);
+  SPDLOG_DEBUG(L"LEAVE {}", __func__);
 #endif
 }
 
@@ -183,8 +183,8 @@ void ui::UIRoot::OnLeftMouseDown(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoin
     UIContainer::OnLeftMouseDown(hWnd, wParam, lParam, clientPoint, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -199,8 +199,8 @@ void ui::UIRoot::OnLeftMouseUp(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint 
     UIContainer::OnLeftMouseUp(hWnd, wParam, lParam, clientPoint, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -215,8 +215,8 @@ void ui::UIRoot::OnSingleClick(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint 
     UIContainer::OnSingleClick(hWnd, wParam, lParam, clientPoint, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -231,8 +231,8 @@ void ui::UIRoot::OnDoubleClick(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint 
     UIContainer::OnDoubleClick(hWnd, wParam, lParam, clientPoint, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -247,8 +247,8 @@ void ui::UIRoot::OnDraggingStart(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Poi
     UIContainer::OnDraggingStart(hWnd, wParam, lParam, clientDragRect, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -263,8 +263,8 @@ void ui::UIRoot::OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Points c
     UIContainer::OnDragging(hWnd, wParam, lParam, clientDragRect, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -279,8 +279,8 @@ void ui::UIRoot::OnDraggingEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Point
     UIContainer::OnDraggingEnd(hWnd, wParam, lParam, clientDragRect, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -295,8 +295,8 @@ void ui::UIRoot::OnMouseOver(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint cl
     UIContainer::OnMouseOver(hWnd, wParam, lParam, clientPoint, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -311,8 +311,8 @@ void ui::UIRoot::OnMouseOut(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint cli
     UIContainer::OnMouseOut(hWnd, wParam, lParam, clientPoint, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -327,8 +327,8 @@ void ui::UIRoot::OnRightSingleClick(HWND hWnd, WPARAM wParam, LPARAM lParam, UIP
     UIContainer::OnRightSingleClick(hWnd, wParam, lParam, clientPoint, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -343,8 +343,8 @@ void ui::UIRoot::OnGestureBegin(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint
     UIContainer::OnGestureBegin(hWnd, wParam, lParam, clientPoint, pGestureInfo, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -359,8 +359,8 @@ void ui::UIRoot::OnGestureEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint c
     UIContainer::OnGestureEnd(hWnd, wParam, lParam, clientPoint, pGestureInfo, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -376,8 +376,8 @@ void ui::UIRoot::OnZoom(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientP
                         timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -393,8 +393,8 @@ void ui::UIRoot::OnPan(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clientPo
     UIContainer::OnPan(hWnd, wParam, lParam, clientPoint, pGestureInfo, delta, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -411,8 +411,8 @@ void ui::UIRoot::OnRotate(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint clien
                           timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -428,8 +428,8 @@ void ui::UIRoot::OnTwoFingerTap(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint
     UIContainer::OnTwoFingerTap(hWnd, wParam, lParam, clientPoint, pGestureInfo, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);
@@ -444,8 +444,8 @@ void ui::UIRoot::OnPressAndTap(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoint 
     UIContainer::OnPressAndTap(hWnd, wParam, lParam, clientPoint, pGestureInfo, timestampInMilliSeconds, eaten);
   } else {
     if (m_dialogs.count(m_displayingDialogName) == 0) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not found the internal dialog which name is '" << m_displayingDialogName
-                                << L"'";
+      SPDLOG_ERROR(L"could not found the internal dialog '{}'",
+                   m_displayingDialogName);
       return;
     }
     auto dialog = m_dialogs.at(m_displayingDialogName);

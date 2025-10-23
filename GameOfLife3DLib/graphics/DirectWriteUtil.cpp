@@ -74,36 +74,36 @@ void graphics::DirectWriteUtil::GetClusterMetrics(IN IDWriteTextLayout *pTextLay
 #endif
 }
 
-void graphics::DirectWriteUtil::DumpMetrics(IN SEVERITY_LEVEL severityLevel, IN const std::wstring &layoutName,
+void graphics::DirectWriteUtil::DumpMetrics(IN const std::wstring &layoutName,
                                             IN IDWriteTextLayout *pTextLayout) {
 #ifdef DEBUG_DIRECTWRITEUTIL_
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
 
-  LOG(severityLevel) << layoutName << L"->GetMaxWidth() = " << pTextLayout->GetMaxWidth();
-  LOG(severityLevel) << layoutName << L"->GetMaxHeight() = " << pTextLayout->GetMaxHeight();
+  SPDLOG_DEBUG(L"{}->GetMaxWidth() = {}", layoutName, pTextLayout->GetMaxWidth());
+  SPDLOG_DEBUG(L"{}->GetMaxHeight() = {}", layoutName, pTextLayout->GetMaxHeight());
   FLOAT minWidth = 0.0f;
   CHK_FATAL_HRESULT(pTextLayout->DetermineMinWidth(&minWidth));
-  LOG(severityLevel) << layoutName << L"->DetermineMinWidth() = " << minWidth;
+  SPDLOG_DEBUG(L"{}->DetermineMinWidth() = {}", layoutName, minWidth);
 
   DWRITE_TEXT_METRICS textMetrics;
   CHK_FATAL_HRESULT(pTextLayout->GetMetrics(&textMetrics));
-  LOG(severityLevel) << layoutName << L"->GetMetrics() = " << textMetrics;
+  SPDLOG_DEBUG(L"{}->GetMetrics() = {}", layoutName, textMetrics);
 
   DWRITE_OVERHANG_METRICS overhangMetrics;
   CHK_FATAL_HRESULT(pTextLayout->GetOverhangMetrics(&overhangMetrics));
-  LOG(severityLevel) << layoutName << L"->GetOverhangMetrics() = " << overhangMetrics;
+  SPDLOG_DEBUG(L"{}->GetOverhangMetrics() = {}", layoutName, overhangMetrics);
 
   std::vector<DWRITE_LINE_METRICS> lineMetrics;
   graphics::DirectWriteUtil::GetLineMetrics(pTextLayout, lineMetrics);
   for (size_t i = 0; i < lineMetrics.size(); ++i) {
-    LOG(severityLevel) << L"line[" << i << L"] " << lineMetrics.at(i);
+    SPDLOG_DEBUG(L"line[{}] {}", i, lineMetrics.at(i));
   }
 
   std::vector<DWRITE_CLUSTER_METRICS> clusterMetrics;
   graphics::DirectWriteUtil::GetClusterMetrics(pTextLayout, clusterMetrics);
   for (size_t i = 0; i < clusterMetrics.size(); ++i) {
-    LOG(severityLevel) << L"cluster[" << i << L"] " << clusterMetrics.at(i);
+    SPDLOG_DEBUG(L"cluster[{}] {}", i, clusterMetrics.at(i));
   }
 
 #ifdef DEBUG_DIRECTWRITEUTIL_

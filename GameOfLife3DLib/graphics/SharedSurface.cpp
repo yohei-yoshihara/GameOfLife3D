@@ -40,14 +40,14 @@ HRESULT graphics::SharedSurface::Initialize(UINT width, UINT height, ID3D11Devic
 
     hr = pD3D11Device->CreateTexture2D(&sharedTexDesc, nullptr, &m_pD3D11SharedTexture);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"CreateTexture2D was failed, hr = " << hr;
+      SPDLOG_ERROR(L"CreateTexture2D was failed, hr = {}", hr);
     }
   }
 
   if (SUCCEEDED(hr)) {
     m_pD3D11SharedTexture->QueryInterface(__uuidof(IDXGIKeyedMutex), (void **)&m_pD3D11KeyedMutex);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not obtain KeyedMutex from shared texture, hr = " << hr;
+      SPDLOG_ERROR(L"could not obtain KeyedMutex from shared texture, hr = {}", hr);
     }
   }
 
@@ -55,12 +55,12 @@ HRESULT graphics::SharedSurface::Initialize(UINT width, UINT height, ID3D11Devic
     CComPtr<IDXGIResource> resource = nullptr;
     hr = m_pD3D11SharedTexture->QueryInterface(__uuidof(IDXGIResource), (void **)&resource);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not obtain IDXGIResource from shared texture, hr = " << hr;
+      SPDLOG_ERROR(L"could not obtain IDXGIResource from shared texture, hr = {}", hr);
     }
     if (SUCCEEDED(hr)) {
       hr = resource->GetSharedHandle(&m_d3d11SharedHandle);
       if (FAILED(hr)) {
-        LOG(SEVERITY_LEVEL_ERROR) << L"could not obtain shared handle from shared texture, hr = " << hr;
+        SPDLOG_ERROR(L"could not obtain shared handle from shared texture, hr = ", hr);
       }
     }
   }
@@ -69,14 +69,14 @@ HRESULT graphics::SharedSurface::Initialize(UINT width, UINT height, ID3D11Devic
     hr = pD3D10Device->OpenSharedResource(m_d3d11SharedHandle, __uuidof(IDXGISurface1),
                                           (void **)&m_pD3D10SharedSurface);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"OpenSharedResource failed, hr = " << hr;
+      SPDLOG_ERROR(L"OpenSharedResource failed, hr = ", hr);
     }
   }
 
   if (SUCCEEDED(hr)) {
     hr = m_pD3D10SharedSurface->QueryInterface(__uuidof(IDXGIKeyedMutex), (void **)&m_pD3D10KeyedMutex);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"could not obtain IDXGIKeyedMutex from shared surface, hr = " << hr;
+      SPDLOG_ERROR(L"could not obtain IDXGIKeyedMutex from shared surface, hr = {}", hr);
     }
   }
 
@@ -90,7 +90,7 @@ HRESULT graphics::SharedSurface::Initialize(UINT width, UINT height, ID3D11Devic
         dpiY);
     hr = pD2DFactory->CreateDxgiSurfaceRenderTarget(m_pD3D10SharedSurface, &props, &m_pRenderTarget);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_FATAL) << L"creating a DXGI surface render target for Direct2D was failed. hr = " << hr;
+      SPDLOG_ERROR(L"creating a DXGI surface render target for Direct2D was failed. hr = {}", hr);
     }
   }
 

@@ -29,14 +29,14 @@ HRESULT gameOfLife3D::MainWnd::Initialize() {
   HICON hIcon = LoadIcon(HINST_THISCOMPONENT, MAKEINTRESOURCE(IDI_APP));
   if (hIcon == nullptr) {
     DWORD lastError = GetLastError();
-    LOG(SEVERITY_LEVEL_ERROR) << L"LoadIcon failed with error: " << lastError;
+    SPDLOG_ERROR(L"LoadIcon failed with error: {}", lastError);
     return E_FAIL;
   }
 
   HACCEL hAccel = LoadAccelerators(HINST_THISCOMPONENT, MAKEINTRESOURCE(IDR_ACCELERATOR_DEFAULT));
   if (hAccel == nullptr) {
     DWORD lastError = GetLastError();
-    LOG(SEVERITY_LEVEL_ERROR) << L"LoadAccelerators failed with error: " << lastError;
+    SPDLOG_ERROR(L"LoadAccelerators failed with error: {}", lastError);
     return E_FAIL;
   }
 
@@ -65,7 +65,7 @@ HRESULT gameOfLife3D::MainWnd::Initialize() {
   HRESULT hr = m_hwnd ? S_OK : E_FAIL;
   if (FAILED(hr)) {
     DWORD lastError = GetLastError();
-    LOG(SEVERITY_LEVEL_ERROR) << L"CreateWindow failed with error: " << lastError;
+    SPDLOG_ERROR(L"CreateWindow failed with error: {}", lastError);
   } else {
     m_tsfManager->SetHAccel(hAccel);
     m_tsfManager->SetHWnd(m_hwnd);
@@ -105,7 +105,7 @@ HRESULT gameOfLife3D::MainWnd::OnCreate(HWND hwnd, UINT message, WPARAM wParam, 
 LRESULT CALLBACK gameOfLife3D::MainWnd::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 #ifdef DEBUG_MAINWND
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
-// LOG(SEVERITY_LEVEL_DEBUG) << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
+// SPDLOG_DEBUG( << util::WMessage(util::WMessageArgs(hWnd, message, wParam, lParam));
 #endif
 
   LRESULT result = 0;

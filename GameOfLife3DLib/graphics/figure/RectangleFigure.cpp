@@ -95,7 +95,7 @@ HRESULT graphics::figure::RectangleFigure::Initialize(graphics::D3DInteropHelper
     graphics::figure::GeometryFilterWorkSet &geometryFilterWorkSet = *it;
     auto filter = pD3DInteropHelper->GetGeometryFilter(geometryFilterWorkSet.GetFilterName());
 #ifdef DEBUG_RECTANGLE_FIGURE
-    LOG(SEVERITY_LEVEL_DEBUG) << L"filterName = " << geometryFilterWorkSet.GetFilterName() << L", filter = " << std::hex
+    SPDLOG_DEBUG( << L"filterName = " << geometryFilterWorkSet.GetFilterName() << L", filter = " << std::hex
                               << filter.get() << std::dec;
 #endif
     if (filter.get() != nullptr) {
@@ -124,7 +124,7 @@ HRESULT graphics::figure::RectangleFigure::CreateDeviceDependentResources(graphi
                                                        D2D1::RectF(0.0f, 0.0f, GetWidth(), GetHeight()), 1.0f);
     geometryFilterWorkSet.SetBrush(brush);
 #ifdef DEBUG_RECTANGLE_FIGURE
-    LOG(SEVERITY_LEVEL_DEBUG) << L"filterName = " << geometryFilterWorkSet.GetFilterName() << L", brush = " << std::hex
+    SPDLOG_DEBUG( << L"filterName = " << geometryFilterWorkSet.GetFilterName() << L", brush = " << std::hex
                               << brush.get() << std::dec;
 #endif
     CComPtr<ID2D1Bitmap> bitmap = nullptr;
@@ -136,11 +136,11 @@ HRESULT graphics::figure::RectangleFigure::CreateDeviceDependentResources(graphi
                                                   &bounds));
     geometryFilterWorkSet.SetBitmap(bitmap);
 #ifdef DEBUG_RECTANGLE_FIGURE
-    LOG(SEVERITY_LEVEL_DEBUG) << L"bitmap = " << std::hex << bitmap << std::dec;
+    SPDLOG_DEBUG( << L"bitmap = " << std::hex << bitmap << std::dec;
 #endif
     geometryFilterWorkSet.SetEffectBounds(bounds);
 #ifdef DEBUG_RECTANGLE_FIGURE
-    LOG(SEVERITY_LEVEL_DEBUG) << L"bounds = " << bounds.left << L"," << bounds.top << L"," << bounds.right << L","
+    SPDLOG_DEBUG( << L"bounds = " << bounds.left << L"," << bounds.top << L"," << bounds.right << L","
                               << bounds.bottom;
 #endif
   }

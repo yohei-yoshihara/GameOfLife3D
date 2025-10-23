@@ -31,7 +31,7 @@ HRESULT ui::UIRadioButtonGroup::CreateDeviceDependentResources(graphics::D3DInte
     auto radioButton = std::dynamic_pointer_cast<UIRadioButton>(GetElement(i));
     UISize size = radioButton->GetPreferredSize();
 #ifdef DEBUG_UIRADIOBUTTONGROUP
-    LOG(SEVERITY_LEVEL_DEBUG) << L"preferred size = " << size;
+    SPDLOG_DEBUG( << L"preferred size = " << size;
 #endif
     radioButton->SetBounds(0.0f, y, GetWidth(), size.height);
     y += radioButton->GetHeight() + MARGIN_BUTTONS;
@@ -54,7 +54,7 @@ HRESULT ui::UIRadioButtonGroup::Render(graphics::D3DInteropHelper *pD3DInteropHe
     pRenderTarget->SetTransform(matrix);
     HRESULT hr = element->Render(pD3DInteropHelper, pRenderTarget);
     if (FAILED(hr)) {
-      LOG(SEVERITY_LEVEL_ERROR) << L"render a child element failed, index = " << i << L", hr = " << hr;
+      SPDLOG_ERROR(L"render a child element failed, index = {}, hr = {:x}", i, hr);
     }
     pRenderTarget->SetTransform(origMatrix);
   }

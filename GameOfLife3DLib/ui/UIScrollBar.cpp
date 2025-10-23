@@ -43,24 +43,24 @@ ui::UIScrollBar::~UIScrollBar() {
 HRESULT ui::UIScrollBar::Initialize(graphics::D3DInteropHelper *pD3DInteropHelper) {
 #ifdef DEBUG_UISCROLLBAR
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetTotalWidth() = " << GetTotalThick();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetTotalLength() = " << GetTotalLength();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSlideAreaWidth() = " << GetSlideAreaThick();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSlideAreaLength() = " << GetSlideAreaLength();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSlideAreaMargin() = " << GetSlideAreaMargin();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetBarPosition() = " << GetBarPosition();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetBarLength() = " << GetBarLength();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetBarWidth() = " << GetBarThick();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetBarOffset() = " << GetBarOffset();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetArrowLength() = " << GetArrowLength();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetArrowWidth() = " << GetArrowThick();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetArrowMargin() = " << GetArrowMargin();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetArrow1Offset() = " << GetArrow1Offset();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetArrow2Offset() = " << GetArrow2Offset();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSplitterMargin() = " << GetSplitterMargin();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSplitterWidth() = " << GetSplitterThick();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSplitterHeight() = " << GetSplitterHeight();
-  LOG(SEVERITY_LEVEL_DEBUG) << L"GetSplitterOffset() = " << GetSplitterOffset();
+  SPDLOG_DEBUG( << L"GetTotalWidth() = " << GetTotalThick();
+  SPDLOG_DEBUG( << L"GetTotalLength() = " << GetTotalLength();
+  SPDLOG_DEBUG( << L"GetSlideAreaWidth() = " << GetSlideAreaThick();
+  SPDLOG_DEBUG( << L"GetSlideAreaLength() = " << GetSlideAreaLength();
+  SPDLOG_DEBUG( << L"GetSlideAreaMargin() = " << GetSlideAreaMargin();
+  SPDLOG_DEBUG( << L"GetBarPosition() = " << GetBarPosition();
+  SPDLOG_DEBUG( << L"GetBarLength() = " << GetBarLength();
+  SPDLOG_DEBUG( << L"GetBarWidth() = " << GetBarThick();
+  SPDLOG_DEBUG( << L"GetBarOffset() = " << GetBarOffset();
+  SPDLOG_DEBUG( << L"GetArrowLength() = " << GetArrowLength();
+  SPDLOG_DEBUG( << L"GetArrowWidth() = " << GetArrowThick();
+  SPDLOG_DEBUG( << L"GetArrowMargin() = " << GetArrowMargin();
+  SPDLOG_DEBUG( << L"GetArrow1Offset() = " << GetArrow1Offset();
+  SPDLOG_DEBUG( << L"GetArrow2Offset() = " << GetArrow2Offset();
+  SPDLOG_DEBUG( << L"GetSplitterMargin() = " << GetSplitterMargin();
+  SPDLOG_DEBUG( << L"GetSplitterWidth() = " << GetSplitterThick();
+  SPDLOG_DEBUG( << L"GetSplitterHeight() = " << GetSplitterHeight();
+  SPDLOG_DEBUG( << L"GetSplitterOffset() = " << GetSplitterOffset();
 #endif
   m_body->SetX(0.0f);
   m_body->SetY(0.0f);
@@ -278,7 +278,7 @@ void ui::UIScrollBar::OnDraggingStart(HWND hWnd, WPARAM wParam, LPARAM lParam, U
     m_dragPosInBar.x = clientDragRect.start.x - m_bar->GetX();
     m_dragPosInBar.y = clientDragRect.start.y - m_bar->GetY();
 #ifdef DEBUG_UISCROLLBAR
-    LOG(SEVERITY_LEVEL_DEBUG) << L"m_dragPosInBar = " << m_dragPosInBar;
+    SPDLOG_DEBUG( << L"m_dragPosInBar = " << m_dragPosInBar;
 #endif
   }
 #ifdef DEBUG_UISCROLLBAR
@@ -290,9 +290,9 @@ void ui::UIScrollBar::OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Poi
                                  ULONGLONG timestampInMilliSeconds, OUT bool *eaten) {
 #ifdef DEBUG_UISCROLLBAR
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
-  LOG(SEVERITY_LEVEL_DEBUG) << L"clientDragRect=" << clientDragRect;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"delta=" << delta;
-  LOG(SEVERITY_LEVEL_DEBUG) << L"bar[" << m_bar->GetX() << L"," << m_bar->GetY() << L"," << m_bar->GetWidth() << L"x"
+  SPDLOG_DEBUG( << L"clientDragRect=" << clientDragRect;
+  SPDLOG_DEBUG( << L"delta=" << delta;
+  SPDLOG_DEBUG( << L"bar[" << m_bar->GetX() << L"," << m_bar->GetY() << L"," << m_bar->GetWidth() << L"x"
                             << m_bar->GetHeight() << L"]";
 #endif
   UNREFERENCED_PARAMETER(hWnd);
@@ -308,14 +308,14 @@ void ui::UIScrollBar::OnDragging(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2Poi
       FLOAT x = (m_maxValue - m_minValue) / (GetSlideAreaLength() - GetBarLength()) * sx;
       SetBarPosition(x);
 #ifdef DEBUG_UISCROLLBAR
-      LOG(SEVERITY_LEVEL_DEBUG) << L"sx = " << sx << L", x = " << x;
+      SPDLOG_DEBUG( << L"sx = " << sx << L", x = " << x;
 #endif
     } else {
       FLOAT sy = (clientDragRect.end.y - m_dragPosInBar.y) - GetSlideAreaOffset();
       FLOAT y = (m_maxValue - m_minValue) / (GetSlideAreaLength() - GetBarLength()) * sy;
       SetBarPosition(y);
 #ifdef DEBUG_UISCROLLBAR
-      LOG(SEVERITY_LEVEL_DEBUG) << L"sy = " << sy << L", y = " << y;
+      SPDLOG_DEBUG( << L"sy = " << sy << L", y = " << y;
 #endif
     }
   }
@@ -341,14 +341,14 @@ void ui::UIScrollBar::OnDraggingEnd(HWND hWnd, WPARAM wParam, LPARAM lParam, UI2
       FLOAT x = (m_maxValue - m_minValue) / (GetSlideAreaLength() - GetBarLength()) * sx;
       SetBarPosition(x);
 #ifdef DEBUG_UISCROLLBAR
-      LOG(SEVERITY_LEVEL_DEBUG) << L"sx = " << sx << L", x = " << x;
+      SPDLOG_DEBUG( << L"sx = " << sx << L", x = " << x;
 #endif
     } else {
       FLOAT sy = (clientDragRect.end.y - m_dragPosInBar.y) - GetSlideAreaOffset();
       FLOAT y = (m_maxValue - m_minValue) / (GetSlideAreaLength() - GetBarLength()) * sy;
       SetBarPosition(y);
 #ifdef DEBUG_UISCROLLBAR
-      LOG(SEVERITY_LEVEL_DEBUG) << L"sy = " << sy << L", y = " << y;
+      SPDLOG_DEBUG( << L"sy = " << sy << L", y = " << y;
 #endif
     }
   }
@@ -371,7 +371,7 @@ void ui::UIScrollBar::OnMouseOver(HWND hWnd, WPARAM wParam, LPARAM lParam, UIPoi
   UNREFERENCED_PARAMETER(timestampInMilliSeconds);
   UNREFERENCED_PARAMETER(eaten);
   //     if(m_arrow1->HitTest(clientPoint.x, clientPoint.y)) {
-  //         LOG(SEVERITY_LEVEL_DEBUG) << L"enter into arrow1";
+  //         SPDLOG_DEBUG( << L"enter into arrow1";
   //         m_arrow1->SetColor(graphics::COLOR_PATTERN_CONVEX, graphics::HSVColor(32.0f, 0.0f, 1.0f, 1.0f));
   //         m_propertyChanged = true;
   //     }
