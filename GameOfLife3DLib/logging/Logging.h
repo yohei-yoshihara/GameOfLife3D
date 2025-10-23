@@ -1,6 +1,12 @@
 ﻿#ifndef LOGGING_LOGGING_H_
 #define LOGGING_LOGGING_H_
 
+#define SPDLOG_HEADER_ONLY
+#define SPDLOG_WCHAR_FILENAMES
+#define SPDLOG_WCHAR_TO_UTF8_SUPPORT
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
+
 // Boost Log
 #define BOOST_LOG_USE_WCHAR_T
 #pragma warning(push)
@@ -34,7 +40,7 @@
 #pragma warning(pop)
 
 namespace logging {
-  inline void InitLogger(const wchar_t *logFileName) {}
+extern void InitLogger(const wchar_t *logFileName);
 }
 
 #define LOG(sev) std::wcout << __FUNCTION__ << L"(" << __LINE__ << L") - "
