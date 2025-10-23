@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Common.h"
 #include "gameOfLife3D/lifeSimulator/AbstractLifeSimulator.h"
 #include "graphics/D3DInteropHelper.h"

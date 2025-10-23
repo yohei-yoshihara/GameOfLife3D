@@ -1,4 +1,4 @@
-#ifndef TSF_MESSAGEQUEUE_H_
+﻿#ifndef TSF_MESSAGEQUEUE_H_
 #define TSF_MESSAGEQUEUE_H_
 
 namespace tsf {

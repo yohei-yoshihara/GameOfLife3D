@@ -3,6 +3,7 @@
 
 #*.dll
 #*.lib
+*.aps
 *.fxo
 *.orig
 *.com

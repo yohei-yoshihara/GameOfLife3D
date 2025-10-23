@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "tsf/MessageQueue.h"
 
 tsf::MessageQueue::MessageQueue(void) {

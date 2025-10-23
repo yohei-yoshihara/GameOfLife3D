@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "graphics/SharedSurface.h"
 
 graphics::SharedSurface::SharedSurface()

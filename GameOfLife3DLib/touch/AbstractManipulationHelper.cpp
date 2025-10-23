@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "touch/AbstractManipulationHelper.h"
 #include "util/Utils.h"
 

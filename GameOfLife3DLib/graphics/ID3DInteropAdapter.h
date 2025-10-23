@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_ID3DINTEROPADAPTER_H_
+﻿#ifndef GRAPHICS_ID3DINTEROPADAPTER_H_
 #define GRAPHICS_ID3DINTEROPADAPTER_H_
 namespace graphics {
   class D3DInteropHelper;

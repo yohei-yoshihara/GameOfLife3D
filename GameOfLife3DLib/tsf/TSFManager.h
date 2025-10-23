@@ -1,4 +1,4 @@
-#ifndef TSF_TSFMANAGER_H_
+﻿#ifndef TSF_TSFMANAGER_H_
 #define TSF_TSFMANAGER_H_
 
 #include "Common.h"

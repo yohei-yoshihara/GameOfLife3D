@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_BRUSH_BRUSHSET_H_
+ï»¿#ifndef GRAPHICS_BRUSH_BRUSHSET_H_
 #define GRAPHICS_BRUSH_BRUSHSET_H_
 
 #include "graphics/brush/IBrush.h"
@@ -7,69 +7,69 @@
 
 namespace graphics {
   namespace brush {
-    // ƒuƒ‰ƒVƒZƒbƒg - •¡”‚Ìƒuƒ‰ƒV‚ğˆê‚Â‚É‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
+    // ãƒ–ãƒ©ã‚·ã‚»ãƒƒãƒˆ - è¤‡æ•°ã®ãƒ–ãƒ©ã‚·ã‚’ä¸€ã¤ã«ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
     class BrushSet {
     private:
-      // ƒuƒ‰ƒV‚ğŠi”[‚µ‚½ƒxƒNƒ^
+      // ãƒ–ãƒ©ã‚·ã‚’æ ¼ç´ã—ãŸãƒ™ã‚¯ã‚¿
       std::vector<std::shared_ptr<graphics::brush::IBrush>> m_brushes;
-      // ƒ‰ƒxƒ‹‚Æƒuƒ‰ƒV‚Ìƒ}ƒbƒv
+      // ãƒ©ãƒ™ãƒ«ã¨ãƒ–ãƒ©ã‚·ã®ãƒãƒƒãƒ—
       std::unordered_map<std::wstring, std::shared_ptr<graphics::brush::IBrush>> m_labelToBrashMap;
-      // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚ª¶¬‚³‚ê‚½‚©‚Ç‚¤‚©
+      // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ãŒç”Ÿæˆã•ã‚ŒãŸã‹ã©ã†ã‹
       bool m_deviceDependentResourceCreated;
 
     public:
-      // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+      // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
       BrushSet()
           : m_brushes()
           , m_labelToBrashMap()
           , m_deviceDependentResourceCreated(false) {
       }
-      // ƒRƒ“ƒXƒgƒ‰ƒNƒ^iw’è‚³‚ê‚½ƒJƒ‰[ƒZƒbƒg‚©‚çƒuƒ‰ƒV‚ğì¬j
+      // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆæŒ‡å®šã•ã‚ŒãŸã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã‹ã‚‰ãƒ–ãƒ©ã‚·ã‚’ä½œæˆï¼‰
       BrushSet(const graphics::color::ColorSet &colorSet)
           : m_brushes(colorSet.GetNumberOfColors())
           , m_labelToBrashMap()
           , m_deviceDependentResourceCreated(false) {
         SetColorSet(colorSet);
       }
-      // ƒRƒ“ƒXƒgƒ‰ƒNƒ^iw’è‚³‚ê‚½ƒJƒ‰[ƒZƒbƒg‚©‚çƒuƒ‰ƒV‚ğì¬j
+      // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆæŒ‡å®šã•ã‚ŒãŸã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã‹ã‚‰ãƒ–ãƒ©ã‚·ã‚’ä½œæˆï¼‰
       BrushSet(const std::shared_ptr<graphics::color::ColorSet> &colorSet)
           : m_brushes(colorSet->GetNumberOfColors())
           , m_labelToBrashMap()
           , m_deviceDependentResourceCreated(false) {
         SetColorSet(colorSet);
       }
-      // ƒfƒXƒgƒ‰ƒNƒ^
+      // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
       ~BrushSet() {
       }
-      // ƒuƒ‰ƒV‚ÌƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚Ì¶¬
-      // w’è‚³‚ê‚½—Ìˆæ‚É‡‚¤‚æ‚¤‚Éƒuƒ‰ƒV‚ª¶¬‚³‚ê‚éB‚à‚µ—Ìˆæ‚ğ•ÏX‚µ‚½‚¢ê‡‚Í
-      // GetBrush‚Ìˆø”‚Éw’è‚·‚éB
-      // opacity‚Íƒuƒ‰ƒV‚Ì•s“§–¾“x‚ğw’è‚·‚éB‚à‚µ•s“§–¾“x‚ğ•ÏX‚µ‚½‚¢ê‡‚Í
-      // GetBrush‚Ìˆø”‚Éw’è‚·‚éB
+      // ãƒ–ãƒ©ã‚·ã®ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã®ç”Ÿæˆ
+      // æŒ‡å®šã•ã‚ŒãŸé ˜åŸŸã«åˆã†ã‚ˆã†ã«ãƒ–ãƒ©ã‚·ãŒç”Ÿæˆã•ã‚Œã‚‹ã€‚ã‚‚ã—é ˜åŸŸã‚’å¤‰æ›´ã—ãŸã„å ´åˆã¯
+      // GetBrushã®å¼•æ•°ã«æŒ‡å®šã™ã‚‹ã€‚
+      // opacityã¯ãƒ–ãƒ©ã‚·ã®ä¸é€æ˜åº¦ã‚’æŒ‡å®šã™ã‚‹ã€‚ã‚‚ã—ä¸é€æ˜åº¦ã‚’å¤‰æ›´ã—ãŸã„å ´åˆã¯
+      // GetBrushã®å¼•æ•°ã«æŒ‡å®šã™ã‚‹ã€‚
       HRESULT CreateDeviceDependentResource(ID2D1RenderTarget *pRenderTarget, const D2D1_RECT_F &rect, FLOAT opacity);
-      // ƒuƒ‰ƒV‚Ì’Ç‰Á
+      // ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
       void AddBrush(const std::shared_ptr<graphics::brush::IBrush> &brush) {
         m_brushes.push_back(brush);
       }
-      // ƒuƒ‰ƒV‚Ì’Ç‰Á
+      // ãƒ–ãƒ©ã‚·ã®è¿½åŠ 
       void AddBrush(const std::shared_ptr<graphics::brush::IBrush> &brush, const std::wstring &label) {
         m_brushes.push_back(brush);
         m_labelToBrashMap.insert({label, brush});
       }
-      // ƒuƒ‰ƒV‚ÌƒNƒŠƒAi‚·‚×‚Ä‚Ìƒuƒ‰ƒV‚ª”jŠü‚³‚ê‚éj
+      // ãƒ–ãƒ©ã‚·ã®ã‚¯ãƒªã‚¢ï¼ˆã™ã¹ã¦ã®ãƒ–ãƒ©ã‚·ãŒç ´æ£„ã•ã‚Œã‚‹ï¼‰
       void Clear() {
         m_brushes.clear();
         m_labelToBrashMap.clear();
       }
-      // ƒuƒ‰ƒV”‚ğ•Ô‚·
+      // ãƒ–ãƒ©ã‚·æ•°ã‚’è¿”ã™
       size_t GetNumberOfBrushes() const {
         return m_brushes.size();
       }
-      // w’è‚³‚ê‚½ƒCƒ“ƒfƒbƒNƒX‚Ìƒuƒ‰ƒV‚ğ•Ô‚·
+      // æŒ‡å®šã•ã‚ŒãŸã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ãƒ–ãƒ©ã‚·ã‚’è¿”ã™
       std::shared_ptr<IBrush> Get(size_t index) const {
         return m_brushes[index];
       }
-      // ƒ‰ƒxƒ‹‚©‚çƒuƒ‰ƒV‚ğ•Ô‚·
+      // ãƒ©ãƒ™ãƒ«ã‹ã‚‰ãƒ–ãƒ©ã‚·ã‚’è¿”ã™
       std::shared_ptr<IBrush> Get(const std::wstring &label) const {
         if (m_labelToBrashMap.count(label) > 0) {
           return m_labelToBrashMap.at(label);
@@ -77,15 +77,15 @@ namespace graphics {
           throw std::runtime_error("a brush which has the specified label is not found");
         }
       }
-      // Œ»İ•Û‚µ‚Ä‚¢‚é‚·‚×‚Ä‚Ìƒuƒ‰ƒV‚ª”jŠü‚³‚êAƒJƒ‰[ƒZƒbƒg‚Ì“à—e‚É‡‚í‚¹‚Äƒuƒ‰ƒV‚ª¶¬‚³‚ê‚é
+      // ç¾åœ¨ä¿æŒã—ã¦ã„ã‚‹ã™ã¹ã¦ã®ãƒ–ãƒ©ã‚·ãŒç ´æ£„ã•ã‚Œã€ã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã®å†…å®¹ã«åˆã‚ã›ã¦ãƒ–ãƒ©ã‚·ãŒç”Ÿæˆã•ã‚Œã‚‹
       void SetColorSet(const graphics::color::ColorSet &colorSet);
-      // Œ»İ•Û‚µ‚Ä‚¢‚é‚·‚×‚Ä‚Ìƒuƒ‰ƒV‚ª”jŠü‚³‚êAƒJƒ‰[ƒZƒbƒg‚Ì“à—e‚É‡‚í‚¹‚Äƒuƒ‰ƒV‚ª¶¬‚³‚ê‚é
+      // ç¾åœ¨ä¿æŒã—ã¦ã„ã‚‹ã™ã¹ã¦ã®ãƒ–ãƒ©ã‚·ãŒç ´æ£„ã•ã‚Œã€ã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆã®å†…å®¹ã«åˆã‚ã›ã¦ãƒ–ãƒ©ã‚·ãŒç”Ÿæˆã•ã‚Œã‚‹
       void SetColorSet(const std::shared_ptr<graphics::color::ColorSet> &colorSet) {
         SetColorSet(*colorSet);
       }
-      // ‚·‚×‚Ä‚ÌƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚ğ”jŠü‚·‚é
+      // ã™ã¹ã¦ã®ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã‚’ç ´æ£„ã™ã‚‹
       void DiscardDeviceDependentResource();
-      // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚ª¶¬‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+      // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ãŒç”Ÿæˆã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
       bool IsDeviceDependentResourceCreated() {
         return m_deviceDependentResourceCreated;
       }

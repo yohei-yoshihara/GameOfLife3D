@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_BRUSH_BRUSHFACTORY_H_
+﻿#ifndef GRAPHICS_BRUSH_BRUSHFACTORY_H_
 #define GRAPHICS_BRUSH_BRUSHFACTORY_H_
 
 #include "graphics/color/IColor.h"

@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_INNERGAUSSFILTER_H_
+﻿#ifndef GRAPHICS_INNERGAUSSFILTER_H_
 #define GRAPHICS_INNERGAUSSFILTER_H_
 
 #include "graphics/GraphicsCommon.h"

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "Common.h"
 #include "util/Utils.h"
 #include "mui/MUI.h"

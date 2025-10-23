@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "Common.h"
 #include "graphics/GraphicsCommon.h"
 #include "graphics/D3DInteropHelper.h"
@@ -57,12 +57,12 @@ HRESULT graphics::figure::EllipseFigure::Initialize(graphics::D3DInteropHelper *
     SetColor(m_color, graphics::color::COLOR_PATTERN_CONCAVE_METAL);
   }
 
-  // ƒWƒIƒƒgƒŠ‚Ì‰Šú‰»
+  // ã‚¸ã‚ªãƒ¡ãƒˆãƒªã®åˆæœŸåŒ–
   m_pGeometry = nullptr;
   CHK_FATAL_HRESULT(pD3DInteropHelper->GetD2DFactory()->CreateEllipseGeometry(
       D2D1::Ellipse(D2D1::Point2F(m_width / 2.0f, m_height / 2.0f), m_width / 2.0f, m_height / 2.0f), &m_pGeometry));
 
-  // ƒtƒŒ[ƒ€‚Ì‰Šú‰»
+  // ãƒ•ãƒ¬ãƒ¼ãƒ ã®åˆæœŸåŒ–
   for (size_t i = 0; i < m_brushes->GetNumberOfBrushes(); ++i) {
     FLOAT offset = static_cast<FLOAT>(i);
     m_frames[i] = nullptr;
@@ -72,17 +72,17 @@ HRESULT graphics::figure::EllipseFigure::Initialize(graphics::D3DInteropHelper *
         &m_frames[i]));
   }
 
-  // ƒfƒRƒŒ[ƒ^‚Ì‰Šú‰»
+  // ãƒ‡ã‚³ãƒ¬ãƒ¼ã‚¿ã®åˆæœŸåŒ–
   for (auto it = m_decorators.begin(); it != m_decorators.end(); ++it) {
     CHK_FATAL_HRESULT((*it)->Initialize(pD3DInteropHelper, m_pGeometry));
   }
 
-  // ƒVƒƒƒhƒE‚Ì‰Šú‰»
+  // ã‚·ãƒ£ãƒ‰ã‚¦ã®åˆæœŸåŒ–
   if (m_shadow && !HasGeometryFilter(L"#shadow")) {
     AddGeometryFilter(L"#shadow", L"GaussFilter", FILTER_DISPLAY_ORDER_BEFORE_FIGURE, m_shadowColor);
   }
 
-  // ƒWƒIƒƒgƒŠƒtƒBƒ‹ƒ^[‚Ì‰Šú‰»
+  // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®åˆæœŸåŒ–
   for (auto it = m_geometryFilter.begin(); it != m_geometryFilter.end(); ++it) {
     graphics::figure::GeometryFilterWorkSet &geometryFilterWorkSet = *it;
     auto filter = pD3DInteropHelper->GetGeometryFilter(geometryFilterWorkSet.GetFilterName());
@@ -110,7 +110,7 @@ HRESULT graphics::figure::EllipseFigure::CreateDeviceDependentResources(graphics
 
   for (auto it = m_geometryFilter.begin(); it != m_geometryFilter.end(); ++it) {
     graphics::figure::GeometryFilterWorkSet &geometryFilterWorkSet = *it;
-    // ƒWƒIƒƒgƒŠƒtƒBƒ‹ƒ^[—p‚Ìƒuƒ‰ƒV‚Ì‰Šú‰»
+    // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ç”¨ã®ãƒ–ãƒ©ã‚·ã®åˆæœŸåŒ–
     auto brush = graphics::brush::BrushFactory::Create(pRenderTarget, geometryFilterWorkSet.GetColor(),
                                                        D2D1::RectF(0.0f, 0.0f, GetWidth(), GetHeight()), 1.0f);
     geometryFilterWorkSet.SetBrush(brush);
@@ -121,7 +121,7 @@ HRESULT graphics::figure::EllipseFigure::CreateDeviceDependentResources(graphics
     CComPtr<ID2D1Bitmap> bitmap = nullptr;
     D2D1_RECT_F bounds = {0};
     auto geometryFilter = geometryFilterWorkSet.GetGeometryFilter();
-    // ƒWƒIƒƒgƒŠƒtƒBƒ‹ƒ^[‚Ì“K—p
+    // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®é©ç”¨
     CHK_FATAL_HRESULT(geometryFilter->ApplyFilter(pD3DInteropHelper, pRenderTarget, m_frames[0], GetWidth(),
                                                   GetHeight(), geometryFilterWorkSet.GetBrush()->GetBrush(), &bitmap,
                                                   &bounds));

@@ -1,4 +1,4 @@
-#ifndef GAMEOFLIFE3D_LIFESIMULATOR_H_
+﻿#ifndef GAMEOFLIFE3D_LIFESIMULATOR_H_
 #define GAMEOFLIFE3D_LIFESIMULATOR_H_
 
 #include "graphics/GraphicsCommon.h"

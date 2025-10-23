@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "graphics/D3DInteropHelper.h"
 #include "graphics/color/ColorUtil.h"
 #include "ui/UIContainer.h"

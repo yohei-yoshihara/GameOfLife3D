@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "graphics/color/IColor.h"
 #include "graphics/color/LinearGradientColor.h"
 

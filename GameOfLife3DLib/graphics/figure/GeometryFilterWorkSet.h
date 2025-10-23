@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_FIGURE_GEOMETRYFILTER_H_
+﻿#ifndef GRAPHICS_FIGURE_GEOMETRYFILTER_H_
 #define GRAPHICS_FIGURE_GEOMETRYFILTER_H_
 
 #include "graphics/color/ColorValue.h"

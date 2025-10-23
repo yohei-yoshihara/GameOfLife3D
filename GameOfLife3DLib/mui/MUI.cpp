@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "mui/MUI.h"
 #include "logging/Logging.h"
 

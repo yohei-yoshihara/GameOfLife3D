@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+﻿#include "Stdafx.h"
 #include "graphics/color/ColorSet.h"
 #include "graphics/color/IColor.h"
 #include "graphics/color/SolidColor.h"

@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_BITMAP_H_
+﻿#ifndef GRAPHICS_BITMAP_H_
 #define GRAPHICS_BITMAP_H_
 
 namespace graphics {

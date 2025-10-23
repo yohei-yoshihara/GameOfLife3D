@@ -1,4 +1,4 @@
-#ifndef UI_UITEXTSTOREACP_H_
+﻿#ifndef UI_UITEXTSTOREACP_H_
 #define UI_UITEXTSTOREACP_H_
 
 #include "ui/UICommon.h"

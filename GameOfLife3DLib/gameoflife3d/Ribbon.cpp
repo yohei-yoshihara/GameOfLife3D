@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include <Shobjidl.h>
 #include <propvarutil.h>
 #include "Common.h"

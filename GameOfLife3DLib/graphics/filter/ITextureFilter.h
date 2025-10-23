@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_ITEXTUREFILTER_H_
+ï»¿#ifndef GRAPHICS_ITEXTUREFILTER_H_
 #define GRAPHICS_ITEXTUREFILTER_H_
 
 #include "graphics/GraphicsCommon.h"
@@ -8,9 +8,9 @@ namespace graphics {
     class ITextureFilter {
     public:
       virtual HRESULT Initialize() = 0;
-      // ƒeƒNƒXƒ`ƒƒƒtƒBƒ‹ƒ^[‚Ì“K—p
-      // o—Íæ‚ÌƒeƒNƒXƒ`ƒƒ‚ÍACalculateMargins‚©‚çŒvZ‚³‚ê‚½ƒ}[ƒWƒ“‚ğ‚ÂƒeƒNƒXƒ`ƒƒƒTƒCƒY
-      // ‚Ì‚à‚Ì‚ğì¬‚µ‚Ä‚¨‚©‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+      // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®é©ç”¨
+      // å‡ºåŠ›å…ˆã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã¯ã€CalculateMarginsã‹ã‚‰è¨ˆç®—ã•ã‚ŒãŸãƒãƒ¼ã‚¸ãƒ³ã‚’æŒã¤ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚µã‚¤ã‚º
+      // ã®ã‚‚ã®ã‚’ä½œæˆã—ã¦ãŠã‹ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
       virtual HRESULT ApplyFilter(IN graphics::D3DInteropHelper *pD3DInteropHelper, IN ID3D10Texture2D *pSourceTexture,
                                   OUT ID3D10Texture2D **ppOutputTexture)
           = 0;

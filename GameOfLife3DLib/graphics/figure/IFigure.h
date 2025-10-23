@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_FIGURE_IFIGURE_H_
+ï»¿#ifndef GRAPHICS_FIGURE_IFIGURE_H_
 #define GRAPHICS_FIGURE_IFIGURE_H_
 
 #include "graphics/GraphicsCommon.h"
@@ -11,58 +11,58 @@ namespace graphics {
       FILTER_DISPLAY_ORDER_AFTER_FIGURE,
     };
 
-    // }Œ`
+    // å›³å½¢
     class IFigure {
     public:
-      // XÀ•W‚Ìİ’è
+      // Xåº§æ¨™ã®è¨­å®š
       virtual void SetX(FLOAT x) = 0;
-      // XÀ•W‚Ìæ“¾
+      // Xåº§æ¨™ã®å–å¾—
       virtual FLOAT GetX() const = 0;
-      // YÀ•W‚Ìİ’è
+      // Yåº§æ¨™ã®è¨­å®š
       virtual void SetY(FLOAT y) = 0;
-      // YÀ•W‚Ìæ“¾
+      // Yåº§æ¨™ã®å–å¾—
       virtual FLOAT GetY() const = 0;
-      // •‚Ìİ’è
+      // å¹…ã®è¨­å®š
       virtual void SetWidth(FLOAT width) = 0;
-      // •‚Ìæ“¾
+      // å¹…ã®å–å¾—
       virtual FLOAT GetWidth() const = 0;
-      // ‚‚³‚Ìİ’è
+      // é«˜ã•ã®è¨­å®š
       virtual void SetHeight(FLOAT height) = 0;
-      // ‚‚³‚Ìæ“¾
+      // é«˜ã•ã®å–å¾—
       virtual FLOAT GetHeight() const = 0;
-      // }Œ`‚ÌF‚Ìİ’è
-      //   ƒJƒ‰[ƒpƒ^[ƒ“‚ğİ’è‚µ‚½ê‡A‚»‚ÌƒJƒ‰[ƒpƒ^[ƒ“‚É]‚Á‚Ä•\Œ»‚³‚ê‚éB‹ï‘Ì“I‚É‚Ç‚Ì‚æ‚¤‚É•\Œ»‚³‚ê‚é‚©‚Í
-      //   ŒÂX‚Ì}Œ`‚ÌÀ‘•‚É‚æ‚éB
-      //   ƒJƒ‰[ƒpƒ^[ƒ“‚ğw’è‚µ‚È‚©‚Á‚½ê‡Aw’è‚µ‚½’PF‚Å“h‚è‚Â‚Ô‚³‚ê‚éB
+      // å›³å½¢ã®è‰²ã®è¨­å®š
+      //   ã‚«ãƒ©ãƒ¼ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’è¨­å®šã—ãŸå ´åˆã€ãã®ã‚«ãƒ©ãƒ¼ãƒ‘ã‚¿ãƒ¼ãƒ³ã«å¾“ã£ã¦è¡¨ç¾ã•ã‚Œã‚‹ã€‚å…·ä½“çš„ã«ã©ã®ã‚ˆã†ã«è¡¨ç¾ã•ã‚Œã‚‹ã‹ã¯
+      //   å€‹ã€…ã®å›³å½¢ã®å®Ÿè£…ã«ã‚ˆã‚‹ã€‚
+      //   ã‚«ãƒ©ãƒ¼ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æŒ‡å®šã—ãªã‹ã£ãŸå ´åˆã€æŒ‡å®šã—ãŸå˜è‰²ã§å¡—ã‚Šã¤ã¶ã•ã‚Œã‚‹ã€‚
       virtual void SetColor(const graphics::color::ColorValue &colorValue,
                             graphics::color::COLOR_PATTERN colorPattern = graphics::color::COLOR_PATTERN_FLAT)
           = 0;
-      // ‰Šú‰»
+      // åˆæœŸåŒ–
       virtual HRESULT Initialize(graphics::D3DInteropHelper *pD3DInteropHelper) = 0;
-      // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚Ì¶¬
+      // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã®ç”Ÿæˆ
       virtual HRESULT CreateDeviceDependentResources(graphics::D3DInteropHelper *pD3DInteropHelper,
                                                      ID2D1RenderTarget *pRenderTarget)
           = 0;
-      // •`‰æ
+      // æç”»
       virtual HRESULT Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget,
                              FLOAT opacity)
           = 0;
-      // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚Ì”jŠü
+      // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
       virtual void DiscardDeviceDependentResources() = 0;
-      // ƒqƒbƒgƒeƒXƒg
+      // ãƒ’ãƒƒãƒˆãƒ†ã‚¹ãƒˆ
       virtual bool HitTest(FLOAT x, FLOAT y) = 0;
-      // ƒfƒRƒŒ[ƒ^‚Ì’Ç‰Á
+      // ãƒ‡ã‚³ãƒ¬ãƒ¼ã‚¿ã®è¿½åŠ 
       virtual void AddDecorator(const std::shared_ptr<graphics::decorator::IDecorator> &decorator) = 0;
-      // ƒfƒRƒŒ[ƒ^‚ÌƒNƒŠƒA
+      // ãƒ‡ã‚³ãƒ¬ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
       virtual void ClearDecorators() = 0;
-      // ƒtƒBƒ‹ƒ^[‚Ì’Ç‰Á
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®è¿½åŠ 
       virtual void AddGeometryFilter(const std::wstring &workSetName, const std::wstring &filterName,
                                      FILTER_DISPLAY_ORDER filterDispayOrder,
                                      std::shared_ptr<graphics::color::IColor> color)
           = 0;
-      // ƒtƒBƒ‹ƒ^[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ÌƒeƒXƒg
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ†ã‚¹ãƒˆ
       virtual bool HasGeometryFilter(const std::wstring &workSetName) = 0;
-      // ƒtƒBƒ‹ƒ^[‚Ìíœ
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å‰Šé™¤
       virtual void ClearGeometryFilters() = 0;
     };
   }

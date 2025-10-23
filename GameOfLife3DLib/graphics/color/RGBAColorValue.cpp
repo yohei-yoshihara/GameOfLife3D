@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "graphics/color/ColorUtil.h"
 #include "graphics/color/ColorValue.h"
 #include "graphics/color/HSBAColorValue.h"

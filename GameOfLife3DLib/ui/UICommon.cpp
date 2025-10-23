@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "ui/UICommon.h"
 
 std::wostream &ui::operator<<(std::wostream &os, UIPoint const &point) {

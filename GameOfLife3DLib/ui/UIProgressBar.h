@@ -1,4 +1,4 @@
-#ifndef UI_UIPROGRESSBAR_H_
+﻿#ifndef UI_UIPROGRESSBAR_H_
 #define UI_UIPROGRESSBAR_H_
 
 #include "graphics/GraphicsCommon.h"

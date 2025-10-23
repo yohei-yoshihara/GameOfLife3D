@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "GameOfLife3D/IMainWnd.h"
 

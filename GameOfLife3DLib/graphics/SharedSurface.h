@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_SHAREDSURFACE_H_
+﻿#ifndef GRAPHICS_SHAREDSURFACE_H_
 #define GRAPHICS_SHAREDSURFACE_H_
 
 namespace graphics {

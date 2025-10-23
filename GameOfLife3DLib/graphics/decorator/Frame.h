@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_DECORATION_FRAME_H_
+﻿#ifndef GRAPHICS_DECORATION_FRAME_H_
 #define GRAPHICS_DECORATION_FRAME_H_
 
 namespace graphics {

@@ -1,4 +1,4 @@
-#ifndef UI_UITEXTFIELD_H_
+﻿#ifndef UI_UITEXTFIELD_H_
 #define UI_UITEXTFIELD_H_
 
 #include "graphics/GraphicsCommon.h"

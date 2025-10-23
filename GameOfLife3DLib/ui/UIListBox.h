@@ -1,4 +1,4 @@
-#ifndef UI_UILISTBOX_H_
+ï»¿#ifndef UI_UILISTBOX_H_
 #define UI_UILISTBOX_H_
 
 #include "graphics/GraphicsCommon.h"
@@ -11,72 +11,72 @@ namespace ui {
 
   class UIListBox : public UIContainer, public std::enable_shared_from_this<UIListBox> {
   public:
-    // ƒXƒNƒ[ƒ‹•ûŒü
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘
     enum SCROLL_DIRECTION { SCROLL_DIRECTION_HORIZONTAL, SCROLL_DIRECTION_VERTICAL };
 
   private:
-    // ƒXƒNƒ[ƒ‹•ûŒü
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘
     SCROLL_DIRECTION m_scrollDirection;
-    // Šó–]‚·‚éƒrƒbƒgƒ}ƒbƒvƒTƒCƒY iƒfƒtƒHƒ‹ƒg‚Í64x64j
+    // å¸Œæœ›ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚º ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯64x64ï¼‰
     UISize m_preferredBitmapSize;
-    // Šó–]‚·‚éƒeƒLƒXƒg• (ƒ}ƒCƒiƒX‚Ìê‡Aƒrƒbƒgƒ}ƒbƒvƒTƒCƒY‚æ‚è©“®ŒvZj
+    // å¸Œæœ›ã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆå¹… (ãƒã‚¤ãƒŠã‚¹ã®å ´åˆã€ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚ºã‚ˆã‚Šè‡ªå‹•è¨ˆç®—ï¼‰
     UISize m_preferredTextAreaSize;
-    // ƒrƒbƒgƒ}ƒbƒv‚ÆƒeƒLƒXƒg‚ÌŠÔ‚Ìƒ}[ƒWƒ“
+    // ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã¨ãƒ†ã‚­ã‚¹ãƒˆã®é–“ã®ãƒãƒ¼ã‚¸ãƒ³
     FLOAT m_marginBetweenBitmapAndText;
-    // ƒAƒCƒeƒ€ŠÔ‚ÌŠÔŠu iƒfƒtƒHƒ‹ƒg‚Í4j
+    // ã‚¢ã‚¤ãƒ†ãƒ é–“ã®é–“éš” ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯4ï¼‰
     FLOAT m_marginBetweenItems;
-    // ƒAƒCƒeƒ€‚Ì•
+    // ã‚¢ã‚¤ãƒ†ãƒ ã®å¹…
     FLOAT m_itemWidth;
-    // ƒAƒCƒeƒ€‚Ì‚‚³
+    // ã‚¢ã‚¤ãƒ†ãƒ ã®é«˜ã•
     FLOAT m_itemHeight;
-    // ƒXƒNƒ[ƒ‹ƒo[‚ÌƒTƒCƒh‚©‚ç‚ÌŠÔŠu@iƒfƒtƒHƒ‹ƒg‚Í8j
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ã‚µã‚¤ãƒ‰ã‹ã‚‰ã®é–“éš”ã€€ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯8ï¼‰
     FLOAT m_scrollBarMarginFromSide;
-    // ƒXƒNƒ[ƒ‹ƒo[‚Ì‘¾‚³iƒfƒtƒHƒ‹ƒg‚Í12j
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®å¤ªã•ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯12ï¼‰
     FLOAT m_scrollBarThick;
-    // ƒŠƒXƒgƒ{ƒbƒNƒX‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒtƒBƒMƒ…ƒA
+    // ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹ãŸã‚ã®ãƒ•ã‚£ã‚®ãƒ¥ã‚¢
     std::unique_ptr<graphics::figure::RectangleFigure> m_rectFigure;
-    // ƒŠƒXƒgƒ{ƒbƒNƒX‚ğ•`‰æ‚·‚é‚½‚ß‚ÌƒJƒ‰[ƒZƒbƒg
+    // ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‚’æç”»ã™ã‚‹ãŸã‚ã®ã‚«ãƒ©ãƒ¼ã‚»ãƒƒãƒˆ
     std::shared_ptr<graphics::color::ColorSet> m_colorSet;
-    // ƒXƒNƒ[ƒ‹ƒo[
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼
     std::shared_ptr<ui::UIScrollBar> m_scrollBar;
-    // ƒXƒNƒ[ƒ‹ƒo[‚ÌˆÊ’u‚©‚çŒvZ‚³‚ê‚é•\¦ˆÊ’uƒIƒtƒZƒbƒg
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®ä½ç½®ã‹ã‚‰è¨ˆç®—ã•ã‚Œã‚‹è¡¨ç¤ºä½ç½®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
     FLOAT m_displayPositionOffset;
 
   public:
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     UIListBox(SCROLL_DIRECTION scrollDirection = SCROLL_DIRECTION_VERTICAL,
               UISize preferredBitmapSize = UISize(64, 64));
-    // ƒfƒXƒgƒ‰ƒNƒ^
+    // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     virtual ~UIListBox(void);
-    // ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‰Šú‰»
+    // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®åˆæœŸåŒ–
     virtual HRESULT Initialize(graphics::D3DInteropHelper *pD3DInteropHelper);
-    // ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÌƒŒƒCƒAƒEƒg
+    // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     virtual HRESULT LayoutComponents();
-    // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚Ì¶¬
+    // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã®ç”Ÿæˆ
     virtual HRESULT CreateDeviceDependentResources(graphics::D3DInteropHelper *pD3DInteropHelper,
                                                    ID2D1RenderTarget *pRenderTarget);
-    // •`‰æ
+    // æç”»
     virtual HRESULT Render(graphics::D3DInteropHelper *pD3DInteropHelper, ID2D1RenderTarget *pRenderTarget);
-    // ƒfƒoƒCƒXˆË‘¶ƒŠƒ\[ƒX‚Ì”jŠü
+    // ãƒ‡ãƒã‚¤ã‚¹ä¾å­˜ãƒªã‚½ãƒ¼ã‚¹ã®ç ´æ£„
     virtual void DiscardDeviceDependentResources();
 
-    // Šó–]‚·‚éƒrƒbƒgƒ}ƒbƒvƒTƒCƒY‚Ìİ’è
+    // å¸Œæœ›ã™ã‚‹ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚µã‚¤ã‚ºã®è¨­å®š
     void SetPreferredBitmapSize(UISize preferredBitmapSize) {
       m_preferredBitmapSize = preferredBitmapSize;
     }
-    // Šó–]‚·‚éƒeƒLƒXƒg—ÌˆæƒTƒCƒY‚Ìİ’è
+    // å¸Œæœ›ã™ã‚‹ãƒ†ã‚­ã‚¹ãƒˆé ˜åŸŸã‚µã‚¤ã‚ºã®è¨­å®š
     void SetPreferredTextAreaSize(UISize preferredTextAreaSize) {
       m_preferredTextAreaSize = preferredTextAreaSize;
     }
-    // ƒAƒCƒeƒ€ŠÔ‚Ìƒ}[ƒWƒ“‚Ìİ’è
+    // ã‚¢ã‚¤ãƒ†ãƒ é–“ã®ãƒãƒ¼ã‚¸ãƒ³ã®è¨­å®š
     void SetMarginBetweenItems(FLOAT marginBetweenItems) {
       m_marginBetweenItems = marginBetweenItems;
     }
-    // ƒXƒNƒ[ƒ‹•ûŒü‚Ìİ’è
+    // ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«æ–¹å‘ã®è¨­å®š
     void SetScrollDirection(SCROLL_DIRECTION scrollDirection) {
       m_scrollDirection = scrollDirection;
     }
-    // ƒtƒH[ƒJƒXæ“¾‚Ì’Ê’m
+    // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹å–å¾—ã®é€šçŸ¥
     virtual void NotifyFocusObtained(const std::shared_ptr<UIBase> &uiBase);
 
     // scroll position changed

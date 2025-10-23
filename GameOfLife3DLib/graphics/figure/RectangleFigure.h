@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_RECTANGLEFIGURE_H_
+ï»¿#ifndef GRAPHICS_RECTANGLEFIGURE_H_
 #define GRAPHICS_RECTANGLEFIGURE_H_
 
 #include "graphics/GraphicsCommon.h"
@@ -13,50 +13,50 @@
 
 namespace graphics {
   namespace figure {
-    // lŠpŒ`iŠpŠÛlŠpŒ`‚àŠÜ‚Şj
+    // å››è§’å½¢ï¼ˆè§’ä¸¸å››è§’å½¢ã‚‚å«ã‚€ï¼‰
     class RectangleFigure : public graphics::figure::IFigure,
                             public std::enable_shared_from_this<graphics::figure::RectangleFigure> {
     private:
-      // ƒvƒƒpƒeƒB‚ª•ÏX‚³‚ê‚½ê‡true
+      // ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ãŒå¤‰æ›´ã•ã‚ŒãŸå ´åˆtrue
       bool m_propertyChanged;
-      // xÀ•W
+      // xåº§æ¨™
       FLOAT m_x;
-      // yÀ•W
+      // yåº§æ¨™
       FLOAT m_y;
-      // •
+      // å¹…
       FLOAT m_width;
-      // ‚‚³
+      // é«˜ã•
       FLOAT m_height;
-      // ŠpŠÛ‚Ì”¼Œa
+      // è§’ä¸¸ã®åŠå¾„
       FLOAT m_radius;
-      // }Œ`‚ÌF
+      // å›³å½¢ã®è‰²
       graphics::color::ColorValue m_color;
-      // }Œ`‚ÌŒ`óiŠî–{‚Æ‚È‚éŒ`ój
+      // å›³å½¢ã®å½¢çŠ¶ï¼ˆåŸºæœ¬ã¨ãªã‚‹å½¢çŠ¶ï¼‰
       CComPtr<ID2D1RoundedRectangleGeometry> m_pGeometry;
-      // ‰eŒø‰Ê‚ª‚ ‚éê‡true
+      // å½±åŠ¹æœãŒã‚ã‚‹å ´åˆtrue
       bool m_shadow;
-      // ƒOƒ[Œø‰Ê‚ª‚ ‚éê‡true
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœãŒã‚ã‚‹å ´åˆtrue
       bool m_glow;
-      // ƒJƒ‰[ƒpƒ^[ƒ“‚ğÀŒ»‚·‚é‚½‚ß‚É—p‚¢‚é}Œ`‚ÌŒ`ó
+      // ã‚«ãƒ©ãƒ¼ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ç”¨ã„ã‚‹å›³å½¢ã®å½¢çŠ¶
       std::vector<CComPtr<ID2D1RoundedRectangleGeometry>> m_frames;
-      // ƒJƒ‰[ƒpƒ^[ƒ“‚ğÀŒ»‚·‚é‚½‚ß‚É—p‚¢‚é•¡”‚Ìƒuƒ‰ƒV
+      // ã‚«ãƒ©ãƒ¼ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’å®Ÿç¾ã™ã‚‹ãŸã‚ã«ç”¨ã„ã‚‹è¤‡æ•°ã®ãƒ–ãƒ©ã‚·
       std::unique_ptr<graphics::brush::BrushSet> m_brushes;
-      // ‰eŒø‰Ê‚ÌF
+      // å½±åŠ¹æœã®è‰²
       std::shared_ptr<graphics::color::IColor> m_shadowColor;
-      // ƒOƒ[Œø‰Ê‚ÌF
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœã®è‰²
       std::shared_ptr<graphics::color::IColor> m_glowColor;
-      // ƒfƒRƒŒ[ƒ^
+      // ãƒ‡ã‚³ãƒ¬ãƒ¼ã‚¿
       std::vector<std::shared_ptr<graphics::decorator::IDecorator>> m_decorators;
-      // ƒWƒIƒƒgƒŠƒtƒBƒ‹ƒ^
+      // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ•ã‚£ãƒ«ã‚¿
       std::vector<graphics::figure::GeometryFilterWorkSet> m_geometryFilter;
 
     public:
-      // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+      // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
       RectangleFigure(void);
-      // ƒfƒXƒgƒ‰ƒNƒ^
+      // ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
       virtual ~RectangleFigure(void);
 
-      // ƒCƒ“ƒ^[ƒtƒFƒCƒX graphics::figure::IFigure (ŠJn)
+      // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ graphics::figure::IFigure (é–‹å§‹)
       virtual void SetX(FLOAT x) {
         m_x = x;
         m_propertyChanged = true;
@@ -102,72 +102,72 @@ namespace graphics {
       virtual void ClearDecorators() {
         m_decorators.clear();
       }
-      // ƒWƒIƒƒgƒŠ[ƒtƒBƒ‹ƒ^[‚Ì’Ç‰Á
+      // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®è¿½åŠ 
       virtual void AddGeometryFilter(const std::wstring &workSetName, const std::wstring &filterName,
                                      FILTER_DISPLAY_ORDER filterDispayOrder,
                                      std::shared_ptr<graphics::color::IColor> color) {
         m_geometryFilter.push_back(
             graphics::figure::GeometryFilterWorkSet(workSetName, filterName, filterDispayOrder, color));
       }
-      // ƒtƒBƒ‹ƒ^[‚ª‘¶İ‚·‚é‚©‚Ç‚¤‚©‚ÌƒeƒXƒg
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ†ã‚¹ãƒˆ
       virtual bool HasGeometryFilter(const std::wstring &workSetName) {
         return std::find_if(
                    m_geometryFilter.begin(), m_geometryFilter.end(),
                    [&](graphics::figure::GeometryFilterWorkSet &e) { return e.GetWorkSetName() == workSetName; })
                != m_geometryFilter.end();
       }
-      // ƒWƒIƒƒgƒŠ[ƒtƒBƒ‹ƒ^[‚Ìíœ
+      // ã‚¸ã‚ªãƒ¡ãƒˆãƒªãƒ¼ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®å‰Šé™¤
       virtual void ClearGeometryFilters() {
         m_geometryFilter.clear();
       }
-      // ƒCƒ“ƒ^[ƒtƒFƒCƒXgraphics::figure::IFigure (I—¹)
+      // ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹graphics::figure::IFigure (çµ‚äº†)
 
-      // ŠpŠÛ”¼Œa‚Ìİ’è
+      // è§’ä¸¸åŠå¾„ã®è¨­å®š
       void SetRadius(FLOAT radius) {
         m_radius = radius;
         m_propertyChanged = true;
       }
-      // ŠpŠÛ”¼Œa‚Ìæ“¾
+      // è§’ä¸¸åŠå¾„ã®å–å¾—
       FLOAT GetRadius() const {
         return m_radius;
       }
 
-      // *** ‰eŒø‰Ê ***
-      // ‰eŒø‰Ê‚ğON/OFF‚Éİ’è
+      // *** å½±åŠ¹æœ ***
+      // å½±åŠ¹æœã‚’ON/OFFã«è¨­å®š
       void SetShadow(bool shadow) {
         m_shadow = shadow;
         m_propertyChanged = true;
       }
-      // ‰eŒø‰Ê‚ğ‚Â‚©‚Ç‚¤‚©
+      // å½±åŠ¹æœã‚’æŒã¤ã‹ã©ã†ã‹
       bool HasShadow() const {
         return m_shadow;
       }
-      // ‰eŒø‰Ê‚ÌF‚Ìİ’è
+      // å½±åŠ¹æœã®è‰²ã®è¨­å®š
       void SetShadowColor(const std::shared_ptr<graphics::color::IColor> &shadowColor) {
         m_shadowColor = shadowColor;
         m_propertyChanged = true;
       }
-      // ‰eŒø‰Ê‚ÌF‚Ìæ“¾
+      // å½±åŠ¹æœã®è‰²ã®å–å¾—
       std::shared_ptr<graphics::color::IColor> GetShadowColor() const {
         return m_shadowColor;
       }
 
-      // *** ƒOƒ[Œø‰Ê ***
-      // ƒOƒ[Œø‰Ê‚ğON/OFF‚Éİ’è
+      // *** ã‚°ãƒ­ãƒ¼åŠ¹æœ ***
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœã‚’ON/OFFã«è¨­å®š
       void SetGlow(bool glow) {
         m_glow = glow;
         m_propertyChanged = true;
       }
-      // ƒOƒ[Œø‰Ê‚ğ‚Â‚©‚Ç‚¤‚©
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœã‚’æŒã¤ã‹ã©ã†ã‹
       bool HasGlow() const {
         return m_glow;
       }
-      // ƒOƒ[Œø‰Ê‚ÌF‚Ìİ’è
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœã®è‰²ã®è¨­å®š
       void SetGlowColor(const std::shared_ptr<graphics::color::IColor> &glowColor) {
         m_glowColor = glowColor;
         m_propertyChanged = true;
       }
-      // ƒOƒ[Œø‰Ê‚ÌF‚Ìæ“¾
+      // ã‚°ãƒ­ãƒ¼åŠ¹æœã®è‰²ã®å–å¾—
       std::shared_ptr<graphics::color::IColor> GetGlowColor() const {
         return m_glowColor;
       }

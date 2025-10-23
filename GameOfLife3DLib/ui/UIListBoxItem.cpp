@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "Common.h"
 #include "graphics/DirectWriteUtil.h"
 #include "graphics/D3DInteropHelper.h"
@@ -29,7 +29,7 @@ T max3(T v1, T v2, T v3) {
 
 //const wchar_t *UILISTBOXITEM_DEFAULT_FRAME_COLORSET = L"solid(rgba(#353535,1.0))";
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ui::UIListBoxItem::UIListBoxItem(void)
     : m_layoutDirection(LAYOUT_DIRECTION_VERTICAL)
     , m_preferredTextAreaSize(0.0f, 0.0f)
@@ -103,7 +103,7 @@ ui::UIListBoxItem::UIListBoxItem(void)
 #endif
 }
 
-// ƒfƒXƒgƒ‰ƒNƒ^
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 ui::UIListBoxItem::~UIListBoxItem(void) {
 #ifdef DEBUG_UILISTBOXITEM
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
@@ -111,19 +111,19 @@ ui::UIListBoxItem::~UIListBoxItem(void) {
 #endif
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 HRESULT ui::UIListBoxItem::Initialize(graphics::D3DInteropHelper *pD3DInteropHelper) {
 #ifdef DEBUG_UILISTBOXITEM
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
-  // ƒuƒ‰ƒVƒZƒbƒg‚Ì‰Šú‰»
+  // ãƒ–ãƒ©ã‚·ã‚»ãƒƒãƒˆã®åˆæœŸåŒ–
   m_textBrushSet->SetColorSet(m_textColorSet);
-  // ƒƒCƒ“ƒeƒLƒXƒg‚Ì‰Šú‰»
+  // ãƒ¡ã‚¤ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆæœŸåŒ–
   CHK_WARN_HRESULT(__InitializeMainText(pD3DInteropHelper));
-  // ƒTƒuƒeƒLƒXƒg1‚Ì‰Šú‰»
+  // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ1ã®åˆæœŸåŒ–
   CHK_WARN_HRESULT(__InitializeSubText(pD3DInteropHelper, m_subText1, m_subText1FontAttribute, m_subText1Format,
                                        m_subText1Layout, m_subText1Metrics, m_subText1LayoutRect));
-  // ƒTƒuƒeƒLƒXƒg2‚Ì‰Šú‰»
+  // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ2ã®åˆæœŸåŒ–
   CHK_WARN_HRESULT(__InitializeSubText(pD3DInteropHelper, m_subText2, m_subText2FontAttribute, m_subText2Format,
                                        m_subText2Layout, m_subText2Metrics, m_subText2LayoutRect));
 #ifdef DEBUG_UILISTBOXITEM
@@ -140,7 +140,7 @@ HRESULT ui::UIListBoxItem::Initialize(graphics::D3DInteropHelper *pD3DInteropHel
 
   __CalculateLayoutRect();
 
-  // ƒ{ƒfƒB
+  // ãƒœãƒ‡ã‚£
   m_bodyBrushSet->SetColorSet(m_bodyColorSet);
   m_bodyRect->SetX(0.0f);
   m_bodyRect->SetY(0.0f);
@@ -155,7 +155,7 @@ HRESULT ui::UIListBoxItem::Initialize(graphics::D3DInteropHelper *pD3DInteropHel
   return S_OK;
 }
 
-// ƒƒCƒ“ƒeƒLƒXƒg‚Ì‰Šú‰»iƒeƒLƒXƒgƒtƒH[ƒ}ƒbƒgAƒeƒLƒXƒgƒŒƒCƒAƒEƒgAƒeƒLƒXƒgƒƒgƒŠƒbƒNƒXj
+// ãƒ¡ã‚¤ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆæœŸåŒ–ï¼ˆãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã€ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒˆãƒªãƒƒã‚¯ã‚¹ï¼‰
 HRESULT ui::UIListBoxItem::__InitializeMainText(graphics::D3DInteropHelper *pD3DInteropHelper) {
 #ifdef DEBUG_UILISTBOXITEM
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
@@ -188,7 +188,7 @@ HRESULT ui::UIListBoxItem::__InitializeMainText(graphics::D3DInteropHelper *pD3D
   return S_OK;
 }
 
-// ƒTƒuƒeƒLƒXƒg‚Ì‰Šú‰»iƒeƒLƒXƒgƒtƒH[ƒ}ƒbƒgAƒeƒLƒXƒgƒŒƒCƒAƒEƒgAƒeƒLƒXƒgƒƒgƒŠƒbƒNƒXj
+// ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆã®åˆæœŸåŒ–ï¼ˆãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã€ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã€ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒˆãƒªãƒƒã‚¯ã‚¹ï¼‰
 HRESULT ui::UIListBoxItem::__InitializeSubText(graphics::D3DInteropHelper *pD3DInteropHelper, const std::wstring &text,
                                                const graphics::FontAttribute &fontAttribute,
                                                CComPtr<IDWriteTextFormat> &textFormat,
@@ -229,42 +229,42 @@ HRESULT ui::UIListBoxItem::__InitializeSubText(graphics::D3DInteropHelper *pD3DI
   return S_OK;
 }
 
-// ƒŒƒCƒAƒEƒg—Ìˆæ‚ÌŒvZ
-// Às‚³‚ê‚é‘O‚ÉAƒeƒLƒXƒgƒŒƒCƒAƒEƒg‚Ì¶¬‚ÆƒƒgƒŠƒbƒNƒX‚Ìæ“¾‚ªs‚í‚ê‚Ä‚¢‚È‚¯‚ê‚Î‚È‚ç‚È‚¢B
+// ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆé ˜åŸŸã®è¨ˆç®—
+// å®Ÿè¡Œã•ã‚Œã‚‹å‰ã«ã€ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ç”Ÿæˆã¨ãƒ¡ãƒˆãƒªãƒƒã‚¯ã‚¹ã®å–å¾—ãŒè¡Œã‚ã‚Œã¦ã„ãªã‘ã‚Œã°ãªã‚‰ãªã„ã€‚
 void ui::UIListBoxItem::__CalculateLayoutRect() {
 #ifdef DEBUG_UILISTBOXITEM
   LOG_ENTER(SEVERITY_LEVEL_DEBUG);
 #endif
   if (m_layoutDirection == LAYOUT_DIRECTION_HORIZONTAL) {
-    // ƒrƒbƒgƒ}ƒbƒv
+    // ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
     m_bitmapLayoutRect.x = 0.0f;
     m_bitmapLayoutRect.y = 0.0f;
     m_bitmapLayoutRect.width = m_preferredBitmapSize.width;
     m_bitmapLayoutRect.height = m_preferredBitmapSize.height;
 
-    // ƒeƒLƒXƒgƒŒƒCƒAƒEƒg (x, y)
+    // ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ (x, y)
     m_textLayoutRect.x = m_bitmapLayoutRect.x + m_bitmapLayoutRect.width + m_marginBetweenBitmapAndText;
     m_textLayoutRect.y = m_bitmapLayoutRect.y;
 
-    // ƒƒCƒ“ƒeƒLƒXƒgƒŒƒCƒAƒEƒg
+    // ãƒ¡ã‚¤ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_mainTextLayoutRect.x = m_textLayoutRect.x;
     m_mainTextLayoutRect.y = m_textLayoutRect.y;
     m_mainTextLayoutRect.width = m_mainTextMetrics.widthIncludingTrailingWhitespace;
     m_mainTextLayoutRect.height = m_mainTextMetrics.height;
 
-    // ƒTƒuƒeƒLƒXƒg1ƒŒƒCƒAƒEƒg
+    // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ1ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_subText1LayoutRect.x = m_mainTextLayoutRect.x;
     m_subText1LayoutRect.y = m_mainTextLayoutRect.y + m_mainTextLayoutRect.height;
     m_subText1LayoutRect.width = m_subText1Metrics.widthIncludingTrailingWhitespace;
     m_subText1LayoutRect.height = m_subText1Metrics.height;
 
-    // ƒTƒuƒeƒLƒXƒg2ƒŒƒCƒAƒEƒg
+    // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ2ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_subText2LayoutRect.x = m_mainTextLayoutRect.x;
     m_subText2LayoutRect.y = m_subText1LayoutRect.y + m_subText1Metrics.height;
     m_subText2LayoutRect.width = m_subText2Metrics.widthIncludingTrailingWhitespace;
     m_subText2LayoutRect.height = m_subText2Metrics.height;
 
-    // ƒeƒLƒXƒgƒŒƒCƒAƒEƒg (width, height)
+    // ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ (width, height)
     m_textLayoutRect.width = max3(m_mainTextLayoutRect.width, m_subText1LayoutRect.width, m_subText2LayoutRect.width);
     m_textLayoutRect.height = m_mainTextLayoutRect.height + m_subText1LayoutRect.height + m_subText2LayoutRect.height;
 
@@ -279,35 +279,35 @@ void ui::UIListBoxItem::__CalculateLayoutRect() {
     LOG(SEVERITY_LEVEL_DEBUG) << L"bounds = " << bounds;
 #endif
   } else {
-    // ƒrƒbƒgƒ}ƒbƒv
+    // ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
     m_bitmapLayoutRect.x = 0.0f;
     m_bitmapLayoutRect.y = 0.0f;
     m_bitmapLayoutRect.width = m_preferredBitmapSize.width;
     m_bitmapLayoutRect.height = m_preferredBitmapSize.height;
 
-    // ƒeƒLƒXƒgƒŒƒCƒAƒEƒg (x, y)
+    // ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ (x, y)
     m_textLayoutRect.x = m_bitmapLayoutRect.x;
     m_textLayoutRect.y = m_bitmapLayoutRect.y + m_bitmapLayoutRect.height + m_marginBetweenBitmapAndText;
 
-    // ƒƒCƒ“ƒeƒLƒXƒgƒŒƒCƒAƒEƒg
+    // ãƒ¡ã‚¤ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_mainTextLayoutRect.x = m_textLayoutRect.x;
     m_mainTextLayoutRect.y = m_textLayoutRect.y;
     m_mainTextLayoutRect.width = m_mainTextMetrics.widthIncludingTrailingWhitespace;
     m_mainTextLayoutRect.height = m_mainTextMetrics.height;
 
-    // ƒTƒuƒeƒLƒXƒg1ƒŒƒCƒAƒEƒg
+    // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ1ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_subText1LayoutRect.x = m_mainTextLayoutRect.x;
     m_subText1LayoutRect.y = m_mainTextLayoutRect.y + m_mainTextLayoutRect.height;
     m_subText1LayoutRect.width = m_subText1Metrics.widthIncludingTrailingWhitespace;
     m_subText1LayoutRect.height = m_subText1Metrics.height;
 
-    // ƒTƒuƒeƒLƒXƒg2ƒŒƒCƒAƒEƒg
+    // ã‚µãƒ–ãƒ†ã‚­ã‚¹ãƒˆ2ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     m_subText2LayoutRect.x = m_mainTextLayoutRect.x;
     m_subText2LayoutRect.y = m_subText1LayoutRect.y + m_subText1Metrics.height;
     m_subText2LayoutRect.width = m_subText2Metrics.widthIncludingTrailingWhitespace;
     m_subText2LayoutRect.height = m_subText2Metrics.height;
 
-    // ƒeƒLƒXƒgƒŒƒCƒAƒEƒg (width, height)
+    // ãƒ†ã‚­ã‚¹ãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ (width, height)
     m_textLayoutRect.width = max3(m_mainTextLayoutRect.width, m_subText1LayoutRect.width, m_subText2LayoutRect.width);
     m_textLayoutRect.height = m_mainTextLayoutRect.height + m_subText1LayoutRect.height + m_subText2LayoutRect.height;
 

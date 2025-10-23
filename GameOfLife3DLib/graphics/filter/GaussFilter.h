@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_GAUSSFILTER_H_
+﻿#ifndef GRAPHICS_GAUSSFILTER_H_
 #define GRAPHICS_GAUSSFILTER_H_
 
 #include "graphics/GraphicsCommon.h"

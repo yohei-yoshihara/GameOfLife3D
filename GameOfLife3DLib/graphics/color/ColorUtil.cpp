@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "graphics/GraphicsCommon.h"
 #include "graphics/brush/LinearGradientBrush.h"
 #include "graphics/color/ColorValue.h"

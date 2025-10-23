@@ -1,4 +1,4 @@
-#ifndef UI_TEXTEDITSINK_H_
+﻿#ifndef UI_TEXTEDITSINK_H_
 #define UI_TEXTEDITSINK_H_
 
 #include "graphics/GraphicsCommon.h"

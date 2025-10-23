@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_FPSUTIL_H_
+﻿#ifndef GRAPHICS_FPSUTIL_H_
 #define GRAPHICS_FPSUTIL_H_
 
 namespace graphics {

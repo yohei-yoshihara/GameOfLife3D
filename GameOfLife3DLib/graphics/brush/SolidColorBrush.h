@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_SOLIDCOLORBRUSH_H_
+﻿#ifndef GRAPHICS_SOLIDCOLORBRUSH_H_
 #define GRAPHICS_SOLIDCOLORBRUSH_H_
 
 #include "graphics/brush/IBrush.h"

@@ -1,4 +1,4 @@
-#ifndef UTIL_OSVERSIONCHECKER_H_
+﻿#ifndef UTIL_OSVERSIONCHECKER_H_
 #define UTIL_OSVERSIONCHECKER_H_
 
 namespace util {

@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_FONTATTRIBUTE_H_
+﻿#ifndef GRAPHICS_FONTATTRIBUTE_H_
 #define GRAPHICS_FONTATTRIBUTE_H_
 
 namespace graphics {

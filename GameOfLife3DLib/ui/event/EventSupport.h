@@ -1,4 +1,4 @@
-#ifndef UI_EVENT_EVENTSUPPORT_H_
+﻿#ifndef UI_EVENT_EVENTSUPPORT_H_
 #define UI_EVENT_EVENTSUPPORT_H_
 
 namespace ui {

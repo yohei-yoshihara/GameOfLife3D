@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_COLORUTIL_H_
+﻿#ifndef GRAPHICS_COLORUTIL_H_
 #define GRAPHICS_COLORUTIL_H_
 
 #include "graphics/GraphicsCommon.h"

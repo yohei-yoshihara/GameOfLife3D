@@ -1,4 +1,4 @@
-#ifndef UI_UIBASE_H_
+﻿#ifndef UI_UIBASE_H_
 #define UI_UIBASE_H_
 
 #include "graphics/GraphicsCommon.h"

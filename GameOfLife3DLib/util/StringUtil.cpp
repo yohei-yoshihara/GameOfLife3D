@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "logging/Logging.h"
 #include "util/StringUtil.h"
 

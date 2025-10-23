@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "ui/UITextDisplayAttribute.h"
 
 ui::UITextDisplayAttribute::UITextDisplayAttribute(void)

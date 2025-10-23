@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "tsf/TSFManager.h"
 
 tsf::TSFManager::TSFManager(void)

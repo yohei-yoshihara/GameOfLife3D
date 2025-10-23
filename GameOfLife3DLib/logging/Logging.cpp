@@ -1,5 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Logging.h"
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/basic_file_sink.h>
 //#include <boost/lambda/lambda.hpp>
 //#include <boost/lambda/bind.hpp>
 #include <string>

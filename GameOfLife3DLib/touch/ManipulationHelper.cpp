@@ -1,4 +1,4 @@
-#include "Stdafx.h"
+﻿#include "Stdafx.h"
 #include "Common.h"
 #include "touch/ManipulationHelper.h"
 #include "ui/UIContainer.h"

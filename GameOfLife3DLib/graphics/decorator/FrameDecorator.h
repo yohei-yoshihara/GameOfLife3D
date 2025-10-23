@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_DECORATION_COLORSET_H_
+﻿#ifndef GRAPHICS_DECORATION_COLORSET_H_
 #define GRAPHICS_DECORATION_COLORSET_H_
 
 #include "graphics/GraphicsCommon.h"

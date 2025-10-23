@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_COLOR_GRADIENTSTOP_H_
+﻿#ifndef GRAPHICS_COLOR_GRADIENTSTOP_H_
 #define GRAPHICS_COLOR_GRADIENTSTOP_H_
 
 #include "graphics/color/ColorValue.h"

@@ -1,4 +1,4 @@
-#ifndef UI_UIINTERNALDIALOG_H_
+﻿#ifndef UI_UIINTERNALDIALOG_H_
 #define UI_UIINTERNALDIALOG_H_
 
 #include "graphics/GraphicsCommon.h"

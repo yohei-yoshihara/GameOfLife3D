@@ -1,4 +1,4 @@
-#ifndef UTIL_H_
+﻿#ifndef UTIL_H_
 #define UTIL_H_
 
 namespace util {

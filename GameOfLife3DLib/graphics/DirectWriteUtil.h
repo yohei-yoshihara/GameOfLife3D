@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_DIRECTWRITEUTIL_H
+﻿#ifndef GRAPHICS_DIRECTWRITEUTIL_H
 #define GRAPHICS_DIRECTWRITEUTIL_H
 
 #include "graphics/GraphicsCommon.h"

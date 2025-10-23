@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Common.h"
 #include "graphics/D3DInteropHelper.h"
 #include "gameOfLife3D/draw3d/Draw3DUtil.h"

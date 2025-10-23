@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "animation/IAnimationWindow.h"
 #include "animation/AnimationManagerEventHandler.h"
 

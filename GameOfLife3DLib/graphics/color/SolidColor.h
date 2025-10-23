@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_COLOR_SOLIDCOLOR_H_
+﻿#ifndef GRAPHICS_COLOR_SOLIDCOLOR_H_
 #define GRAPHICS_COLOR_SOLIDCOLOR_H_
 
 #include "graphics/color/IColor.h"

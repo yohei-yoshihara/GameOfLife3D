@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Common.h"
 #include "tsf/TSFManager.h"
 #include "mui/MUI.h"

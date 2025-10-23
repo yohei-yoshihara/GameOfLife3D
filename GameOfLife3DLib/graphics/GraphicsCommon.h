@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_GRAPHICSCOMMON_H_
+﻿#ifndef GRAPHICS_GRAPHICSCOMMON_H_
 #define GRAPHICS_GRAPHICSCOMMON_H_
 
 namespace graphics {

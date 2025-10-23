@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "graphics/color/IColor.h"
 #include "graphics/figure/IFigure.h"
 #include "graphics/figure/GeometryFilterWorkSet.h"

@@ -1,4 +1,4 @@
-#ifndef GAMEOFLIFE3D_LIFESIMULATORFACTORY_H_
+﻿#ifndef GAMEOFLIFE3D_LIFESIMULATORFACTORY_H_
 #define GAMEOFLIFE3D_LIFESIMULATORFACTORY_H_
 
 #include "gameOfLife3D/lifeSimulator/AbstractLifeSimulator.h"

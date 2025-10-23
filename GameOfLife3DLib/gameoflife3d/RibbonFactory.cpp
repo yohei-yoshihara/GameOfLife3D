@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include <Shobjidl.h>
 #include "mui/MUI.h"
 #include "GameOfLife3D/IMainWnd.h"

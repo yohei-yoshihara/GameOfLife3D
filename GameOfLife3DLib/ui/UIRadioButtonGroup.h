@@ -1,4 +1,4 @@
-#ifndef UI_UIRADIOBUTTONGROUP_H_
+﻿#ifndef UI_UIRADIOBUTTONGROUP_H_
 #define UI_UIRADIOBUTTONGROUP_H_
 
 #include "graphics/GraphicsCommon.h"

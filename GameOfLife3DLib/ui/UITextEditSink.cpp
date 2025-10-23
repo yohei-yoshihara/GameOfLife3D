@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "ui/UICommon.h"
 #include "ui/UITextDisplayAttribute.h"
 #include "ui/UITextEditSink.h"

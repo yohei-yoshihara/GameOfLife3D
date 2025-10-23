@@ -1,4 +1,4 @@
-#ifndef GAMEOFLIFE3D_IO_LIFEFILE_H_
+﻿#ifndef GAMEOFLIFE3D_IO_LIFEFILE_H_
 #define GAMEOFLIFE3D_IO_LIFEFILE_H_
 
 #include "gameOfLife3D/lifeSimulator/LifeData.h"

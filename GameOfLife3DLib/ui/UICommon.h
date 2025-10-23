@@ -1,4 +1,4 @@
-#ifndef UI_UICOMMON_H_
+﻿#ifndef UI_UICOMMON_H_
 #define UI_UICOMMON_H_
 
 namespace ui {

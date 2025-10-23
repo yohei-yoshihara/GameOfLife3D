@@ -1,4 +1,4 @@
-#ifndef UI_IUIDIALOG_H_
+﻿#ifndef UI_IUIDIALOG_H_
 #define UI_IUIDIALOG_H_
 
 #include "ui/UICommon.h"

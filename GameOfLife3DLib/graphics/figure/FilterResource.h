@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_FIGURE_FILTERRESOURCE_H_
+ï»¿#ifndef GRAPHICS_FIGURE_FILTERRESOURCE_H_
 #define GRAPHICS_FIGURE_FILTERRESOURCE_H_
 
 #include "graphics/GraphicsCommon.h"
@@ -8,17 +8,17 @@ namespace graphics {
   namespace figure {
     class FilterResource {
     private:
-      // ƒtƒBƒ‹ƒ^[–¼
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼å
       std::wstring m_filterName;
-      // ƒtƒBƒ‹ƒ^[‚Ì•\¦‡˜
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®è¡¨ç¤ºé †åº
       FILTER_DISPLAY_ORDER m_filterDisplayOrder;
-      // ƒtƒBƒ‹ƒ^[‚ÌF
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®è‰²
       graphics::color::ColorValue m_colorValue;
-      // ƒtƒBƒ‹ƒ^[‚ğ“K—p‚µ‚½ƒrƒbƒgƒ}ƒbƒv
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã‚’é©ç”¨ã—ãŸãƒ“ãƒƒãƒˆãƒãƒƒãƒ—
       CComPtr<ID2D1Bitmap> m_bitmap;
-      // ƒtƒBƒ‹ƒ^[‚Ì—Ìˆæ
+      // ãƒ•ã‚£ãƒ«ã‚¿ãƒ¼ã®é ˜åŸŸ
       D2D1_RECT_F m_bounds;
-      // ƒtƒBƒ‹ƒ^|‚Ìƒuƒ‰ƒV
+      // ãƒ•ã‚£ãƒ«ã‚¿ï¼ã®ãƒ–ãƒ©ã‚·
       std::shared_ptr<graphics::brush::SolidColorBrush> m_brush;
 
     public:

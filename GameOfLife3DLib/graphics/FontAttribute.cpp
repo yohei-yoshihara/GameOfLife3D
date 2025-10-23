@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "graphics/FontAttribute.h"
 
 std::wostream &graphics::operator<<(std::wostream &os, FontAttribute const &fontAttribute) {

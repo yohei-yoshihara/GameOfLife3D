@@ -1,4 +1,4 @@
-#ifndef UI_EVENT_IUIINPUTEVENT_H_
+﻿#ifndef UI_EVENT_IUIINPUTEVENT_H_
 #define UI_EVENT_IUIINPUTEVENT_H_
 
 #include "ui/UICommon.h"

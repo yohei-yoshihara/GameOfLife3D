@@ -1,4 +1,4 @@
-#ifndef UI_UISCROLLBAR_H_
+﻿#ifndef UI_UISCROLLBAR_H_
 #define UI_UISCROLLBAR_H_
 
 #include "graphics/GraphicsCommon.h"

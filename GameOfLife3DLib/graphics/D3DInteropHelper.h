@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_D3DINTEROPHELPER_H_
+﻿#ifndef GRAPHICS_D3DINTEROPHELPER_H_
 #define GRAPHICS_D3DINTEROPHELPER_H_
 
 #include "graphics/GraphicsCommon.h"

@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_DECORATOR_IDECORATOR_H_
+﻿#ifndef GRAPHICS_DECORATOR_IDECORATOR_H_
 #define GRAPHICS_DECORATOR_IDECORATOR_H_
 
 #include "graphics/GraphicsCommon.h"

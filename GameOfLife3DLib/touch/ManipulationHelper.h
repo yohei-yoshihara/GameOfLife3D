@@ -1,4 +1,4 @@
-#ifndef TOUCH_MANIPULATIONHELPER_H_
+﻿#ifndef TOUCH_MANIPULATIONHELPER_H_
 #define TOUCH_MANIPULATIONHELPER_H_
 
 #include "ui/UICommon.h"

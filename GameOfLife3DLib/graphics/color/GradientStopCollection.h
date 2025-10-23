@@ -1,4 +1,4 @@
-#ifndef GRAPHICS_COLOR_GRADIENTCOLORSET_H_
+﻿#ifndef GRAPHICS_COLOR_GRADIENTCOLORSET_H_
 #define GRAPHICS_COLOR_GRADIENTCOLORSET_H_
 
 #include "graphics/color/GradientStop.h"

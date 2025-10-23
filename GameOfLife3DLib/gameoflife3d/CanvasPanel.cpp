@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+﻿#include "StdAfx.h"
 #include "util/Utils.h"
 #include "util/OSVersionChecker.h"
 #include "graphics/GraphicsCommon.h"
