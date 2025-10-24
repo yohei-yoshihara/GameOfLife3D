@@ -259,12 +259,6 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">shaders\simple_d3d.fxo</Outputs>
     </CustomBuild>
     <None Include="GameOfLife3D.ico" />
-    <None Include="props\antlr_x64.props" />
-    <None Include="props\antlr_x86.props">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="props\boost_x64.props" />
-    <None Include="props\boost_x86.props" />
     <None Include="props\DirectX_x64.props" />
     <None Include="props\DirectX_x86.props" />
     <None Include="props\gtest_x64.props" />
