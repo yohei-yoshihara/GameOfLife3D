@@ -61,38 +61,30 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x86.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x86.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x86.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\GameOfLife3D\props\boost_x64.props" />
     <Import Project="..\GameOfLife3D\props\gtest_x64.props" />
     <Import Project="..\GameOfLife3D\props\WindowsSDK_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3DLib.props" />
-    <Import Project="..\GameOfLife3D\props\antlr_x64.props" />
     <Import Project="..\GameOfLife3D\props\GameOfLife3D_colorsetdef.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
